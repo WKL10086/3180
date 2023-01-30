@@ -1,0 +1,375 @@
+<!DOCTYPE html>
+<!-- saved from url=(0064)http://course.cse.cuhk.edu.hk/~csci3180/assignments/assignment1/ -->
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    
+
+    <!-- TODO: change the assignment number -->
+    <title>CSCI3180 Assignment 1</title>
+
+    <!-- css styles for this page -->
+    <link rel="stylesheet" href="./CSCI3180 Assignment 1_files/main.css">
+
+    <!-- prism.js is used for code highlighting: https://prismjs.com/ -->
+    <link rel="stylesheet" href="./CSCI3180 Assignment 1_files/prism.css">
+</head>
+
+<body class="vsc-initialized" data-new-gr-c-s-check-loaded="14.1094.0" data-gr-ext-installed="">
+    <script src="./CSCI3180 Assignment 1_files/prism.js.下載" type="text/javascript"></script>
+
+    <div class="sticky-side-nav">
+        <!-- TODO: change the assignment number -->
+        <div class="centered"><b>Assignment 1</b></div>
+        <br>
+
+        <!-- TODO: update the navigation menu -->
+        <a href="http://course.cse.cuhk.edu.hk/~csci3180/assignments/assignment1/#introduction">Introduction</a>
+        <a href="http://course.cse.cuhk.edu.hk/~csci3180/assignments/assignment1/#integrity">About academic integrity</a>
+        <a href="http://course.cse.cuhk.edu.hk/~csci3180/assignments/assignment1/#overview">Task overview &amp; download</a>
+        <a href="http://course.cse.cuhk.edu.hk/~csci3180/assignments/assignment1/#ingredient">The Ingredient class</a>
+        <a href="http://course.cse.cuhk.edu.hk/~csci3180/assignments/assignment1/#bun">The Bun class</a>
+        <a href="http://course.cse.cuhk.edu.hk/~csci3180/assignments/assignment1/#meat">The Meat class</a>
+        <a href="http://course.cse.cuhk.edu.hk/~csci3180/assignments/assignment1/#burgerShop">The BurgerShop class</a>
+        <a href="http://course.cse.cuhk.edu.hk/~csci3180/assignments/assignment1/#sample">Sample output &amp; grading</a>
+        <a href="http://course.cse.cuhk.edu.hk/~csci3180/assignments/assignment1/#report">Written report</a>
+        <a href="http://course.cse.cuhk.edu.hk/~csci3180/assignments/assignment1/#submission">Submission &amp; deadline</a>
+
+        <!-- add navigation menu items if needed, e.g.: -->
+        <!-- 
+            <a href="#section-id-used-for-navigation">New section name</a> 
+        -->
+
+        <!-- TODO: credit yourself -->
+        <div class="credit">Prepared by Wallace Mak</div> 
+    </div>
+
+    <div class="main-content">
+        <div class="section" id="heading"> 
+            <!-- TODO: change the assignment title -->
+            <h1>CSCI3180 Assignment 1: Happy Teemo Burgers</h1>
+        </div> <!-- end of heading -->
+        
+        <!-- TODO: add a cover image representing the assignment here -->
+        <img src="./CSCI3180 Assignment 1_files/cover-image.png">
+
+ 
+        <div class="section" id="introduction">
+            <h2>Introduction</h2>
+            <p>Teemo makes burgers for a living.</p>
+            <p>In this assignment, we are going to write a C++ program to simulate a few days at the <i>Happy Teemo Burgers</i> proudly owned by him.</p>
+            <p>The main objectives of this relatively simple assignment are three-fold, for you:
+                </p><ul>
+                    <li>To have a taste of a CSCI3180 assignment, in particular, its styles, policies, and submission system.</li>
+                    <li>To practice C++ programming which will be used in the next assignment as well.</li>
+                    <li>To explore the pros and cons of explicit heap-dynamic variables (i.e. usage of heap-dynamic memory).</li>
+                </ul>
+            <p></p>
+        </div> <!-- end of section -->
+ 
+
+        <div class="section" id="integrity">
+            <h2>About academic integrity</h2>
+            <p>We value academic integrity very highly.</p>
+            <ul>
+                <li>Do NOT try your "luck" - we use sophisticated plagiarism detection software to find cheaters.</li>
+                <li>The penalty (for BOTH the copier and the copiee) may not be just getting a zero in your assignment. There may be additional disciplinary actions from the university, upto and including expulsion.</li>
+                <li>Do NOT copy or look at the assignment code/work of another student/person.</li>
+                <li>Do NOT share your assignment code/work to anyone and do NOT post it anywhere online.</li>
+                <li>While we encourage discussion among students, you should write the code and finish the work on your own. In the discussion, you should NOT go into the details such that everyone will end up with the same code/work.</li>
+                <li>You are responsible to double-check your own submission and do your best to avoid "accidents".</li>
+            </ul>
+            <p>Read <a href="https://www.cuhk.edu.hk/policy/academichonesty/">https://www.cuhk.edu.hk/policy/academichonesty/</a> for details of the CUHK policy on this matter.</p>
+        </div> <!-- end of section -->
+
+
+        <div class="section" id="overview">
+            <h2>Task overview &amp; download</h2>
+            <p>You have two main tasks in this assignment.</p>
+            <ol>
+                <li>First, download the starting skeleton code <a href="http://course.cse.cuhk.edu.hk/~csci3180/assignments/assignment1/downloads/a1-starting-code.zip">HERE</a>. Please download it now, as we may refer to it in the description below. Most functions have already been completed for you. Your programming task is to read the description, understand the given code, and complete the 3 incomplete functions marked with TODO in the given skeleton code files. You only need to modify and submit two files: <b>bun.cpp</b> and <b>burgerShop.cpp</b>. Basically, all other files should not be submitted or modified. We will provide the specifics in the <a href="http://course.cse.cuhk.edu.hk/~csci3180/assignments/assignment1/#submission">Submission &amp; deadline</a> section.</li>
+                <li>Write a report on heap-dynamic memory pros/cons, and save it as a PDF file. We will talk about it in details after the programming task description.</li>
+            </ol>
+            <p>Read the pinned assignment 1 FAQ post on <a href="https://piazza.com/class/lb640zoes506ma">Piazza</a> for some common clarifications. You should check that a day before the deadline to make sure you don't miss any clarifications, even if you have already submitted your work then.</p>
+            <p>If you need further clarifications of the requirements, please feel free to post on the Piazza with the <u>assignment1</u> tag. However, to avoid cluttering the forum with repeated/trivial questions, please do read all the given code, webpage description, sample output, and latest FAQ carefully before posting your questions. Also, please be reminded that we won't debug for any student's assignment for the sake of fairness and that you should not share/post your solution code anywhere.</p>
+        </div> <!-- end of section -->
+
+
+        <div id="ingredient">
+            <h2>The Ingredient class</h2>
+            
+            <div class="block">
+            <p>It is the abstract base class (ABC) for burger ingredients. We only have 3 classes in this class hierarchy and <code>Ingredient</code> sits at the top. To give you an overview of the class design, here is the class diagram:</p>
+            <img src="./CSCI3180 Assignment 1_files/class-diagram-1.png"> 
+            <p>In the diagram, <code>+</code> denotes the public members while <code>-</code> denotes the private members.</p>
+            <p>Details will be provided below. For anything that appears to be unclear to you, you should refer to the given code if they are available. First, let's look at this ABC: the <code>Ingredient</code> class.</p>
+            </div>
+            
+            <h3>Data members</h3>
+
+            <div class="block">
+                <pre class=" language-cpp"><code class=" language-cpp"><span class="token keyword">int</span> freshness <span class="token operator">=</span> <span class="token number">100</span><span class="token punctuation">;</span></code></pre>
+                <p>This is the freshness of the ingredient. It is always set to 100 initially and will decrease by 1 per update, which will be described later.</p>
+            </div>
+
+            <h3>Member functions</h3>
+            
+            <div class="block">
+                <pre class=" language-cpp"><code class=" language-cpp"><span class="token keyword">virtual</span> <span class="token operator">~</span><span class="token function">Ingredient</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre>
+                <p>This is the destructor. It doesn't really do anything in this class, but as a good practice we should always declare it virtual in an ABC. If you are curious why, think about what may happen if the base class destructor is not virtual when we delete a derived class object via a base class pointer.</p>
+            </div>
+            <div class="block">
+                <pre class=" language-cpp"><code class=" language-cpp"><span class="token keyword">int</span> <span class="token function">getFreshness</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre>
+                <p>It returns the freshness.</p>
+            </div>
+            
+            <div class="block">
+                <pre class=" language-cpp"><code class=" language-cpp"><span class="token keyword">bool</span> <span class="token function">isSpoiled</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre>
+                <p>It returns whether the ingredient is spoiled, that is, has a freshness of 0.</p>
+            </div>
+            <div class="block">
+                <pre class=" language-cpp"><code class=" language-cpp"><span class="token keyword">virtual</span> <span class="token keyword">void</span> <span class="token function">update</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre>
+                <p>Every hour in our simulation, the <code>update</code> function of all ingredients will be called to update their states. For all ingredients, their freshness values have to each be decreased by 1 (lower-bound by 0). For specific ingredients, the <code>update</code> function may be overridden to specify additional state updates required.</p>
+            </div>
+            <div class="block">
+                <pre class=" language-cpp"><code class=" language-cpp"><span class="token keyword">virtual</span> <span class="token keyword">void</span> <span class="token function">print</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span></code></pre>
+                <p>It prints the information of the ingredient. It is made pure virtual in this ABC and shall be overridden in all concrete derived classes.</p>
+            </div>
+        </div> <!-- end of section -->
+
+
+        <div id="bun">
+            <h2>The Bun class</h2>
+            
+            <div class="block">
+            <p>It is a bun. It is a concrete derived class of <code>Ingredient</code>. Each Happy Teemo Burger requires two of it.</p>
+            </div>
+            
+            <h3>Data members</h3>
+
+            <div class="block">
+                <pre class=" language-cpp"><code class=" language-cpp"><span class="token keyword">int</span> softness<span class="token punctuation">;</span></code></pre>
+                <p>This is the softness of the bun. It is set by the constructor and will also decrease every update.</p>
+            </div>
+
+            <h3>Member functions</h3>
+
+            <div class="block">
+                <pre class=" language-cpp"><code class=" language-cpp"><span class="token function">Bun</span><span class="token punctuation">(</span><span class="token keyword">int</span> softness<span class="token punctuation">)</span></code></pre>
+                <p>It is the constructor. It sets the initial softness.</p>
+            </div>
+            <div class="block">
+                <pre class=" language-cpp"><code class=" language-cpp"><span class="token keyword">int</span> <span class="token function">getSoftness</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre>
+                <p>It returns the softness.</p>
+            </div>
+            <div class="block">
+                <pre class=" language-cpp"><code class=" language-cpp"><span class="token keyword">void</span> <span class="token function">update</span><span class="token punctuation">(</span><span class="token punctuation">)</span> override<span class="token punctuation">;</span></code></pre>
+                <p>Since a bun is an ingredient, its freshness must also be updated accordingly in an update. Additionally, its softness is decreased by 2 (lower-bound by 0).</p>
+                <p>You need to implement this function.</p>
+            </div>
+            <div class="block">
+                <pre class=" language-cpp"><code class=" language-cpp"><span class="token keyword">void</span> <span class="token function">print</span><span class="token punctuation">(</span><span class="token punctuation">)</span> override<span class="token punctuation">;</span></code></pre>
+                <p>It prints the information of the bun. You should read the given implementation and the sample output to see what it prints.</p>
+            </div>
+        </div> <!-- end of section -->
+        
+
+        <div id="meat">
+            <h2>The Meat class</h2>
+            
+            <div class="block">
+            <p>It is a piece of meat. It is a concrete derived class of <code>Ingredient</code>. Each Happy Teemo Burger requires one of it.</p>
+            </div>
+            
+            <h3>Data members</h3>
+
+            <div class="block">
+                <pre class=" language-cpp"><code class=" language-cpp"><span class="token keyword">int</span> doneness<span class="token punctuation">;</span></code></pre>
+                <p>This is the doneness of the meat. (i.e.  a gauge of how thoroughly cooked the meat is) It is set by the constructor and will simply remain the same forever.</p>
+            </div>
+
+            <h3>Member functions</h3>
+
+            <div class="block">
+                <pre class=" language-cpp"><code class=" language-cpp"><span class="token function">Meat</span><span class="token punctuation">(</span><span class="token keyword">int</span> doneness<span class="token punctuation">)</span></code></pre>
+                <p>It is the constructor. It sets the doneness.</p>
+            </div>
+            <div class="block">
+                <pre class=" language-cpp"><code class=" language-cpp"><span class="token keyword">int</span> <span class="token function">getDoneness</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre>
+                <p>It returns the doneness.</p>
+            </div>
+            <div class="block">
+                <pre class=" language-cpp"><code class=" language-cpp"><span class="token keyword">void</span> <span class="token function">print</span><span class="token punctuation">(</span><span class="token punctuation">)</span> override<span class="token punctuation">;</span></code></pre>
+                <p>It prints the information of the meat. You should read the given implementation and the sample output to see what it prints.</p>
+            </div>
+        </div> <!-- end of section -->
+        
+
+        <div id="burgerShop">
+            <h2>The BurgerShop class</h2>
+            
+            <div class="block">
+            <p>It is a burger shop. Specifically, it models how the Happy Teemo Burgers shop is run.</p>
+            
+            <img src="./CSCI3180 Assignment 1_files/class-diagram-2.png">
+
+            </div>
+            
+            <h3>Data members</h3>
+
+            <div class="block">
+                <pre class=" language-cpp"><code class=" language-cpp">Ingredient<span class="token operator">*</span><span class="token operator">*</span> ingredientStorage<span class="token punctuation">;</span></code></pre>
+                <p>It models the ingredient storage of the burger shop. The storage can store buns and meats.</p>
+                <p>Implementation-wise, this is a dynamic array of <code>ingredient</code> pointers which each point to either a <code>Bun</code> dynamic object, or a <code>Meat</code> dynamic object, or nothing (i.e. <code>nullptr</code>).</p>
+            </div>
+            <div class="block">
+                <pre class=" language-cpp"><code class=" language-cpp"><span class="token keyword">int</span> ingredientStorageCapacity<span class="token punctuation">;</span></code></pre>
+                <p>This is the ingredient storage capacity. That is, the maximum numbers of ingredients the storage can hold. That essentially is the size of the <code>ingredientStorage</code> array. We can also say that the ingredient storage has <code>ingredientStorageCapacity</code> storage slots.</p>
+            </div>
+            <div class="block">
+                <pre class=" language-cpp"><code class=" language-cpp"><span class="token keyword">int</span> ingredientStorageUsed <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span></code></pre>
+                <p>This is the number of storage slots currently used in the ingredient storage for storing buns and meats. Naturally, it will never exceed the <code>ingredientStorageCapacity</code>. It is always 0 initially.</p>
+            </div>
+            <div class="block">
+                <pre class=" language-cpp"><code class=" language-cpp"><span class="token keyword">int</span> burgerServed <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span></code></pre>
+                <p>This counts how many burgers have been successfully crafted and served to Teemo's beloved customers. It is always 0 initially.</p>
+            </div>
+
+            <h3>Member functions</h3>
+
+            <div class="block">
+                <pre class=" language-cpp"><code class=" language-cpp"><span class="token function">BurgerShop</span><span class="token punctuation">(</span><span class="token keyword">int</span> ingredientStorageCapacity<span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre>
+                <p>It is the constructor. It initializes the <code>ingredientStorageCapacity</code> and <code>ingredientStorage</code>.</p>
+            </div>
+            <div class="block">
+                <pre class=" language-cpp"><code class=" language-cpp"><span class="token operator">~</span><span class="token function">BurgerShop</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre>
+                <p>It is the destructor. All remaining dynamic objects created in this class should be deallocated properly.</p>
+                <p>You need to implement this function.</p>
+            </div>
+            <div class="block">
+                <pre class=" language-cpp"><code class=" language-cpp"><span class="token keyword">void</span> <span class="token function">attemptToMakeBun</span><span class="token punctuation">(</span><span class="token keyword">int</span> softness<span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre>
+                <p>It attempts to make a bun and store that for future use. As you can see in the given code, it calls the <code>makeBun</code> function which will be described later.</p>
+            </div>
+            <div class="block">
+                <pre class=" language-cpp"><code class=" language-cpp"><span class="token keyword">void</span> <span class="token function">attemptToMakeMeat</span><span class="token punctuation">(</span><span class="token keyword">int</span> doneness<span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre>
+                <p>It attempts to cook a piece of meat and store that for future use. As you can see in the given code, it calls the <code>makeMeat</code> function which will be described later.</p>
+            </div>
+            <div class="block">
+                <pre class=" language-cpp"><code class=" language-cpp"><span class="token keyword">void</span> <span class="token function">attemptToMakeAndServeBurger</span><span class="token punctuation">(</span><span class="token keyword">int</span> requiredBunSoftness<span class="token punctuation">,</span> <span class="token keyword">int</span> requiredMeatDoneness<span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre>
+                <p>It attempts to craft a Happy Teemo Burger using the stored ingredients. As you can see in the given code, it calls the <code>makeAndServeBurger</code> function which will be described later.</p>
+            </div>
+            <div class="block">
+                <pre class=" language-cpp"><code class=" language-cpp"><span class="token keyword">void</span> <span class="token function">update</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre>
+                <p>It updates the states of all ingredients by invoking their own <code>update</code> functions. It will be called every hour in the simulation.</p>
+            </div>
+            <div class="block">
+                <pre class=" language-cpp"><code class=" language-cpp"><span class="token keyword">void</span> <span class="token function">print</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre>
+                <p>It prints the information of the shop, in particular its storage. You should read the given implementation and the sample output to see what it prints.</p>
+            </div>
+            <div class="block">
+                <pre class=" language-cpp"><code class=" language-cpp"><span class="token keyword">bool</span> <span class="token function">isStorageFull</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre>
+                <p>It returns whether the ingredient storage is full. The storage is full when there is no empty storage slot left.</p>
+            </div>
+            <div class="block">
+                <pre class=" language-cpp"><code class=" language-cpp"><span class="token keyword">void</span> <span class="token function">addFoodToStorage</span><span class="token punctuation">(</span>Ingredient<span class="token operator">*</span> food<span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre>
+                <p>It adds the given ingredient to the first non-empty slot in the ingredient storage. It may be used in the <code>makeBun</code> and <code>makeMeat</code> functions.</p>
+            </div>
+            <div class="block">
+                <pre class=" language-cpp"><code class=" language-cpp"><span class="token keyword">bool</span> <span class="token function">makeBun</span><span class="token punctuation">(</span><span class="token keyword">int</span> softness<span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre>
+                <p>It first checks if the storage is full. If yes, it does nothing and returns false.</p>
+                <p>Otherwise, it proceeds to create a new <code>Bun</code> object of the specified <code>softness</code>, adds that to the first non-empty ingredient storage slot, and returns true.</p>
+            </div>
+            <div class="block">
+                <pre class=" language-cpp"><code class=" language-cpp"><span class="token keyword">bool</span> <span class="token function">makeMeat</span><span class="token punctuation">(</span><span class="token keyword">int</span> doneness<span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre>
+                <p>It first checks if the storage is full. If yes, it does nothing and returns false.</p>
+                <p>Otherwise, it proceeds to create a new <code>Meat</code> object of the specified <code>doneness</code>, adds that to the first non-empty ingredient storage slot, and returns true.</p>
+            </div>
+            <div class="block">
+                <pre class=" language-cpp"><code class=" language-cpp"><span class="token keyword">bool</span> <span class="token function">makeAndServeBurger</span><span class="token punctuation">(</span><span class="token keyword">int</span> requiredBunSoftness<span class="token punctuation">,</span> <span class="token keyword">int</span> requiredMeatDoneness<span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre>
+                <p>Well, finally, it is time to make burgers!</p>
+                <p>The challenge is, our beloved customers have specific requests on exactly how their burgers should be made, as specified by <code>requiredBunSoftness</code> and <code>requiredMeatDoneness</code>.</p>
+                <p>Teemo follow these rules strictly (and so will you ;)):
+                    </p><ul>
+                        <li>A Happy Teemo Burger uses exactly 1 <i>suitable</i> meat and 2 <i>suitable</i> buns. If we cannot gather from the storage all those 3 specific ingredients for a burger, the function will simply return false.</li>
+                        <li>Regarding what the <i>suitable</i> ingredients are:
+                            <ul>
+                                <li>Spoiled ingredients should never be used. By the way, they just stay in the storage forever because Teemo is apparently too busy. Don't help him to remove those spoiled stuff yourself.</li>
+                                <li>A <i>suitable</i> meat must have at least <code>requiredMeatDoneness</code> of doneness.</li>
+                                <li>A <i>suitable</i> bun must have at least <code>requiredBunSoftness</code> of softness.</li>
+                            </ul>
+                        </li>
+                        <li>When looking for each of those 3 ingredients, Teemo simply always picks the first <i>suitable</i> meat and first two <i>suitable</i> buns from the storage - i.e. technically, the smaller the array index the better for each of them.</li>
+                        <li>After we have found the 3 <i>suitable</i> ingredients, we do the following to actually craft and serve the burger:
+                            <ul>
+                                <li>Remove the used ingredients from the storage. That means you should dynamically deallocate the 1 dynamic <code>Meat</code> object and the 2 dynamic <code>Bun</code> objects, and then for each of them set the corresponding <code>ingredientStorage[i]</code> to <code>nullptr</code> indicating that the originally-occupied storage slot is now empty and thus reusable later for new ingredients.</li>
+                                <li>Since 3 ingredients have been used, decrease <code>ingredientStorageUsed</code> by 3.</li>
+                                <li>Add 1 to <code>burgerServed</code> as our now-satisfied customer walks away with our burger happily.</li>
+                                <li>Return true.</li>
+                            </ul>
+                        </li>
+                    </ul>
+                <p></p>
+                <p>You need to implement this function.</p>
+            </div>
+        </div> <!-- end of section -->
+
+
+        <div class="section" id="sample">
+            <h2>Sample output &amp; grading</h2>
+            <p>Your finished program should produce the same output as our <a href="http://course.cse.cuhk.edu.hk/~csci3180/assignments/assignment1/downloads/sample.txt">sample output</a>. Please note that sample output, naturally, does not show all possible cases. It is part of the assessment for you to design your own test cases to test your program making sure it works in all scenarios per our description. Be reminded to remove any debugging message that you might have added before submitting your code as program grading is <b>automatic and purely output-based</b>.</p>
+            <p>For this assignment, we will also check if your program has any memory leak. We will be using the following command to compile and run your program under the "Test environment" we mentioned in tutorial 1, assuming your source files are located at "csci3180/a1".</p>
+            <blockquote><code>g++ -std=c++20 -fsanitize=address,leak -o main csci3180/a1/*.cpp &amp;&amp; ./main</code></blockquote>
+            <p>It will report detected memory leak as runtime errors when you run the program (i.e. extra output indicating that there is a memory leak). If you want to learn about it, you may read <a href="https://gcc.gnu.org/onlinedocs/gcc/Instrumentation-Options.html">this manual</a>. With this said, we will still try to grade your program output (without leak checking, that is, with command <code>g++ -std=c++20 -o main csci3180/a1/*.cpp &amp;&amp; ./main</code>) after applying some mark penalty even if there is a memory leak detected, so do your best in other tasks anyway if memory leak is too hard to fix for you. Please note that, on the other hand, if your program cannot even be compiled or simply crashes on our grading environment, no mark can be given. Be aware that C++ programs may behave differently in different environments. For grading, we will only consider your program output on our grading machine using the official grading environment. Therefore, while you are free to work out your solution in any environment, <b>do test it in our official grading environment and by all means avoid compilation errors and crashes</b> before your submit your work. Program stability is king.</p>
+        </div> <!-- end of section -->
+
+
+        <div class="section" id="report">
+            <h2>Written report</h2>
+            <p>Write a report to comment on the pros and cons of heap-dynamic variables (i.e. usage of heap-dynamic memory) in one PDF file named exactly <b>a1.pdf</b>, with at most four A4 pages, containing two main sections:</p>
+            <ol>
+                <li>Advantages of using heap-dynamic variables</li>
+                <li>Disadvantages of using heap-dynamic variables</li>
+            </ol>
+            <p>For each of these, your explanation and examples <b>must be based on the design and code of this assignment</b>. However, you don't need to restrict yourself to use only the current assignment design and written code - you can suggest a modified/extended design or hypothetical scenarios in the context of this assignment. For example, you can do a what-if analysis on using a stack-dynamic variable (<code>Ingredient ingredientStorage[10];</code>) instead of a heap-dynamic variable (<code>Ingredient** ingredientStorage</code>) for representing the ingredient storage in this assignment.</p>
+
+        </div> <!-- end of section -->
+
+
+        <div class="section" id="submission">
+            <h2>Submission &amp; deadline</h2>
+            <p>Submission deadline: <u>23:59:00, Feb 14 (Tuesday)</u></p>
+            <p>
+                </p><ul>
+                    <li>Please submit two cpp files and one PDF file only: <b>bun.cpp</b>, <b>burgerShop.cpp</b>, and <b>a1.pdf</b> ONLY.</li>
+                    <li>Make sure you have completed the <i>declaration</i> at the top of the <b>bun.cpp</b> file.</li>
+                    <li>Make sure your two submitted files can be compiled and run with the original unmodified version of the other skeleton code files under our official grading environment using <code>g++ -std=c++20</code> (see the <a href="http://course.cse.cuhk.edu.hk/~csci3180/assignments/assignment1/#sample">Sample output &amp; grading</a> section).</li>
+                    <li>Do NOT zip the files. Submit them individually in the same submission. Follow these steps:<br><br>
+                        <ol>
+                            <li>Go to the CSCI3180 page on <a href="https://blackboard.cuhk.edu.hk/">Blackboard</a>.</li>
+                            <li>Go to "Assignment Submission" on the left-hand side menu.</li>
+                            <li>Pick "Assignment 1".</li>
+                            <li>For each of the files that you need to submit, click "Browse Local Files", and then browse for it.<br><img src="./CSCI3180 Assignment 1_files/submission-instruction-1.png"></li>
+                            <li>The files will be added to the "Attached files" list. Please <b>check carefully their filenames</b>. They must be exactly the same as the ones specified. Wrongly named files won't be graded as most grading are automatic.<br><img src="./CSCI3180 Assignment 1_files/submission-instruction-2.png"></li>
+                            <li>Click the blue "Submit" button at the bottom of the page.</li>
+                            <li>Now you <b>must verify</b> all of your submitted files by downloading them back and make sure they are your own and the latest version. You can download each of the files with the download button <img style="margin:0px;padding:0px;vertical-align:middle;" src="./CSCI3180 Assignment 1_files/download.png">. Click "Start New" to submit again if you need to modify your submission.<br><img src="./CSCI3180 Assignment 1_files/submission-instruction-3.png"></li>
+                        </ol>
+                    </li> 
+                    <li>You can submit as many times as you want, but <b>only the latest submission attempt will be graded</b>. You do NOT get to choose which version we grade.</li>
+                    <li>If you submit after the deadline, late penalty will be applied according to the submission time of your last submission attempt.</li>
+                    <li><b>Submit early to avoid any last-minute problem.</b> Only Blackboard submissions will be accepted. Again, you can submit as many times as you want, so you may make an early submission first well before the deadline, and update it later.</li>
+                    <li>Late submission penalty is 1 point per 5-minutes late. Less than 5-minutes late is considered as a full 5-minutes late. However, your score will be lower-bound by 0 after any mark deduction.</li>
+                </ul>
+            <p></p>
+
+                
+        </div> <!-- end of section -->
+
+
+        <!-- add new sections if needed; be reminded to set a unique section ID for menu navigation; e.g.: -->
+        <!-- <div class="section" id="section-id-used-for-navigation">
+            <h2>Section title</h2>
+            <p>Content</p>
+        </div> --> <!-- end of section -->
+
+    </div> <!-- end of main-content -->
+
+
+</body><grammarly-desktop-integration data-grammarly-shadow-root="true"></grammarly-desktop-integration></html>
