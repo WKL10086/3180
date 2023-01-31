@@ -1,0 +1,142 @@
+============ 1st hour ============
+Teemo: let's open a happy burger shop with 10 storage spaces for ingredients!
+
+Currently, we have 0 ingredients in the shop storage: 
+Slot 0: empty
+Slot 1: empty
+Slot 2: empty
+Slot 3: empty
+Slot 4: empty
+Slot 5: empty
+Slot 6: empty
+Slot 7: empty
+Slot 8: empty
+Slot 9: empty
+And... 0 Happy Teemo Burgers proudly served so far!
+
+============ 2nd hour ============
+Teemo: let's prepare some ingredients!
+Teemo: a hard bun and a soft bun!
+
+Bun (10% soft) made and added to storage! :)
+
+Bun (70% soft) made and added to storage! :)
+
+Currently, we have 2 ingredients in the shop storage: 
+Slot 0: Bun (100% fresh, 10% soft)
+Slot 1: Bun (100% fresh, 70% soft)
+Slot 2: empty
+Slot 3: empty
+Slot 4: empty
+Slot 5: empty
+Slot 6: empty
+Slot 7: empty
+Slot 8: empty
+Slot 9: empty
+And... 0 Happy Teemo Burgers proudly served so far!
+
+============ 3rd hour ============
+Teemo: need some well-done meats and more soft buns!
+
+Meat (90% done) cooked and added to storage! :)
+
+Meat (80% done) cooked and added to storage! :)
+
+Bun (60% soft) made and added to storage! :)
+
+Bun (90% soft) made and added to storage! :)
+
+Currently, we have 6 ingredients in the shop storage: 
+Slot 0: Bun (99% fresh, 8% soft)
+Slot 1: Bun (99% fresh, 68% soft)
+Slot 2: Meat (100% fresh, 90% done)
+Slot 3: Meat (100% fresh, 80% done)
+Slot 4: Bun (100% fresh, 60% soft)
+Slot 5: Bun (100% fresh, 90% soft)
+Slot 6: empty
+Slot 7: empty
+Slot 8: empty
+Slot 9: empty
+And... 0 Happy Teemo Burgers proudly served so far!
+
+============ 4th hour ============
+Teemo: how about a piece of rare meat and a super soft bun!
+
+Meat (10% done) cooked and added to storage! :)
+
+Bun (100% soft) made and added to storage! :)
+
+Currently, we have 8 ingredients in the shop storage: 
+Slot 0: Bun (98% fresh, 6% soft)
+Slot 1: Bun (98% fresh, 66% soft)
+Slot 2: Meat (99% fresh, 90% done)
+Slot 3: Meat (99% fresh, 80% done)
+Slot 4: Bun (99% fresh, 58% soft)
+Slot 5: Bun (99% fresh, 88% soft)
+Slot 6: Meat (100% fresh, 10% done)
+Slot 7: Bun (100% fresh, 100% soft)
+Slot 8: empty
+Slot 9: empty
+And... 0 Happy Teemo Burgers proudly served so far!
+
+============ 5th hour ============
+Teemo: happy burger shop is now open!
+Teemo: and we already have a customer!
+Teemo: she wants at least 60% soft buns and at least 20% done meat!
+Teemo: let's craft a burger for her!
+
+A burger has been happily crafted and served! :)
+
+Currently, we have 5 ingredients in the shop storage: 
+Slot 0: Bun (97% fresh, 4% soft)
+Slot 1: empty
+Slot 2: empty
+Slot 3: Meat (98% fresh, 80% done)
+Slot 4: Bun (98% fresh, 56% soft)
+Slot 5: empty
+Slot 6: Meat (99% fresh, 10% done)
+Slot 7: Bun (99% fresh, 98% soft)
+Slot 8: empty
+Slot 9: empty
+And... 1 Happy Teemo Burger proudly served so far!
+
+============ 98 hours have passed... ============
+Teemo: zzzzzzzzzzzzzzzzzzzz...
+
+Currently, we have 5 ingredients in the shop storage: 
+Slot 0: Bun (0% fresh, 0% soft)
+Slot 1: empty
+Slot 2: empty
+Slot 3: Meat (0% fresh, 80% done)
+Slot 4: Bun (0% fresh, 0% soft)
+Slot 5: empty
+Slot 6: Meat (1% fresh, 10% done)
+Slot 7: Bun (1% fresh, 0% soft)
+Slot 8: empty
+Slot 9: empty
+And... 1 Happy Teemo Burger proudly served so far!
+
+============ 103rd hour ============
+Teemo: wow! finally another customer!
+Teemo: let's craft a burger for him!
+Teemo: he has no requirements on bun softness and meat doneness!
+
+Oh no, we cannot craft the burger requested! :(
+
+Currently, we have 5 ingredients in the shop storage: 
+Slot 0: Bun (0% fresh, 0% soft)
+Slot 1: empty
+Slot 2: empty
+Slot 3: Meat (0% fresh, 80% done)
+Slot 4: Bun (0% fresh, 0% soft)
+Slot 5: empty
+Slot 6: Meat (1% fresh, 10% done)
+Slot 7: Bun (1% fresh, 0% soft)
+Slot 8: empty
+Slot 9: empty
+And... 1 Happy Teemo Burger proudly served so far!
+
+============ 104th hour ============
+Teemo: gg!
+Teemo: maybe instead of meat burgers, I should make mushroom burgers instead next time...
+Teemo: shop closes! T_T
