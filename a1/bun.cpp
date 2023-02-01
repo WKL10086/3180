@@ -44,6 +44,7 @@ void Bun::update()
 {
     // TODO: implement this function
     // Hint: you can call the base class implementation of a function by BaseClassName::FunctionName()
+
     if (softness > 0)
         softness = max(softness - 2, 0);
 
