@@ -14,9 +14,9 @@
  * and regulations, as contained in the website
  * http://www.cuhk.edu.hk/policy/academichonesty/
  *
- * Name: <FILL YOUR NAME HERE>
- * Student ID: <FILL YOUR STUDENT ID HERE>
- * Email Address: <FILL YOUR EMAIL ADDRESS HERE>
+ * Name: Wong Kai Lok
+ * Student ID: 1155125720
+ * Email Address: 1155125720@link.cuhk.edu.hk
  *
  * Source material acknowledgements (if any):
  *
