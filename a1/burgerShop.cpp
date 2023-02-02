@@ -111,7 +111,7 @@ bool BurgerShop::makeAndServeBurger(int requiredBunSoftness, int requiredMeatDon
     int bunIdx1 = -1;
     int bunIdx2 = -1;
 
-    for (int i = 0; i < ingredientStorageUsed; i++)
+    for (int i = 0; i < ingredientStorageCapacity; i++)
     {
         if (ingredientStorage[i] == nullptr || ingredientStorage[i]->isSpoiled())
             continue;
