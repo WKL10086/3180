@@ -134,15 +134,11 @@ bool BurgerShop::makeAndServeBurger(int requiredBunSoftness, int requiredMeatDon
             if (bunPtr != nullptr && bunPtr->getSoftness() >= requiredBunSoftness)
             {
                 if (bunIdx1 == -1)
-                {
                     bunIdx1 = i;
-                    continue;
-                }
                 else
-                {
                     bunIdx2 = i;
-                    break;
-                }
+
+                continue;
             }
         }
     }
