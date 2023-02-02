@@ -107,17 +107,61 @@ bool BurgerShop::makeAndServeBurger(int requiredBunSoftness, int requiredMeatDon
         The good thing about dynamic_cast is that it would give you a nullptr if the casting fails when ingredientStorage[i] doesn't really point to a Bun object. It is useful for checking what object it is pointing to. Of course, before you do dynamic_cast, you should make sure ingredientStorage[i] is not really a nullptr itself first.
     */
 
-    // A Happy Teemo Burger uses exactly 1 suitable meat and 2 suitable buns. If we cannot gather from the storage all those 3 specific ingredients for a burger, the function will simply return false.
-    // Regarding what the suitable ingredients are:
-    // Spoiled ingredients should never be used. By the way, they just stay in the storage forever because Teemo is apparently too busy. Don't help him to remove those spoiled stuff yourself.
-    // A suitable meat must have at least requiredMeatDoneness of doneness.
-    // A suitable bun must have at least requiredBunSoftness of softness.
-    // When looking for each of those 3 ingredients, Teemo simply always picks the first suitable meat and first two suitable buns from the storage - i.e. technically, the smaller the array index the better for each of them.
-    // After we have found the 3 suitable ingredients, we do the following to actually craft and serve the burger:
-    // Remove the used ingredients from the storage. That means you should dynamically deallocate the 1 dynamic Meat object and the 2 dynamic Bun objects, and then for each of them set the corresponding ingredientStorage[i] to nullptr indicating that the originally-occupied storage slot is now empty and thus reusable later for new ingredients.
-    // Since 3 ingredients have been used, decrease ingredientStorageUsed by 3.
-    // Add 1 to burgerServed as our now-satisfied customer walks away with our burger happily.
-    // Return true.
+    int meatIdx = -1;
+    int bunIdx1 = -1;
+    int bunIdx2 = -1;
+
+    for (int i = 0; i < ingredientStorageUsed; i++)
+    {
+        if (ingredientStorage[i] == nullptr || ingredientStorage[i]->isSpoiled())
+            continue;
+
+        if (meatIdx == -1)
+        {
+            Meat *meatPtr = dynamic_cast<Meat *>(ingredientStorage[i]);
+
+            if (meatPtr != nullptr && meatPtr->getDoneness() >= requiredMeatDoneness)
+            {
+                meatIdx = i;
+                continue;
+            }
+        }
+
+        if (bunIdx1 == -1 || bunIdx2 == -1)
+        {
+            Bun *bunPtr = dynamic_cast<Bun *>(ingredientStorage[i]);
+
+            if (bunPtr != nullptr && bunPtr->getSoftness() >= requiredBunSoftness)
+            {
+                if (bunIdx1 == -1)
+                {
+                    bunIdx1 = i;
+                    continue;
+                }
+                else
+                {
+                    bunIdx2 = i;
+                    break;
+                }
+            }
+        }
+    }
+
+    if (meatIdx == -1 || bunIdx1 == -1 || bunIdx2 == -1)
+        return false;
+
+    delete ingredientStorage[meatIdx];
+    delete ingredientStorage[bunIdx1];
+    delete ingredientStorage[bunIdx2];
+
+    ingredientStorage[meatIdx] = nullptr;
+    ingredientStorage[bunIdx1] = nullptr;
+    ingredientStorage[bunIdx2] = nullptr;
+
+    ingredientStorageUsed -= 3;
+    burgerServed++;
+
+    return true;
 }
 
 void BurgerShop::update()
