@@ -1,0 +1,13 @@
+Heap-dynamic variable 
+Pro: flexible and Storage efficiency
+Con: Runtiime speed efficiency and Reliability
+
+Runtiime speed efficiency:
+Compare with static variable, dynamic memory variable need to allocate memory from heap in runtime, which is time consuming.
+Moreover, dynamic memory variable need to free memory in runtime, which is also time consuming.
+On the other hand, static variable is allocated in compile time, which is faster than dynamic memory variable.
+
+Reliability:
+Heap-dynamic variable need to deallocate memory manually, which is error-prone and cause memory leak if not handled properly. 
+
+If we create object on stack, it will be destroyed automatically when the function is finished. It frees us from the burden of memory management.
