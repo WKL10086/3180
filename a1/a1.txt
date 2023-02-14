@@ -1,22 +1,42 @@
-Heap-dynamic variable 
-Pro: flexible and Storage efficiency
-Con: Runtiime speed efficiency and Reliability
+Advantages of using heap-dynamic variables:
+1. Flexible:
+Using heap-dynamic variable, we can create some generic function. For example, if we use stack-dynamic variable, we need to create a function for each type of variable. If we use heap-dynamic variable, we can create a generic function, which can accept any type or the abstract base class of the type.
 
-flexible:
-Using heap-dynamic variable, we can can create some generic function
+For example, if we use a stack-dynamic variable (Ingredient ingredientStorage[10];) to store the ingredients, of course it would not work because the Ingredient class is an abstract base class so we cannot create an object of it and use the array to store it. Then, if we create two stack-dynamic variables (Meat meatStorage[10]; and Vegetable vegetableStorage[10];) to store the ingredients, we would need to create at least two functions to handle the two types of ingredients (e.g. update the state) which is not efficient compared to the heap-dynamic variable.
 
-Storage efficiency:
-The memory is only used when it is needed, e.g. when the object is created. 
-When the object is no longer needed, the memory can be freed and can be reused by other variables.
+Using the heap-dynamic variable, we can only create one function to handle the ingredients (e.g. update the state), which can allow us to reuse the code.
 
-Runtiime speed efficiency:
-Compare with static variable, dynamic memory variable need to allocate and deallocate memory from heap in runtime, which is time consuming.
-On the other hand, static variable is allocated in compile time, which is faster than dynamic memory variable.
+ 
+The picture above show how the ingredient pointer update the object state. The function update() is a generic because we don’t need to what is the exact type of the object. We only need to know the object is a subclass of Ingredient class. The function update() can be used to update the state of any type of ingredient.
 
-Reliability:
-Since the variables allocated from the heap can be only accessed by pointers. Using pointers properly is not easy.
-If the pointer is not initialized, it will point to a random address, which may cause unexpected behavior.
-If the pointer reference to invalid address or invalid object, dangling pointer will occur, which may cause segmentation fault.
+2. Storage efficiency:
+The memory is only used when it is needed, e.g. when the object is created. When the object is no longer needed, the memory can be freed and the memory can be reused by other variables.
 
-Also, heap-dynamic variable need to deallocate memory manually, which is error-prone and cause memory leak. 
-Compare with stack-dynamic variable, if we create object on stack, it will be destroyed automatically when the function is finished. It frees us from the burden of memory management.
+Compare to static variable, since the life time of static variable is the whole program, the memory is allocated before the program starts and will not be freed until the program ends. If we create a lot of static variables, the memory will be used up quickly.
+
+ 
+The above picture show the memory of no longer used heap-dynamic variable is freed and can be reused by other variables.
+
+Disadvantages of using heap-dynamic variables:
+1. Runtime speed efficiency:
+Compare with static variable, dynamic memory variable need to allocate and deallocate memory from heap in runtime, which is time consuming. On the other hand, static variable is static variable is bound to memory cells before execution begins, which is faster than dynamic memory variable.
+
+On the other hand, since the address is not known in compile time, the compiler cannot optimize the code. For example, if we use a pointer to access the variable, the compiler cannot optimize the code to directly access the variable. It will need to access the pointer first, then access the variable through the pointer.
+
+ 
+The picture above show how to access the heap-dynamic variable through pointer. We use -> to call the function of the object through the pointer.
+
+But if we need to access the static variable, since the address is known in compile time and we can directly addressing the variable, which can avoid the overhead of accessing the pointer first.
+
+2. Reliability:
+Since the variables allocated from the heap can be only accessed by pointers. Using pointers properly is not easy. If the pointer is not initialized, it will point to a random address, which may cause unexpected behavior. If the pointer reference to invalid address or invalid object (already deleted), dangling pointer will occur, which may cause segmentation fault.
+
+ 
+The picture above show that we assign nullptr to the pointer after we deallocate the memory of the heap-dynamic variable. If we don’t assign nullptr to the pointer, the pointer will still point to the address of the heap-dynamic variable. If we use the pointer again, it will cause dangling pointer.
+
+Also, heap-dynamic variable need to deallocate memory manually, which is error-prone and cause memory leak. Compare with stack-dynamic variable, if we create object on stack, it will be destroyed automatically when the function is finished. It frees us from the burden of memory management.
+
+ 
+The picture above show how to deallocate the memory of the heap-dynamic variable. We need to use delete to deallocate the memory of the heap-dynamic variable and use delete[] to deallocate the memory of the array of heap-dynamic variable. If we forget to deallocate the memory, the memory will not be freed and will cause memory leak.
+
+
