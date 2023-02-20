@@ -1,0 +1,593 @@
+<!DOCTYPE html>
+<!-- saved from url=(0074)http://course.cse.cuhk.edu.hk/~csci3180/assignments/assignment2/#integrity -->
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    
+
+    <!-- TODO: change the assignment number -->
+    <title>CSCI3180 Assignment 2</title>
+
+    <!-- css styles for this page -->
+    <link rel="stylesheet" href="./CSCI3180 Assignment 2_files/main.css">
+
+    <!-- prism.js is used for code highlighting: https://prismjs.com/ -->
+    <link rel="stylesheet" href="./CSCI3180 Assignment 2_files/prism.css">
+</head>
+
+<body data-new-gr-c-s-check-loaded="14.1097.0" data-gr-ext-installed="" class="vsc-initialized">
+    <script src="./CSCI3180 Assignment 2_files/prism.js.下載" type="text/javascript"></script>
+
+    <div class="sticky-side-nav">
+        <!-- TODO: change the assignment number -->
+        <div class="centered"><b>Assignment 2</b></div>
+        <br>
+
+        <!-- TODO: update the navigation menu -->
+        <a href="http://course.cse.cuhk.edu.hk/~csci3180/assignments/assignment2/#introduction">Introduction</a>
+        <a href="http://course.cse.cuhk.edu.hk/~csci3180/assignments/assignment2/#integrity">About academic integrity</a>
+        <a href="http://course.cse.cuhk.edu.hk/~csci3180/assignments/assignment2/#overview">Task overview &amp; download</a>
+        <a href="http://course.cse.cuhk.edu.hk/~csci3180/assignments/assignment2/#task1">Task 1: Greedy Snake</a>
+        <a href="http://course.cse.cuhk.edu.hk/~csci3180/assignments/assignment2/#task2">Task 2: Demonstrating Advantages of Dynamic Typing</a>
+        <a href="http://course.cse.cuhk.edu.hk/~csci3180/assignments/assignment2/#task3">Task 3: Duck Typing</a>
+        <a href="http://course.cse.cuhk.edu.hk/~csci3180/assignments/assignment2/#task4">Task 4: Demonstrating Advantages of Duck Typings</a>
+        <a href="http://course.cse.cuhk.edu.hk/~csci3180/assignments/assignment2/#sample">Sample output &amp; grading</a>
+        <a href="http://course.cse.cuhk.edu.hk/~csci3180/assignments/assignment2/#report">Written report</a>
+        <a href="http://course.cse.cuhk.edu.hk/~csci3180/assignments/assignment2/#submission">Submission &amp; deadline</a>
+
+        <!-- add navigation menu items if needed, e.g.: -->
+        <!-- 
+            <a href="#section-id-used-for-navigation">New section name</a> 
+        -->
+
+        <!-- TODO: credit yourself -->
+        <div class="credit">Prepared by Juzheng MIAO and Yuchen YUAN</div> 
+    </div>
+
+    <div class="main-content">
+        <div class="section" id="heading"> 
+            <!-- TODO: change the assignment title -->
+            <h1>CSCI3180 Assignment 2: Greedy Snake</h1>
+        </div> <!-- end of heading -->
+        
+        <!-- TODO: add a cover image representing the assignment here -->
+        <img src="./CSCI3180 Assignment 2_files/cover.png">
+
+ 
+         <div class="section" id="introduction">
+            <h2>Introduction</h2>
+            <p>In this assignment, you are going to write a python program to implement the rules of a single-player game named <i>Greedy Snake</i> based on the given C++ implementation. Moreover, we will extend the game and you need to implement more classes for the game. <i>Note: All the Python implementations in this assignment should be built using any Python version after (including) 3.6.</i></p>
+            <p>The main objectives of this assignment are three-fold for you:
+                </p><ul>
+                    <li>To practice Python and learn the differences between Python and C++.</li>
+                    <li>To explore the pros and cons of dynamic typing in Python.</li>
+                    <li>To better understand duck typing in Python and know how to properly use it.</li>
+                </ul>
+            <p></p>
+        </div> <!-- end of section -->
+ 
+
+        <div class="section" id="integrity">
+            <h2>About academic integrity</h2>
+            <p>We value academic integrity very highly.</p>
+            <ul>
+                <li>Do NOT try your "luck" - we use sophisticated plagiarism detection software to find cheaters.</li>
+                <li>The penalty (for BOTH the copier and the copiee) may not be just getting a zero in your assignment. There may be additional disciplinary actions from the university, upto and including expulsion.</li>
+                <li>Do NOT copy or look at the assignment code/work of another student/person.</li>
+                <li>Do NOT share your assignment code/work to anyone and do NOT post it anywhere online.</li>
+                <li>While we encourage discussion among students, you should write the code and finish the work on your own. In the discussion, you should NOT go into the details such that everyone will end up with the same code/work.</li>
+                <li>You are responsible to double-check your own submission and do your best to avoid "accidents".</li>
+            </ul>
+            <p>Read <a href="https://www.cuhk.edu.hk/policy/academichonesty/">https://www.cuhk.edu.hk/policy/academichonesty/</a> for details of the CUHK policy on this matter.</p>
+        </div> <!-- end of section -->
+
+
+        <div class="section" id="overview">
+            <h2>Task overview &amp; download</h2>
+            <p>You have two main tasks in this assignment.</p>
+            <ol>
+                <li><b>Coding: </b>First, download the starting code <a href="http://course.cse.cuhk.edu.hk/~csci3180/assignments/assignment2/downloads/a2-starting-code.zip">HERE</a>, which contains the C++ implementation <code>greedySnake.cpp</code> and the python skeleton code <code>greedySnake.py</code> for <b>Task 1</b>. Your programming task is to read the task description, understand the given C++ code, and complete the incomplete functions marked with TODO in the given python skeleton code files. Second, download the extension code <a href="http://course.cse.cuhk.edu.hk/~csci3180/assignments/assignment2/downloads/a2-extension-code.zip">HERE</a>, which contains the C++ implementation <code>greedySnake_enhanced.cpp</code> and the python skeleton code <code>greedySnake_enhanced.py</code> for <b>Task 3</b>. Also, your programming task is to read the task description, understand the given C++ code, and complete the incomplete functions marked with TODO in the given python skeleton code files. You only need to modify and submit two files: <b>greedySnake.py</b> and <b>greedySnake_enhanced.py</b>. Basically, all other files should not be submitted or modified. We will provide the specifics in the <a href="http://course.cse.cuhk.edu.hk/~csci3180/assignments/assignment2/#submission">Submission &amp; deadline</a> section.</li>
+                <li><b>Writing: </b>Write a report on dynamic typing and duck typing pros/cons, and save it as a PDF file. We will provide the specifics in the <a href="http://course.cse.cuhk.edu.hk/~csci3180/assignments/assignment2/#report">Written report</a> section.</li>
+            </ol>
+            <p>Read the pinned assignment 2 FAQ post on <a href="https://piazza.com/class/lb640zoes506ma">Piazza</a> for some common clarifications. You should check that a day before the deadline to make sure you don't miss any clarifications, even if you have already submitted your work then.</p>
+            <p>If you need further clarifications of the requirements, please feel free to post on the Piazza with the <u>assignment2</u> tag. However, to avoid cluttering the forum with repeated/trivial questions, please do read all the given code, webpage description, sample output, and latest FAQ carefully before posting your questions. Also, please be reminded that we won't debug for any student's assignment for the sake of fairness and that you should not share/post your solution code anywhere.</p>
+        </div> <!-- end of section -->
+
+        <div id="task1">
+            <h1>Task 1: Greedy Snake</h1>
+            <p>This is a small programming exercise for you to get familiar with Python, which is a dynamically typed language. In this task, you have to strictly follow our proposed OO design and the game rules for "Greedy Snake" stated in this section.</p>
+            <h2>Description</h2>
+            <p>Greedy Snake is a single-player game. When the game starts, the player uses the 4 keys ('w', 'a', 's', and 'd') to move a snake around the board, represented by a 22 x 22 map. <code>After inputing the keys, you should press the “Enter" key to proceed.</code> If the key 'w' is pressed, the snake will move up in the next step. If the key 's' is pressed, the snake will move down in the next step. If the key 'a' is pressed, the snake will move left in the next step. If the key 'd' is pressed, the snake will move right in the next step. If you press any of the keys other than these four, the snake will move right by default.</p>
+            <p>As the snake finds food, it eats the food, and thereby grows longer. We have two different kinds of food here (i.e., apple and water) and each food has a <code>base score</code> (equals to 100), while the <code>actual score</code> the snake can obtain from the food is determined by the food attributes.
+             Specifically, the score of an apple is determined by its <code>maturity</code>. If it is mature, then the actual score is equal to the base score. Otherwise, the actual score would be 0. The score of water is determined by its <code>volume</code>, which is equal to the <code>volume * base score</code>. The final score obtained by the player is calculated based on the number and the type of food your snake ate. 
+        The game ends when the snake either crashes into a wall or moves into itself. The goal is to make the snake grow up to the maximum length (set as 15 by default). This means you win the game.  </p>
+            
+            <h2>Preparation</h2>
+
+            <h2>Input Specification</h2>
+            <p>In this exercise, you are required to use command line to get input information. There is only one thing requiring user-input, which is the moving direction of the snake. Input one of the pre-defined 4 keys ('w', 'a', 's', and 'd') and press "Enter" to control the direction.</p>          
+            <img src="./CSCI3180 Assignment 2_files/input.png">
+
+            <h2>Move and Display Game Information</h2>
+                <p>The snake always starts from the top-left corner of the board. You can use 4 keys ('w', 'a', 's', and 'd') on the keyboard to control the movement of the snake ('w' means up, 's' means down, 'a' means left, 'd' means right. Right is the default value.). If an invalid key (a key not in the 4 pre-defined keys) is pressed, the snake will move to the right by default.</p>
+                <p>After each movement, the current score obtained by the player will be printed on the board.</p>
+                <p>The snake's head and body are represented by '@' and '*', respectively. 'o' represents the apple and '!' means water. The boundary is represented by '#'.</p>
+                <img src="./CSCI3180 Assignment 2_files/display_1.png">
+
+            <h2>Game End</h2>
+            <p>You lose the game and the game is over when the snake either crashes into a wall or moves into itself.</p>
+            <img src="./CSCI3180 Assignment 2_files/end_bound.png" width="620" height="420">
+            <img src="./CSCI3180 Assignment 2_files/end_itself.png" width="620" height="420">
+
+            <p>On the other hand, you win if your snake grows up to the maximum length, which is set as 15 by default.</p>
+            <img src="./CSCI3180 Assignment 2_files/end_win.png">
+
+            <h2>Class Design for Basic Functions in Python</h2>
+            <p>Please follow the classes defined below in your implementation. You are not allowed to add any class variables, class methods, or classes. We will start the program with <code>python greedySnake.py</code>. The following class design uses the naming convention of Python. In particular, underscored variables are private. You are also required to use property decorator for several attributes in your Python implementation. Please accomplish all tasks marked with TODO in the provided Python template.</p>
+            
+            <div class="block">
+            <h3>The Food class</h3> <!-- Food -->
+            <p>It is the base class for all kinds of things that a snake can eat. We only have 3 classes in this class hierarchy and <code>Food</code> sits at the top. To give you an overview of the class design, here is the class diagram:</p>
+            <img src="./CSCI3180 Assignment 2_files/class.png" width="400" height="200"> 
+            <p>Details will be provided below. For anything that appears to be unclear to you, you should refer to the given code. First, let's look at the base class: the <code>Food</code> class.</p>
+            </div>
+            
+            <h4>Data members (Attributes)</h4>
+
+            <div class="block">
+                <pre class=" language-py"><code class=" language-py">self._x, self._y</code></pre>
+                <p>These are the position parameters to describe where the food is.</p>
+            </div>
+
+            <div class="block">
+                <pre class=" language-py"><code class=" language-py">self._x_max, self._y_max</code></pre>
+                <p>These are the maximum range where the food can appear, i.e. the size of the game board. By default, these two parameters are set as 22, generating a board of 22x22.</p>
+            </div>
+
+            <div class="block">
+                <pre class=" language-py"><code class=" language-py">self._base_score</code></pre>
+                <p>This is the base score for the food, which is set as 100 by default.</p>
+            </div>
+
+            <div class="block">
+                <pre class=" language-py"><code class=" language-py">self._shape</code></pre>
+                <p>This is the shape of the food, i.e. the way the food appears on the game board. The default value is '$'. 'o' represents the apple and '!' represents water.</p>
+            </div>
+
+            <div class="block">
+                <pre class=" language-py"><code class=" language-py">self._name</code></pre>
+                <p>This is the name of the food, such as "Apple" and "Water".</p>
+            </div>
+
+            <div class="block">
+                <pre class=" language-py"><code class=" language-py">self._actual_score</code></pre>
+                <p>This is the actual score of the food. Different foods have different actual scores calculated based on the base score.</p>
+            </div>
+
+            <h4>Member functions (Methods)</h4>
+            
+            <div class="block">
+                <pre class=" language-py"><code class=" language-py">__init__</code></pre>
+                <p>This is the constructor which is responsible for the initialization of the data members.</p>
+            </div>
+
+            <div class="block">
+                <pre class=" language-py"><code class=" language-py">generate</code></pre>
+                <p>This is the function to randomly generate a new position on the game board for the food.</p>
+            </div>
+            
+            <div class="block">
+            <h3>The Apple class</h3>  <!-- Apple -->
+            <p>It is a subclass of Food with some special attributes.</p>
+            </div>
+            
+            <h4>Data members (Attributes)</h4>
+
+            <div class="block">
+                <pre class=" language-py"><code class=" language-py">self._maturity</code></pre>
+                <p>This is a <code>boolean</code> attribute indicating whether the apple is mature. If it is True, the apple is mature. Othewise, it is not mature. In the food generation process, this attribute is randomly set as True or False.</p>
+            </div>
+
+            <div class="block">
+                <pre class=" language-py"><code class=" language-py">self.actual_score</code></pre>
+                <p>This is inherited from the Food class. If self._maturity is True, the actual score is equal to the base score. Otherwise, the actual score would be 0.</p>
+            </div>
+
+            <h4>Member functions (Methods)</h4>
+            
+            <div class="block">
+                <pre class=" language-py"><code class=" language-py">__init__</code></pre>
+                <p>This is the constructor responsible for the initialization of the data members in Apple class.</p>
+            </div>
+
+
+            <div class="block">
+                <pre class=" language-py"><code class=" language-py">generate</code></pre>
+                <p>Override the function of the base class (Food) to generate an apple.</p>
+            </div>
+
+            <div class="block">
+            <h3>The Water class</h3>  <!-- Water -->
+            <p>It is a subclass of Food with some special attributes.</p>
+            </div>
+            
+            <h4>Data members (Attributes)</h4>
+
+            <div class="block">
+                <pre class=" language-py"><code class=" language-py">self._volume</code></pre>
+                <p>This is an attribute indicating the volume of water. In the water generation process, this attribute is randomly set as an integer between 1 and 5 (including 1 and 5).</p>
+            </div>
+
+            <div class="block">
+                <pre class=" language-py"><code class=" language-py">self.actual_score</code></pre>
+                <p>This is inherited from the Food class. The actual score of water is equal to the <code>self._volume * self._base_score</code>.</p>
+            </div>
+
+            <h4>Member functions (Methods)</h4>
+            
+            <div class="block">
+                <pre class=" language-py"><code class=" language-py">__init__</code></pre>
+                <p>This is the constructor responsible for the initialization of the data members in Water class.</p>
+            </div>
+
+            <div class="block">
+                <pre class=" language-py"><code class=" language-py">generate</code></pre>
+                <p>Override the function of the base class (Food) to generate water.</p>
+            </div>
+
+            <div class="block">
+            <h3>The Snake class</h3>  <!-- Snake -->
+            <p>This class contains the attributes and operations of the snake.
+            </p>
+            </div>
+            
+            <h4>Data members (Attributes)</h4>
+
+            <div class="block">
+                <pre class=" language-py"><code class=" language-py">self.max_len</code></pre>
+                <p>This defines the maximum length of the snake. When the length of the snake is no less than the maximum length, the game is over and you win the game. The default value is 15.</p>
+            </div>
+
+             <div class="block">
+                <pre class=" language-py"><code class=" language-py">self.position</code></pre>
+                <p>This is a 2D list which stores all the coordinates of the snake body on the 2D board, from the head to the tail. Specifically, self.position[0] is a 1D list indicating the row position of each body node (including head and tail) of the snake (as the snake has a length, so len(self.position[0]) is equal to the length of the snake). self.position[1] is a 1D list indicating the column position of the snake.</p>
+            </div>
+
+
+            <div class="block">
+                <pre class=" language-py"><code class=" language-py">self.head</code></pre>
+                <p>This is an <code>integer</code> value representing the index of the head position in the 2D position list. self.position[0][self.head] denotes the row position of the snake head on the board. Similarly, self.position[0][self.head] denotes the column position of the snake head on the board.</p>
+            </div>
+
+            <div class="block">
+                <pre class=" language-py"><code class=" language-py">self.tail</code></pre>
+                <p>This is an <code>integer</code> value representing the index of the tail position in the 2D position list. self.position[0][self.tail] denotes the row position of the snake tail on the board. Similarly, self.position[0][self.tail] denotes the column position of the snake tail on the board.</p>
+            </div>
+
+            <div class="block">
+                <pre class=" language-py"><code class=" language-py">self.score</code></pre>
+                <p>This is the score the snake has obtained, starting from 0.</p>
+            </div>
+
+            <div class="block">
+                <pre class=" language-py"><code class=" language-py">self.length</code></pre>
+                <p>This is the length of the snake at present, starting from 4 with one head node, 2 body nodes and a tail node.</p>
+            </div>
+           
+            <h4>Member functions (Methods)</h4>
+            
+            <div class="block">
+                <pre class=" language-py"><code class=" language-py">__init__</code></pre>
+                <p>This is the constructor responsible for the initialization of the data members in Snake class.</p>
+            </div>
+
+            <div class="block">
+                <pre class=" language-py"><code class=" language-py">move</code></pre>
+                <p>This function controls the snake to move one step and judges whether the game is over.</p>
+            </div>
+
+            <div class="block">
+                <pre class=" language-py"><code class=" language-py">generate</code></pre>
+                <p>This function is used to initialize the snake position at the top-left corner.</p>
+            </div>
+
+            <div class="block">
+                <h3>The Environment class</h3>  <!-- Environment -->
+                <p>This class is about the game environment.
+                </p>
+                </div>
+                
+                <h4>Data members (Attributes)</h4>
+    
+                <div class="block">
+                    <pre class=" language-py"><code class=" language-py">self.x_max, self.y_max</code></pre>
+                    <p>This defines the size of the game board. The default size is 22x22.</p>
+                </div>
+    
+                <div class="block">
+                    <pre class=" language-py"><code class=" language-py">self.board</code></pre>
+                    <p>This is a 2D list that defines the game board where the snake and food are on, with different shapes to represent boundaries and different objects. The snake head is represented by '@' and its body is indicated by '*'. 'o' represents the apple and '!' means water. The boundary is indicated by '#'.</p>
+                </div>
+    
+                <div class="block">
+                    <pre class=" language-py"><code class=" language-py">self.apple</code></pre>
+                    <p>This is an apple instance.</p>
+                </div>
+
+                <div class="block">
+                    <pre class=" language-py"><code class=" language-py">self.water</code></pre>
+                    <p>This is a water instance.</p>
+                </div>
+    
+                <div class="block">
+                    <pre class=" language-py"><code class=" language-py">self.food</code></pre>
+                    <p>This is a general interface for all the food instances. It will reference either an Apple or a Water object depending on which of them is currently generated and shown on the board.</p>
+                </div>
+    
+                <div class="block">
+                    <pre class=" language-py"><code class=" language-py">self.snake</code></pre>
+                    <p>This is a snake instance.</p>
+                </div>
+    
+                <h4>Member functions (Methods)</h4>
+                
+                <div class="block">
+                    <pre class=" language-py"><code class=" language-py">__init__</code></pre>
+                    <p>This is the constructor responsible for the initialization of the game environment.</p>
+                </div>
+    
+                <div class="block">
+                    <pre class=" language-py"><code class=" language-py">display</code></pre>
+                    <p>This function is used to display the game interface and necessary information.</p>
+                </div>
+    
+                <div class="block">
+                    <pre class=" language-py"><code class=" language-py">generate</code></pre>
+                    <p>This function is used to generate food.</p>
+                </div>
+
+                <div class="block">
+                    <pre class=" language-py"><code class=" language-py">run</code></pre>
+                    <p>This function is used to start the game.</p>
+                </div>
+
+                <div class="block">
+                    <pre class=" language-py"><code class=" language-py">check_eaten</code></pre>
+                    <p>This function is used to check whether the food has been eaten by the snake.</p>
+                </div>
+            
+        </div> <!-- end of section -->
+
+
+        <div id="task2">
+            <h1>Task 2: Demonstrating Advantages of Dynamic Typing</h1>
+            Dynamic typing is an important characteristic of Python. It has many commonly-claimed advantanges:
+            <ol>
+                <li>
+                    Don’t need to declare variables or their data type before assignment.
+                </li>
+                <li>
+                    It makes functions more reusable because functions can be applied on arguments of different types.
+                </li>
+                <li>
+                    ...
+                </li>
+                
+            </ol>
+            However, type checking can only be carried out at runtime, incurring time overhead and reliability issues.
+
+            <p>Please provide at least one concise example code with explanation in the context of this assignment to demonstrate the advantages of Dynamic Typing and at least one concise example code with explanation in the context of this assignment to demonstrate the disadvantages of Dynamic Typing.
+            </p>
+        </div><!-- end of section -->
+
+        <div id="task3">
+            <h1>Task 3: Duck Typing</h1>
+            <p>In this task, you are required to implement another new class <code>SnakeCatcher</code>. After this exercise, you may have a deeper understanding of a special feature of Python called <b>Duck Typing</b> that is available only in dynamically-typed programming languages. Also, the C++ code for this new class is provided (<code>greedySnake_enhanced.cpp</code>) and you have to reimplement the new class in Python (a skeleton provided in <code>greedySnake_enhanced.py</code>) based on the following description and the given functions.</p>
+            <h2>Duck Typing</h2>
+            <p>The following synopsis of Duck Typing is summarized from:
+            </p><ul>
+                <li>
+                    <a href="http://en.wikipedia.org/wiki/Ducktyping">http://en.wikipedia.org/wiki/Ducktyping</a>
+                </li>
+                <li><a href="http://www.sitepoint.com/making-ruby-quack-why-we-love-duck-typing">http://www.sitepoint.com/making-ruby-quack-why-we-love-duck-typing</a></li>
+            </ul>
+            In standard statically-typed object-oriented languages, objects’ classes (which determine an object’s characteristics and behavior) are essentially interpreted as the objects’ types. Duck Typing is a new typing paradigm in dynamically-typed (late binding) languages that allow us to dissociate typing from objects’ characteristics. It can be summarized by the following motto by the late poet James Whitcombe Riley:
+            <span><blockquote><i>When I see a bird that walks like a duck and swims like a duck and quacks like a duck, I call that bird a duck.</i></blockquote></span>
+
+            
+            The basic premise of Duck Typing is simple. If an entity looks, walks, and quacks like a duck, for all intents and purposes it is fair to assume that one is dealing with a member of the species anas platyrhynchos. In practical Python terms, this means that it is possible to try calling any method on any object, regardless of its class. An important advantage of Duck Typing is that we can enjoy polymorphism without inheritance. An immediate consequence is that we can write more generic codes which are cleaner and more precise.
+            <p></p>
+
+            <h2>Description</h2>
+            The game is getting harder! It's not easy for a snake to grow up smoothly since there exist snake catchers in the world (indicated by 'x' in the game)! They can cause harm to the snake. In our extended game, we only have one snake catcher in the environment at each step. The snake catcher is going to appear randomly on the board, and has an active area (a 2x2 square region). The player is supposed to control the heading direction of the snake to prevent it from crashing into the snake catcher. Otherwise, the total score obtained by the player is deducted by 100! The snake catcher's position changes randomly when the snake came into it or after a fixed time interval (20 steps).
+
+            <h2>Displaying Game Information</h2>
+            <p> After each movement, the updated information, which consists of the current score obtained by the player, the food information and the position information of the snake catcher should be printed. You are required to implement the new class and ensure the correct information output.</p>
+            <img src="./CSCI3180 Assignment 2_files/display_extend.png">
+
+        <div id="class">
+            <h2>Class Design for Extended Functions in Python</h2>
+            <p>In this part, we need to add another new class——<code>SnakeCatcher</code>. Please accomplish all tasks marked with TODO in the provided Python template.</p>
+            
+            <div class="block">
+                <h3>The SnakeCatcher class</h3> <!-- SnakeCatcher -->
+                <p>It is the class for the snake catcher which can generate randomly with a fixed time interval and reduce the score of the snake. It's a square region of 2x2 size.</p>
+                <p>Details will be provided below. For anything that appears to be unclear to you, you should refer to the given code.</p>
+            </div>
+                
+                <h4>Data members (Attributes)</h4>
+    
+                <div class="block">
+                    <pre class=" language-py"><code class=" language-py">self.x, self.y</code></pre>
+                    <p>These are the position parameters to describe where the snake catcher is. (self.x, self.y) is the coordinates of the top-left corner of the snake catcher's square region.</p>
+                </div>
+    
+                <div class="block">
+                    <pre class=" language-py"><code class=" language-py">self.x_max, self.y_max</code></pre>
+                    <p>These are the maximum range where the food snake catcher can appear, i.e. the game board boundary, 22x22 by default. The snake catcher must be totally contained in this range.</p>
+                </div>
+
+                <div class="block">
+                    <pre class=" language-py"><code class=" language-py">self.width</code></pre>
+                    <p>This parameter describes the width of the square region of the snake catcher. It's 2 by default.</p>
+                </div>
+    
+                <div class="block">
+                    <pre class=" language-py"><code class=" language-py">self.symbol</code></pre>
+                    <p>It is a <code>character type (string in Python)</code> attribute, and the active area of the snake catcher will be filled with the shape symbol. It's 'x' by default.</p>
+                </div>
+
+                <div class="block">
+                    <pre class=" language-py"><code class=" language-py">self.score</code></pre>
+                    <p>This is the score of the snake catcher, i.e. the harmfulness brought to the snake by the snake catcher. This is set as -100 by default. When the snake comes into the active area of the snake catcher, we reduce the score of the snake by 100 and the snake catcher will disappear and be generated at another place.</p>
+                </div>
+
+                <div class="block">
+                    <pre class=" language-py"><code class=" language-py">self.is_clear</code></pre>
+                    <p>This <code>boolean</code> variable indicates whether there exists an active area of the snake catcher on the board right now. <code>True</code> means the active area does NOT exist.</p>
+                </div>
+    
+                <h4>Member functions (Methods)</h4>
+                
+                <div class="block">
+                    <pre class=" language-py"><code class=" language-py">__init__</code></pre>
+                    <p>This is the constructor responsible for the initialization of the data members in SnakeCatcher class.</p>
+                </div>
+
+                <div class="block">
+                    <pre class=" language-py"><code class=" language-py">check_can_generate</code></pre>
+                    <p>This function checks whether these exists an empty area that is large enough to contain the square region of the snake catcher given a certain top-left corner coordinate. This function returns a boolean value. If it returns True, it means there exists a large enough empty area starting from the given top-left corner to generate the snake catcher. Otherwise, there is no room for the snake catcher in the given place.</p>
+                </div>
+    
+                <div class="block">
+                    <pre class=" language-py"><code class=" language-py">generate</code></pre>
+                    <p>This is the function to randomly generate a new position for the snake catcher on the game board.</p>
+                </div>
+    
+                <div class="block">
+                    <pre class=" language-py"><code class=" language-py">clear</code></pre>
+                    <p>This is the function to remove the current active area. This function will be called if the snake has just come into the area or after a fixed time interval (20 steps).</p>
+                </div>
+
+                <div class="block">
+                    <pre class=" language-py"><code class=" language-py">display_info</code></pre>
+                    <p>This is the function to display the position of the snake catcher.</p>
+                </div>
+            
+            
+            <p>Other classes also have some small changes applied so that they are compatible with to the new class. The main differences are the introduction of the <code>display_info</code> function in most classes and the change of <code>__init__</code>, <code>run</code>, and <code>display</code> function in the Environment class. Most other parts of the other classes remain unchanged. Please carefully check the changes between <code>greedySnake.py</code> and <code>greedySnake_enhanced.py</code>. Please also carefully check the differences in our C++ implementations between <code>greedySnake.cpp</code> and <code>greedySnake_enhanced.cpp</code> for reference.</p>
+       
+        </div> <!-- end of section -->
+
+        <div id="class">
+            <h2>Class Design for Extended Functions in C++</h2>
+            <p>In the C++ code, we add another class called Cell in addition to the SnakeCatcher class. It is the abstract base class of the Food class, the SnakeCatcher class and the Snake class, as shown in the following figure. Due to different properties of different programming languages, we don't have this class in Python.
+            </p>
+            <img src="./CSCI3180 Assignment 2_files/class-extension.png" width="400" height="200">
+
+            <div class="block">
+                <h3>The Cell class</h3> <!-- SnakeCatcher -->
+                <p>It is the class for each cell on the board.</p>                
+                <h4>Member functions</h4>
+                
+                <div class="block">
+                    <pre class=" language-cpp"><code class=" language-cpp">generate</code></pre>
+                    <p>This function generates a position on the board for the cell.</p>
+                </div>
+
+                <div class="block">
+                    <pre class=" language-cpp"><code class=" language-cpp">display_info</code></pre>
+                    <p>This function displays information for the cell.</p>
+                </div>       
+        </div> <!-- end of section -->
+
+
+        <div id="task4">
+            <h1>Task 4: Demonstrating Advantages of Duck Typing</h1>
+            <p>There are at least two places in Task 3 where we use duck typing in Python. Can you identify them? Please provide the scenarios and concise codes to compare your Python implementation and our C++ implementation and explain how duck typing makes coding more flexible and convenient.</p>
+        </div><!-- end of section -->
+        
+
+        <div class="section" id="sample">
+            <h1>Sample output &amp; grading</h1>
+            <p>Your finished program should produce the same output as the following screenshots for each step. But you don't need to worry about the printing format, we have provided the printing functions. What you need to do is to implement some important functions and make the generated information correct in each step.
+            </p><h2>For Task 1:</h2>
+
+            <p>First, in each step, your snake should be able to move using the pre-defined 4 keys ('w', 'a', 's', and 'd'). Related information are also correctly printed.</p>
+            <img src="./CSCI3180 Assignment 2_files/display_1.png">
+
+            <p>Second, after the food is eaten, your snake should be longer. And the score should be also correctly updated. At the same time, a new food is randomly generated at a new place on the board.</p>
+            <img src="./CSCI3180 Assignment 2_files/display_2.png">
+
+            <p>Third, you lose the game and the game is over when the snake either crashes into a wall or moves into itself. Your game should stop and the related information should be correctly printed.</p>
+            <img src="./CSCI3180 Assignment 2_files/end_bound.png" width="620" height="420">
+            <img src="./CSCI3180 Assignment 2_files/end_itself.png" width="620" height="420">
+
+            <p>Fourth, when your snake grows up to the maximum length, your game should stop and the related information should be correctly printed.</p>
+            <img src="./CSCI3180 Assignment 2_files/end_win.png">
+
+            <h2>For Task 3:</h2>
+            <p>First, your code should be able to generate the snake catcher correctly according to rules we have mentioned above when the snake comes into it or after a fixed time interval (20 steps).</p>
+            <img src="./CSCI3180 Assignment 2_files/display_extend.png">
+
+            <p>Second, when the snake crashes into the snake catcher, the score of the snake should be reducted by 100 correctly.</p>
+
+            <p>Third, the display information of each class should be the correctly printed as we do in the above image.</p>
+
+
+            <p>Please note that sample output, naturally, does not show all possible cases. It is part of the assessment for you to design your own test cases to test your program making sure it works in all scenarios per our description. Be reminded to remove any debugging message that you might have added before submitting your code.</p>
+            <!-- <p>We will be using the following command to compile and run your program under the "Test environment" we mentioned in tutorial 1, assuming your source files are located at "csci3180/a1".</p>
+ -->           For grading, we will consider your program output and the code implementation details. Make sure your program can run successfully without compilation errors and crashes by using any Python version after (including) 3.6.<p></p>
+        </div> <!-- end of section -->
+
+
+        <div class="section" id="report">
+            <h1>Written report</h1>
+            <p>Write a report to comment on the pros and cons of dynamic typing and duck typing in one PDF file named exactly <b>a2.pdf</b>, with at most four A4 pages, containing two main sections:</p>
+            <ol>
+                <li>Provide example code and necessary elaborations in the context of this assignment for demonstrating advantages and disadvantages of Dynamic Typing as specified in Task 2.</li>
+                <li>Provide example code and necessary elaborations in the context of this assignment for demonstrating advantages of Duck Typing as specified in Task 4.</li>
+            </ol>
+
+        </div> <!-- end of section -->
+
+
+        <div class="section" id="submission">
+            <h1>Submission &amp; deadline</h1>
+            <p>Submission deadline: <u>23:59:00, Mar 14 (Tuesday)</u></p>
+            <p>
+                </p><ul>
+                    <li>Please submit two python files and one PDF file only: <b>greedySnake.py</b>, <b>greedySnake_enhanced.py</b>, and <b>a2.pdf</b> ONLY.</li>
+                    <li>Make sure you have completed the <i>declaration</i> at the top of the <b>greedySnake.py</b> file.</li>
+                    <li>Make sure your two submitted files can be compiled and run with no errors under our official grading environment (see the <a href="http://course.cse.cuhk.edu.hk/~csci3180/assignments/assignment2/#sample">Sample output &amp; grading</a> section).</li>
+                    <li>Do NOT zip the files. Submit them individually in the same submission. Follow these steps:<br><br>
+                        <ol>
+                            <li>Go to the CSCI3180 page on <a href="https://blackboard.cuhk.edu.hk/">Blackboard</a>.</li>
+                            <li>Go to "Assignment Submission" on the left-hand side menu.</li>
+                            <li>Pick "Assignment 2.</li>
+                            <!-- <li>For each of the files that you need to submit, click "Browse Local Files", and then browse for it.<br><img src="img/submission-instruction-1.png" /></li> -->
+                            <li>For each of the files that you need to submit, click "Browse Local Files", and then browse for it.
+                            </li><li>The files will be added to the "Attached files" list. Please <b>check carefully their filenames</b>. They must be exactly the same as the ones specified. Wrongly named files won't be graded as most grading are automatic.
+                            </li><li>Click the blue "Submit" button at the bottom of the page.</li>
+                            <li>Now you <b>must verify</b> all of your submitted files by downloading them back and make sure they are your own and the latest version. You can download each of the files with the download button <img style="margin:0px;padding:0px;vertical-align:middle;" src="./CSCI3180 Assignment 2_files/download.png">. Click "Start New" to submit again if you need to modify your submission.
+                        </li></ol>
+                    </li> 
+                    <li>You can submit as many times as you want, but <b>only the latest submission attempt will be graded</b>. You do NOT get to choose which version we grade.</li>
+                    <li>If you submit after the deadline, late penalty will be applied according to the submission time of your last submission attempt.</li>
+                    <li><b>Submit early to avoid any last-minute problem.</b> Only Blackboard submissions will be accepted. Again, you can submit as many times as you want, so you may make an early submission first well before the deadline, and update it later.</li>
+                    <li>Late submission penalty is 1 point per 5-minutes late. Less than 5-minutes late is considered as a full 5-minutes late. However, your score will be lower-bound by 0 after any mark deduction.</li>
+                </ul>
+            <p></p>
+
+                
+        </div> <!-- end of section -->
+
+
+        <!-- add new sections if needed; be reminded to set a unique section ID for menu navigation; e.g.: -->
+        <!-- <div class="section" id="section-id-used-for-navigation">
+            <h2>Section title</h2>
+            <p>Content</p>
+        </div> --> <!-- end of section -->
+
+    </div> <!-- end of main-content -->
+
+
+</div></div></body><grammarly-desktop-integration data-grammarly-shadow-root="true"></grammarly-desktop-integration></html>
