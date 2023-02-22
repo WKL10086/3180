@@ -182,7 +182,7 @@ public:
 	}
 	void set_volume(int volume_val)
 	{
-		if (volume_val != 1 || volume_val != 2 || volume_val != 3 || volume_val != 4 || volume_val != 5)
+		if (volume_val < 1 || volume_val > 5)
 			cout << "The volume size can only be an interger between 1 and 5" << endl;
 		else
 			volume = volume_val;
