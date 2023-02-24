@@ -13,9 +13,9 @@
 * and regulations, as contained in the website
 * http://www.cuhk.edu.hk/policy/academichonesty/
 *
-* Name: <FILL YOUR NAME HERE>
-* Student ID: <FILL YOUR STUDENT ID HERE>
-* Email Address: <FILL YOUR EMAIL ADDRESS HERE>
+* Name: Wong Kai Lok
+* Student ID: 1155125720
+* Email Address: 1155125720@link.cuhk.edu.hk
 *
 * Source material acknowledgements (if any):
 *
@@ -37,6 +37,53 @@ class Food(): # define the class for food
         self._actual_score = self._base_score
 
     # TODO: add Property Decorator for attributes self._x, self._y, self._x_max, self._y_max, self._shape and self._actual_score here, including setter.
+    @property
+    def x(self):
+        return self._x
+    
+    @x.setter
+    def x(self, x_val):
+        self._x = x_val
+    
+    @property
+    def y(self):
+        return self._y
+
+    @y.setter
+    def y(self, y_val):
+        self._y = y_val
+    
+    @property
+    def x_max(self):
+        return self._x_max
+    
+    @x_max.setter
+    def x_max(self, x_max_val):
+        self._x_max = x_max_val
+    
+    @property
+    def y_max(self):
+        return self._y_max
+    
+    @y_max.setter
+    def y_max(self, y_max_val):
+        self._y_max = y_max_val
+    
+    @property
+    def shape(self):
+        return self._shape
+    
+    @shape.setter
+    def shape(self, shape_val):
+        self._shape = shape_val
+    
+    @property
+    def actual_score(self):
+        return self._actual_score
+    
+    @actual_score.setter
+    def actual_score(self, actual_score_val):
+        self._actual_score = actual_score_val
     
     def generate(self, board): # generate food inside a box
         while True:
@@ -56,6 +103,13 @@ class Apple(Food):
             self.actual_score = 0
 
     # TODO: add Property Decorator for self._maturity here, including the setter.
+    @property
+    def maturity(self):
+        return self._maturity
+    
+    @maturity.setter
+    def maturity(self, maturity_val):
+        self._maturity = maturity_val
 
     def generate(self, board):
         super().generate(board)
@@ -72,6 +126,16 @@ class Water(Food):
         self.actual_score = self._base_score * self.volume
         
     # TODO: add Property Decorator for self._volume here, including the setter.
+    @property
+    def volume(self):
+        return self._volume
+    
+    @volume.setter
+    def volume(self, volume_val):
+        if volume_val < 1 or volume_val > 5:
+            print("The volume size can only be an interger between 1 and 5")
+        else:
+            self._volume = volume_val
 
 
     def generate(self, board):
