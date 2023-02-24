@@ -341,8 +341,11 @@ class Environment:
         head = self.snake.head
 
         # * Disadvantage for dynamic typing
-        # if self.food == None or self.food == None:
-        #     return False
+        # if self.food != None and self.food != None:
+        #     if position[0][head] == self.food.x and position[1][head] == self.food.y:
+        #         return True
+        #     else:
+        #         return False
 
         if position[0][head] == self.food.x and position[1][head] == self.food.y:
             return True
