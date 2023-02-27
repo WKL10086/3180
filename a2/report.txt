@@ -1,0 +1,7 @@
+duck typing
+Disadvantages:
+1. no compile time checking
+Error is only reported at runtime
+
+2. not reliable
+because anything that looks like some specific interface will automatically be seen as implementing that interface, even if the author doesn't have any intention of supporting that interface.
