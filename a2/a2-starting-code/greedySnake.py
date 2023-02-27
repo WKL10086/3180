@@ -234,7 +234,7 @@ class Snake:
             board[1][i] = "*"
         board[1][4] = "@"
 
-        for i in range(0, 4):
+        for i in range(4):
             self.position[0][i] = 1
             self.position[1][i] = i + 1
 
