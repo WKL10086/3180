@@ -373,6 +373,7 @@ class Environment:
         # snake
         self.display_forall(self.snake)
 
+    # duck typing
     def generate(self, obj):
         obj.generate(self.board)
 
