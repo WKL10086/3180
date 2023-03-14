@@ -1,20 +1,19 @@
-#include<iostream>
+#include <iostream>
 #include <ctime>
 
-using std::cout;
-using std::string;
-using std::endl;
 using std::cin;
-
+using std::cout;
+using std::endl;
+using std::string;
 
 class Cell
 {
 public:
-	virtual void generate(char ** board) = 0; // generate position
-	virtual void display_info() = 0; // display information
+	virtual void generate(char **board) = 0; // generate position
+	virtual void display_info() = 0;		 // display information
 };
 
-class Food :public Cell   // define the class for food
+class Food : public Cell // define the class for food
 {
 	// position for the food
 	int x;
@@ -61,7 +60,6 @@ public:
 		y = y_val;
 	}
 
-
 	int get_xmax()
 	{
 		return x_max;
@@ -89,11 +87,11 @@ public:
 		actual_score = actual_score_val;
 	}
 
-	void generate(char ** board)
+	void generate(char **board)
 	{
 		do
 		{
-			x = rand() % (x_max - 2) + 1;   // generate food inside a box
+			x = rand() % (x_max - 2) + 1; // generate food inside a box
 			y = rand() % (y_max - 2) + 1;
 		} while (board[x][y] != ' ');
 		board[x][y] = shape;
@@ -101,18 +99,18 @@ public:
 
 	void display_info()
 	{
-		char* b = (char*)name.c_str();
+		char *b = (char *)name.c_str();
 		cout << "Name: " << b << '\t';
 		cout << "Position: (" << x << ", " << y << ")" << endl;
 	}
 };
 
-class Apple :public Food
+class Apple : public Food
 {
-	bool maturity;  // whether the apple is mature
+	bool maturity; // whether the apple is mature
 
 public:
-	Apple(int x_max_val = 0, int y_max_val = 0, bool maturity_val = false, string name_val = "None"):Food(x_max_val, y_max_val, 'o', "Apple")
+	Apple(int x_max_val = 0, int y_max_val = 0, bool maturity_val = false, string name_val = "None") : Food(x_max_val, y_max_val, 'o', "Apple")
 	{
 		maturity = maturity_val;
 		if (maturity)
@@ -130,7 +128,7 @@ public:
 		maturity = maturity_val;
 	}
 
-	void generate(char ** board)
+	void generate(char **board)
 	{
 		Food::generate(board);
 		int index2 = rand() % 2;
@@ -158,22 +156,25 @@ public:
 		Food::display_info();
 		if (maturity)
 		{
-			cout << "Maturity: " << "True" << '\t';
+			cout << "Maturity: "
+				 << "True" << '\t';
 		}
 		else
-			cout << "Maturity: " << "False" << '\t';
+			cout << "Maturity: "
+				 << "False" << '\t';
 		cout << "Score: " << get_actual_score() << endl;
 	}
 };
 
-class Water :public Food
+class Water : public Food
 {
 	int volume;
+
 public:
-	Water(int x_max_val = 0, int y_max_val = 0, int volume_val = 1, string name_val = "None"):Food::Food(x_max_val, y_max_val, '!', "Water")
+	Water(int x_max_val = 0, int y_max_val = 0, int volume_val = 1, string name_val = "None") : Food::Food(x_max_val, y_max_val, '!', "Water")
 	{
 		volume = volume_val;
-		set_actual_score(base_score*volume);
+		set_actual_score(base_score * volume);
 	}
 
 	int get_volume()
@@ -183,17 +184,17 @@ public:
 	void set_volume(int volume_val)
 	{
 		if (volume_val < 1 || volume_val > 5)
-			cout << "The volume size can only be an interger between 1 and 5" << endl;
+			cout << "The volume size can only be an integer between 1 and 5" << endl;
 		else
 			volume = volume_val;
 	}
 
-	void generate(char ** board)
+	void generate(char **board)
 	{
 		Food::generate(board);
 		int volume_val = rand() % 5 + 1;
 		set_volume(volume_val);
-		set_actual_score(base_score*volume);
+		set_actual_score(base_score * volume);
 	}
 
 	void display_info()
@@ -204,17 +205,17 @@ public:
 	}
 };
 
-class SnakeCatcher :public Cell
+class SnakeCatcher : public Cell
 {
 public:
 	int x;
-	int y;  // position, coordinates of the top-left corner
+	int y; // position, coordinates of the top-left corner
 	int x_max;
 	int y_max;
-	int width;  // width of the active area
+	int width; // width of the active area
 	char symbol;
 	int score;
-	bool is_clear;  // this is a flip value, can be False or True. It is true when the SnakeCatcher is not on the board.
+	bool is_clear; // this is a flip value, can be False or True. It is true when the SnakeCatcher is not on the board.
 public:
 	SnakeCatcher(int x_max_val = 0, int y_max_val = 0, int width_val = 2)
 	{
@@ -222,13 +223,13 @@ public:
 		y = 0;
 		x_max = x_max_val;
 		y_max = y_max_val;
-		width = width_val;  // 2*2
+		width = width_val; // 2*2
 		symbol = 'x';
 		score = -100;
 		is_clear = false;
 	}
 
-	bool check_can_generate(char ** board)
+	bool check_can_generate(char **board)
 	{
 		bool can_generate = true;
 		for (int i = 0; i < width; i++)
@@ -245,11 +246,11 @@ public:
 		return can_generate;
 	}
 
-	void generate(char ** board)
+	void generate(char **board)
 	{
 		do
 		{
-			x = rand() % (x_max - width - 1) + 1;   // generate food inside a bdox
+			x = rand() % (x_max - width - 1) + 1; // generate food inside a box
 			y = rand() % (y_max - width - 1) + 1;
 		} while (!check_can_generate(board));
 		for (int i = 0; i < width; i++)
@@ -262,7 +263,7 @@ public:
 		is_clear = false;
 	}
 
-	void clear(char ** board)
+	void clear(char **board)
 	{
 		for (int i = 0; i < width; i++)
 		{
@@ -281,30 +282,30 @@ public:
 	}
 };
 
-class Snake :public Cell
+class Snake : public Cell
 {
 public:
-	int max_len;   // max length of the snake
+	int max_len; // max length of the snake
 	int head;
 	int tail;
 	int score;
 	int length;
 
-	int **position;    // 2*max_len
+	int **position; // 2*max_len
 
 public:
 	Snake(int max_len_val = 15);
 	~Snake();
 
-	bool move(char ** board, int x_max, int y_max, Food *p_food, SnakeCatcher &catcher, char direction = 'd');
+	bool move(char **board, int x_max, int y_max, Food *p_food, SnakeCatcher &catcher, char direction = 'd');
 
-	void generate(char ** board)
+	void generate(char **board)
 	{
 		for (int i = 1; i <= 3; i++)
 			board[1][i] = '*';
 		board[1][4] = '@';
 
-		for (int i = 0; i<4; i++)
+		for (int i = 0; i < 4; i++)
 		{
 			position[0][i] = 1;
 			position[1][i] = i + 1;
@@ -328,7 +329,7 @@ Snake::Snake(int max_len_val)
 	score = 0;
 	length = 4;
 
-	position = new int*[2];
+	position = new int *[2];
 	for (int i = 0; i < 2; i++)
 	{
 		position[i] = new int[max_len];
@@ -346,23 +347,23 @@ Snake::~Snake()
 	position = nullptr;
 }
 
-bool Snake::move(char ** board, int x_max, int y_max, Food *p_food, SnakeCatcher &catcher, char direction)
+bool Snake::move(char **board, int x_max, int y_max, Food *p_food, SnakeCatcher &catcher, char direction)
 {
 	int x;
 	int y;
 	bool game_over = false;
 
-	if (direction == 'w')  // up
+	if (direction == 'w') // up
 	{
 		x = position[0][head] - 1;
 		y = position[1][head];
 	}
-	else if (direction == 's')  // down
+	else if (direction == 's') // down
 	{
 		x = position[0][head] + 1;
 		y = position[1][head];
 	}
-	else if (direction == 'a')  // left
+	else if (direction == 'a') // left
 	{
 		x = position[0][head];
 		y = position[1][head] - 1;
@@ -373,7 +374,7 @@ bool Snake::move(char ** board, int x_max, int y_max, Food *p_food, SnakeCatcher
 		y = position[1][head] + 1;
 	}
 
-	if (x == 0 || x == (x_max - 1) || y == 0 || y == (y_max - 1))  // move to the boundary -> die
+	if (x == 0 || x == (x_max - 1) || y == 0 || y == (y_max - 1)) // move to the boundary -> die
 	{
 		game_over = true;
 	}
@@ -381,7 +382,7 @@ bool Snake::move(char ** board, int x_max, int y_max, Food *p_food, SnakeCatcher
 	{
 		game_over = true;
 	}
-	if (x == p_food->get_x() && y == p_food->get_y())  // get the food
+	if (x == p_food->get_x() && y == p_food->get_y()) // get the food
 	{
 		if (length < max_len) // only when the length is smaller than the maximum, we increase the snake length
 		{
@@ -403,11 +404,11 @@ bool Snake::move(char ** board, int x_max, int y_max, Food *p_food, SnakeCatcher
 			game_over = true;
 		}
 	}
-	else if (board[x][y] == catcher.symbol)  // be caught by the snake catcher
+	else if (board[x][y] == catcher.symbol) // be caught by the snake catcher
 	{
-		score += catcher.score;  // reduce some score and move
+		score += catcher.score; // reduce some score and move
 
-										// remove the catcher
+		// remove the catcher
 		catcher.clear(board);
 
 		// move
@@ -419,7 +420,7 @@ bool Snake::move(char ** board, int x_max, int y_max, Food *p_food, SnakeCatcher
 		position[1][head] = y;
 		board[position[0][head]][position[1][head]] = '@';
 	}
-	else  // regular move
+	else // regular move
 	{
 		board[position[0][tail]][position[1][tail]] = ' ';
 		tail = (tail + 1) % max_len;
@@ -433,12 +434,11 @@ bool Snake::move(char ** board, int x_max, int y_max, Food *p_food, SnakeCatcher
 	return game_over;
 }
 
-
 class Environment
 {
 	int x_max;
-	int y_max;  // the range of the board
-	char ** board;
+	int y_max; // the range of the board
+	char **board;
 
 	// initialize food
 	Apple apple;
@@ -465,7 +465,7 @@ public:
 	void generate(Cell *p_cell);
 
 	void run();
-	bool check_eaten();  // check whether the food has been eaten
+	bool check_eaten();	 // check whether the food has been eaten
 	bool check_caught(); // check whether the snake has been caught
 };
 
@@ -475,7 +475,7 @@ Environment::Environment(int x_max_val, int y_max_val)
 	x_max = x_max_val;
 	y_max = y_max_val;
 
-	board = new char*[x_max];
+	board = new char *[x_max];
 	for (int i = 0; i < x_max; i++)
 	{
 		board[i] = new char[y_max];
@@ -510,9 +510,10 @@ Environment::Environment(int x_max_val, int y_max_val)
 	for (int i = 3; i >= 0; i--)
 	{
 		long start = clock();
-		while (clock() - start <= 1000);  // 1 s
-										  
-		if (i>0)
+		while (clock() - start <= 1000)
+			; // 1 s
+
+		if (i > 0)
 			cout << "\n\n\t\tCountdown:" << i << endl;
 	}
 
@@ -535,14 +536,14 @@ void Environment::display_forall(Cell *p)
 	p->display_info();
 }
 
-void Environment::display()  // display all the information
+void Environment::display() // display all the information
 {
 	cout << endl;
 	// display the board
-	for (int i = 0; i<x_max; i++)
+	for (int i = 0; i < x_max; i++)
 	{
 		cout << "\t";
-		for (int j = 0; j<y_max; j++)
+		for (int j = 0; j < y_max; j++)
 			cout << board[i][j] << ' ';
 		cout << endl;
 	}
@@ -570,17 +571,17 @@ void Environment::generate(Cell *p_cell)
 	p_cell->generate(board);
 }
 
-void Environment::run()  // run the game
+void Environment::run() // run the game
 {
 	bool game_over;
 	// generate food
 	int index = rand() % 2;
-	if (index == 0)  // generate apple
+	if (index == 0) // generate apple
 	{
 		p_cell = &apple;
 		p_food = &apple;
 	}
-	else   // generate water
+	else // generate water
 	{
 		p_cell = &water;
 		p_food = &water;
@@ -605,12 +606,12 @@ void Environment::run()  // run the game
 		{
 			// generate food
 			int index = rand() % 2;
-			if (index == 0)  // generate apple
+			if (index == 0) // generate apple
 			{
 				p_cell = &apple;
 				p_food = &apple;
 			}
-			else   // generate water
+			else // generate water
 			{
 				p_cell = &water;
 				p_food = &water;
@@ -625,7 +626,7 @@ void Environment::run()  // run the game
 			p_cell = &catcher;
 			generate(p_cell);
 		}
-		if (check_caught())  // or if the snake is caught
+		if (check_caught()) // or if the snake is caught
 		{
 			// generate catcher
 			p_cell = &catcher;
@@ -652,7 +653,7 @@ void Environment::run()  // run the game
 
 bool Environment::check_eaten()
 {
-	int ** position = snake.position;
+	int **position = snake.position;
 	int head = snake.head;
 	if (position[0][head] == p_food->get_x() && position[1][head] == p_food->get_y())
 	{

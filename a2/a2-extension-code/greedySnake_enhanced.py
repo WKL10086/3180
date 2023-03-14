@@ -349,7 +349,6 @@ class Environment:
             if i > 0:
                 print("\n\n\t\tCountdown:", i)
 
-    #  * duck typing
     def display_forall(self, obj):
         obj.display_info()
 
@@ -373,7 +372,6 @@ class Environment:
         # snake
         self.display_forall(self.snake)
 
-    # duck typing
     def generate(self, obj):
         obj.generate(self.board)
 
@@ -441,17 +439,13 @@ class Environment:
         position = self.snake.position
         head = self.snake.head
 
-        # * Disadvantage for dynamic typing
-        if self.food != None and self.food != None:
+        if self.food != None:
             if position[0][head] == self.food.x and position[1][head] == self.food.y:
                 return True
             else:
                 return False
-
-        # if position[0][head] == self.food.x and position[1][head] == self.food.y:
-        #     return True
-        # else:
-        #     return False
+        else:
+            return True
 
     def check_caught(self):
         # TODO: Implement the checking here

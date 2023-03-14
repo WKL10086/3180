@@ -1,19 +1,42 @@
-Advantages of Dynamic Typing: (one example code) 
-1. no need to declare types variables or their data type before assignment 
-2. polymorphism
-3. reduce the amount of code base, efficient
+Advantages of Dynamic Typing:
+1. No need to declare types variables or their data type before assignment 
+Since type checking is carried out at runtime, we don’t need to declare variables or their data type before assignment. This makes the code more concise and readable. Many boilerplate code can be avoided.
+
+For example, in the init function of Environment class, we can create a new variable food and assign it to None. We don’t need to declare the type of food before assignment. It allows us to create a new variable relatively easier.
+
+2. Polymorphism 
+Polymorphism can be easily achieved by dynamically typed language, e.g. duck typing in Python.This can be easier to implement than in statically typed language, e.g. C++. This help code reuse.
 
 
-Don’t need to declare variables or their data type before assignment.
-It makes functions more reusable because functions can be applied on arguments of different types.
-...
-However, type checking can only be carried out at runtime, incurring time overhead and reliability issues.
+For example the display_forall function and the generate function from Environment class can accept different type of input. 
 
-Disadvantages of Dynamic Typing: (one example code)
+
+For example we can directly get the x and y property without knowing the type of the food. 
+
+Disadvantages of Dynamic Typing:
 1. No type checking at compile time
 Since we don’t need to declare variables or their data type, the type of a variable is not known until runtime. The compiler cannot check for type errors. This can lead to errors that are only detected at runtime and cannot be avoided in the compile time. It means that the program will crash at runtime if the type of a variable is not as expected and it can cause disaster, e.g. if the bank system or the air traffic control system crashes.
 
-The picture above show the disadvantage of dynamic typing. Since in the init function, the value of food is None. Only after call the run function, the value of food is changed to Apple or Water instance. If we call the check_eaten function before the run function, the program will crash because the type and the value of food is None. 
 
 
-Advantages of Duck Typing: (two example codes and compare with C++)
+The picture above show the disadvantage of dynamic typing. Since in the init function, the value and type of food is None. Only after call the run function, the value and type of food is changed to Apple or Water. If we call the check_eaten function before the run function, the program will crash because the value of food is None and we try to get to x and y property from it which would cause runtime error.  However, this cannot be check until runtime in dynamic typing.
+
+In order to avoid this we need to add if else condition to check whether it is None or not.
+
+
+Advantages of Duck Typing:
+The advantage of duck typing is that we don't need care and check the type of the object before applying the function. We can apply the function on different object that has the same function which we want to call. This makes the code more reusable and efficient to write.
+
+
+
+The display_forall function and the generate function from Environment class are two example codes of duck typing. The display_forall function can be applied on any object that has display_info function. The generate function can be applied on any object that has a generate function. 
+
+
+
+For example, we can apply the display_forall function on Apple, Water, SnakeCatcher and Snake objects. We can also apply the generate function on Apple, Water, SnakeCatcher and Snake objects.
+
+
+
+In C++, we make use of dynamic binding and pointer to achieve the same effect. However, in C++, we need to declare the type of the pointer before assignment. In addition, we need to use virtual function to achieve dynamic binding. 
+
+In Python, we don’t need to declare the type or other abstract function of the object before assignment to achieve the same result. This help the efficiency.
