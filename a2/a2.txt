@@ -10,7 +10,10 @@ It makes functions more reusable because functions can be applied on arguments o
 However, type checking can only be carried out at runtime, incurring time overhead and reliability issues.
 
 Disadvantages of Dynamic Typing: (one example code)
-1. no type checking at compile time
+1. No type checking at compile time
+Since we don’t need to declare variables or their data type, the type of a variable is not known until runtime. The compiler cannot check for type errors. This can lead to errors that are only detected at runtime and cannot be avoided in the compile time. It means that the program will crash at runtime if the type of a variable is not as expected and it can cause disaster, e.g. if the bank system or the air traffic control system crashes.
+
+The picture above show the disadvantage of dynamic typing. Since in the init function, the value of food is None. Only after call the run function, the value of food is changed to Apple or Water instance. If we call the check_eaten function before the run function, the program will crash because the type and the value of food is None. 
 
 
 Advantages of Duck Typing: (two example codes and compare with C++)
