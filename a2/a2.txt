@@ -1,0 +1,16 @@
+Advantages of Dynamic Typing: (one example code) 
+1. no need to declare types variables or their data type before assignment 
+2. polymorphism
+3. reduce the amount of code base, efficient
+
+
+Don’t need to declare variables or their data type before assignment.
+It makes functions more reusable because functions can be applied on arguments of different types.
+...
+However, type checking can only be carried out at runtime, incurring time overhead and reliability issues.
+
+Disadvantages of Dynamic Typing: (one example code)
+1. no type checking at compile time
+
+
+Advantages of Duck Typing: (two example codes and compare with C++)
