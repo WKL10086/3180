@@ -149,7 +149,7 @@ class Water(Food):
     @volume.setter
     def volume(self, volume_val):
         if volume_val < 1 or volume_val > 5:
-            print("The volume size can only be an interger between 1 and 5")
+            print("The volume size can only be an integer between 1 and 5")
         else:
             self._volume = volume_val
 
