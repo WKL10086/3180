@@ -1,0 +1,757 @@
+<!DOCTYPE html>
+<!-- saved from url=(0064)http://course.cse.cuhk.edu.hk/~csci3180/assignments/assignment3/ -->
+<html><script id="allow-copy_script">(function agent() {
+    let unlock = false
+    document.addEventListener('allow_copy', (event) => {
+      unlock = event.detail.unlock
+    })
+
+    const copyEvents = [
+      'copy',
+      'cut',
+      'contextmenu',
+      'selectstart',
+      'mousedown',
+      'mouseup',
+      'mousemove',
+      'keydown',
+      'keypress',
+      'keyup',
+    ]
+    const rejectOtherHandlers = (e) => {
+      if (unlock) {
+        e.stopPropagation()
+        if (e.stopImmediatePropagation) e.stopImmediatePropagation()
+      }
+    }
+    copyEvents.forEach((evt) => {
+      document.documentElement.addEventListener(evt, rejectOtherHandlers, {
+        capture: true,
+      })
+    })
+  })()</script><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    
+
+    <!-- TODO: change the assignment number -->
+    <title>CSCI3180 Assignment 3</title>
+
+    <!-- css styles for this page -->
+    <link rel="stylesheet" href="./CSCI3180 Assignment 3_files/main.css">
+
+    <!-- prism.js is used for code highlighting: https://prismjs.com/ -->
+    <link rel="stylesheet" href="./CSCI3180 Assignment 3_files/prism.css">
+<style type="text/css">.MathJax_Preview {color: #888}
+#MathJax_Message {position: fixed; left: 1em; bottom: 1.5em; background-color: #E6E6E6; border: 1px solid #959595; margin: 0px; padding: 2px 8px; z-index: 102; color: black; font-size: 80%; width: auto; white-space: nowrap}
+#MathJax_MSIE_Frame {position: absolute; top: 0; left: 0; width: 0px; z-index: 101; border: 0px; margin: 0px; padding: 0px}
+.MathJax_Error {color: #CC0000; font-style: italic}
+</style><style type="text/css">.MathJax_Hover_Frame {border-radius: .25em; -webkit-border-radius: .25em; -moz-border-radius: .25em; -khtml-border-radius: .25em; box-shadow: 0px 0px 15px #83A; -webkit-box-shadow: 0px 0px 15px #83A; -moz-box-shadow: 0px 0px 15px #83A; -khtml-box-shadow: 0px 0px 15px #83A; border: 1px solid #A6D ! important; display: inline-block; position: absolute}
+.MathJax_Menu_Button .MathJax_Hover_Arrow {position: absolute; cursor: pointer; display: inline-block; border: 2px solid #AAA; border-radius: 4px; -webkit-border-radius: 4px; -moz-border-radius: 4px; -khtml-border-radius: 4px; font-family: 'Courier New',Courier; font-size: 9px; color: #F0F0F0}
+.MathJax_Menu_Button .MathJax_Hover_Arrow span {display: block; background-color: #AAA; border: 1px solid; border-radius: 3px; line-height: 0; padding: 4px}
+.MathJax_Hover_Arrow:hover {color: white!important; border: 2px solid #CCC!important}
+.MathJax_Hover_Arrow:hover span {background-color: #CCC!important}
+</style><style type="text/css">.MathJax_Display {text-align: center; margin: 1em 0em; position: relative; display: block!important; text-indent: 0; max-width: none; max-height: none; min-width: 0; min-height: 0; width: 100%}
+.MathJax .merror {background-color: #FFFF88; color: #CC0000; border: 1px solid #CC0000; padding: 1px 3px; font-style: normal; font-size: 90%}
+.MathJax .MJX-monospace {font-family: monospace}
+.MathJax .MJX-sans-serif {font-family: sans-serif}
+#MathJax_Tooltip {background-color: InfoBackground; color: InfoText; border: 1px solid black; box-shadow: 2px 2px 5px #AAAAAA; -webkit-box-shadow: 2px 2px 5px #AAAAAA; -moz-box-shadow: 2px 2px 5px #AAAAAA; -khtml-box-shadow: 2px 2px 5px #AAAAAA; filter: progid:DXImageTransform.Microsoft.dropshadow(OffX=2, OffY=2, Color='gray', Positive='true'); padding: 3px 4px; z-index: 401; position: absolute; left: 0; top: 0; width: auto; height: auto; display: none}
+.MathJax {display: inline; font-style: normal; font-weight: normal; line-height: normal; font-size: 100%; font-size-adjust: none; text-indent: 0; text-align: left; text-transform: none; letter-spacing: normal; word-spacing: normal; word-wrap: normal; white-space: nowrap; float: none; direction: ltr; max-width: none; max-height: none; min-width: 0; min-height: 0; border: 0; padding: 0; margin: 0}
+.MathJax:focus, body :focus .MathJax {display: inline-table}
+.MathJax.MathJax_FullWidth {text-align: center; display: table-cell!important; width: 10000em!important}
+.MathJax img, .MathJax nobr, .MathJax a {border: 0; padding: 0; margin: 0; max-width: none; max-height: none; min-width: 0; min-height: 0; vertical-align: 0; line-height: normal; text-decoration: none}
+img.MathJax_strut {border: 0!important; padding: 0!important; margin: 0!important; vertical-align: 0!important}
+.MathJax span {display: inline; position: static; border: 0; padding: 0; margin: 0; vertical-align: 0; line-height: normal; text-decoration: none; box-sizing: content-box}
+.MathJax nobr {white-space: nowrap!important}
+.MathJax img {display: inline!important; float: none!important}
+.MathJax * {transition: none; -webkit-transition: none; -moz-transition: none; -ms-transition: none; -o-transition: none}
+.MathJax_Processing {visibility: hidden; position: fixed; width: 0; height: 0; overflow: hidden}
+.MathJax_Processed {display: none!important}
+.MathJax_ExBox {display: block!important; overflow: hidden; width: 1px; height: 60ex; min-height: 0; max-height: none}
+.MathJax .MathJax_EmBox {display: block!important; overflow: hidden; width: 1px; height: 60em; min-height: 0; max-height: none}
+.MathJax_LineBox {display: table!important}
+.MathJax_LineBox span {display: table-cell!important; width: 10000em!important; min-width: 0; max-width: none; padding: 0; border: 0; margin: 0}
+.MathJax .MathJax_HitBox {cursor: text; background: white; opacity: 0; filter: alpha(opacity=0)}
+.MathJax .MathJax_HitBox * {filter: none; opacity: 1; background: transparent}
+#MathJax_Tooltip * {filter: none; opacity: 1; background: transparent}
+@font-face {font-family: MathJax_Main; src: url('https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.4/fonts/HTML-CSS/TeX/woff/MathJax_Main-Regular.woff?V=2.7.4') format('woff'), url('https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.4/fonts/HTML-CSS/TeX/otf/MathJax_Main-Regular.otf?V=2.7.4') format('opentype')}
+@font-face {font-family: MathJax_Main-bold; src: url('https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.4/fonts/HTML-CSS/TeX/woff/MathJax_Main-Bold.woff?V=2.7.4') format('woff'), url('https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.4/fonts/HTML-CSS/TeX/otf/MathJax_Main-Bold.otf?V=2.7.4') format('opentype')}
+@font-face {font-family: MathJax_Main-italic; src: url('https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.4/fonts/HTML-CSS/TeX/woff/MathJax_Main-Italic.woff?V=2.7.4') format('woff'), url('https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.4/fonts/HTML-CSS/TeX/otf/MathJax_Main-Italic.otf?V=2.7.4') format('opentype')}
+@font-face {font-family: MathJax_Math-italic; src: url('https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.4/fonts/HTML-CSS/TeX/woff/MathJax_Math-Italic.woff?V=2.7.4') format('woff'), url('https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.4/fonts/HTML-CSS/TeX/otf/MathJax_Math-Italic.otf?V=2.7.4') format('opentype')}
+@font-face {font-family: MathJax_Caligraphic; src: url('https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.4/fonts/HTML-CSS/TeX/woff/MathJax_Caligraphic-Regular.woff?V=2.7.4') format('woff'), url('https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.4/fonts/HTML-CSS/TeX/otf/MathJax_Caligraphic-Regular.otf?V=2.7.4') format('opentype')}
+@font-face {font-family: MathJax_Size1; src: url('https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.4/fonts/HTML-CSS/TeX/woff/MathJax_Size1-Regular.woff?V=2.7.4') format('woff'), url('https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.4/fonts/HTML-CSS/TeX/otf/MathJax_Size1-Regular.otf?V=2.7.4') format('opentype')}
+@font-face {font-family: MathJax_Size2; src: url('https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.4/fonts/HTML-CSS/TeX/woff/MathJax_Size2-Regular.woff?V=2.7.4') format('woff'), url('https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.4/fonts/HTML-CSS/TeX/otf/MathJax_Size2-Regular.otf?V=2.7.4') format('opentype')}
+@font-face {font-family: MathJax_Size3; src: url('https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.4/fonts/HTML-CSS/TeX/woff/MathJax_Size3-Regular.woff?V=2.7.4') format('woff'), url('https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.4/fonts/HTML-CSS/TeX/otf/MathJax_Size3-Regular.otf?V=2.7.4') format('opentype')}
+@font-face {font-family: MathJax_Size4; src: url('https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.4/fonts/HTML-CSS/TeX/woff/MathJax_Size4-Regular.woff?V=2.7.4') format('woff'), url('https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.4/fonts/HTML-CSS/TeX/otf/MathJax_Size4-Regular.otf?V=2.7.4') format('opentype')}
+</style><style type="text/css">#MathJax_About {position: fixed; left: 50%; width: auto; text-align: center; border: 3px outset; padding: 1em 2em; background-color: #DDDDDD; color: black; cursor: default; font-family: message-box; font-size: 120%; font-style: normal; text-indent: 0; text-transform: none; line-height: normal; letter-spacing: normal; word-spacing: normal; word-wrap: normal; white-space: nowrap; float: none; z-index: 201; border-radius: 15px; -webkit-border-radius: 15px; -moz-border-radius: 15px; -khtml-border-radius: 15px; box-shadow: 0px 10px 20px #808080; -webkit-box-shadow: 0px 10px 20px #808080; -moz-box-shadow: 0px 10px 20px #808080; -khtml-box-shadow: 0px 10px 20px #808080; filter: progid:DXImageTransform.Microsoft.dropshadow(OffX=2, OffY=2, Color='gray', Positive='true')}
+#MathJax_About.MathJax_MousePost {outline: none}
+.MathJax_Menu {position: absolute; background-color: white; color: black; width: auto; padding: 2px; border: 1px solid #CCCCCC; margin: 0; cursor: default; font: menu; text-align: left; text-indent: 0; text-transform: none; line-height: normal; letter-spacing: normal; word-spacing: normal; word-wrap: normal; white-space: nowrap; float: none; z-index: 201; box-shadow: 0px 10px 20px #808080; -webkit-box-shadow: 0px 10px 20px #808080; -moz-box-shadow: 0px 10px 20px #808080; -khtml-box-shadow: 0px 10px 20px #808080; filter: progid:DXImageTransform.Microsoft.dropshadow(OffX=2, OffY=2, Color='gray', Positive='true')}
+.MathJax_MenuItem {padding: 2px 2em; background: transparent}
+.MathJax_MenuArrow {position: absolute; right: .5em; padding-top: .25em; color: #666666; font-size: .75em}
+.MathJax_MenuActive .MathJax_MenuArrow {color: white}
+.MathJax_MenuArrow.RTL {left: .5em; right: auto}
+.MathJax_MenuCheck {position: absolute; left: .7em}
+.MathJax_MenuCheck.RTL {right: .7em; left: auto}
+.MathJax_MenuRadioCheck {position: absolute; left: 1em}
+.MathJax_MenuRadioCheck.RTL {right: 1em; left: auto}
+.MathJax_MenuLabel {padding: 2px 2em 4px 1.33em; font-style: italic}
+.MathJax_MenuRule {border-top: 1px solid #CCCCCC; margin: 4px 1px 0px}
+.MathJax_MenuDisabled {color: GrayText}
+.MathJax_MenuActive {background-color: Highlight; color: HighlightText}
+.MathJax_MenuDisabled:focus, .MathJax_MenuLabel:focus {background-color: #E8E8E8}
+.MathJax_ContextMenu:focus {outline: none}
+.MathJax_ContextMenu .MathJax_MenuItem:focus {outline: none}
+#MathJax_AboutClose {top: .2em; right: .2em}
+.MathJax_Menu .MathJax_MenuClose {top: -10px; left: -10px}
+.MathJax_MenuClose {position: absolute; cursor: pointer; display: inline-block; border: 2px solid #AAA; border-radius: 18px; -webkit-border-radius: 18px; -moz-border-radius: 18px; -khtml-border-radius: 18px; font-family: 'Courier New',Courier; font-size: 24px; color: #F0F0F0}
+.MathJax_MenuClose span {display: block; background-color: #AAA; border: 1.5px solid; border-radius: 18px; -webkit-border-radius: 18px; -moz-border-radius: 18px; -khtml-border-radius: 18px; line-height: 0; padding: 8px 0 6px}
+.MathJax_MenuClose:hover {color: white!important; border: 2px solid #CCC!important}
+.MathJax_MenuClose:hover span {background-color: #CCC!important}
+.MathJax_MenuClose:hover:focus {outline: none}
+</style><style type="text/css">#MathJax_Zoom {position: absolute; background-color: #F0F0F0; overflow: auto; display: block; z-index: 301; padding: .5em; border: 1px solid black; margin: 0; font-weight: normal; font-style: normal; text-align: left; text-indent: 0; text-transform: none; line-height: normal; letter-spacing: normal; word-spacing: normal; word-wrap: normal; white-space: nowrap; float: none; -webkit-box-sizing: content-box; -moz-box-sizing: content-box; box-sizing: content-box; box-shadow: 5px 5px 15px #AAAAAA; -webkit-box-shadow: 5px 5px 15px #AAAAAA; -moz-box-shadow: 5px 5px 15px #AAAAAA; -khtml-box-shadow: 5px 5px 15px #AAAAAA; filter: progid:DXImageTransform.Microsoft.dropshadow(OffX=2, OffY=2, Color='gray', Positive='true')}
+#MathJax_ZoomOverlay {position: absolute; left: 0; top: 0; z-index: 300; display: inline-block; width: 100%; height: 100%; border: 0; padding: 0; margin: 0; background-color: white; opacity: 0; filter: alpha(opacity=0)}
+#MathJax_ZoomFrame {position: relative; display: inline-block; height: 0; width: 0}
+#MathJax_ZoomEventTrap {position: absolute; left: 0; top: 0; z-index: 302; display: inline-block; border: 0; padding: 0; margin: 0; background-color: white; opacity: 0; filter: alpha(opacity=0)}
+</style></head>
+
+<body class="vsc-initialized" data-new-gr-c-s-check-loaded="14.1101.0" data-gr-ext-installed=""><div style="visibility: hidden; overflow: hidden; position: absolute; top: 0px; height: 1px; width: auto; padding: 0px; border: 0px; margin: 0px; text-align: left; text-indent: 0px; text-transform: none; line-height: normal; letter-spacing: normal; word-spacing: normal;"><div id="MathJax_Hidden"></div></div><div id="MathJax_Message" style="display: none;"></div>
+    <script src="./CSCI3180 Assignment 3_files/prism.js.下載" type="text/javascript"></script>
+    <script src="./CSCI3180 Assignment 3_files/MathJax.js.下載"></script>
+
+    <div class="sticky-side-nav">
+        <!-- TODO: change the assignment number -->
+        <div class="centered"><b>Assignment 3</b></div>
+        <br>
+
+        <!-- TODO: update the navigation menu -->
+        <a href="http://course.cse.cuhk.edu.hk/~csci3180/assignments/assignment3/#introduction">Introduction</a>
+        <a href="http://course.cse.cuhk.edu.hk/~csci3180/assignments/assignment3/#integrity">About academic integrity</a>
+        <a href="http://course.cse.cuhk.edu.hk/~csci3180/assignments/assignment3/#overview">Task overview &amp; download</a>
+        <a href="http://course.cse.cuhk.edu.hk/~csci3180/assignments/assignment3/#Task%201:%20Basic%20Horse%20Racing">Basic Horse-Racing Game</a>
+        <a href="http://course.cse.cuhk.edu.hk/~csci3180/assignments/assignment3/#Task%202:%20Advanced%20Horse%20Racing">Advanced Horse-Racing Game</a>
+        <a href="http://course.cse.cuhk.edu.hk/~csci3180/assignments/assignment3/#report">Written report</a>
+        <a href="http://course.cse.cuhk.edu.hk/~csci3180/assignments/assignment3/#submission">Submission &amp; deadline</a>
+
+        <!-- add navigation menu items if needed, e.g.: -->
+        <!-- 
+            <a href="#section-id-used-for-navigation">New section name</a> 
+        -->
+
+        <!-- TODO: credit yourself -->
+        <div class="credit">Prepared by Huancheng Puyang and Yanjing Ren</div> 
+    </div>
+
+    <div class="main-content">
+        <div class="section" id="heading"> 
+            <!-- TODO: change the assignment title -->
+            <h1>CSCI3180 Assignment 3: The Tian Ji's Horse Racing Game</h1>
+        </div> <!-- end of heading -->
+        
+
+ 
+        <div class="section" id="introduction">
+            <h2>Introduction</h2>
+            <p>
+                The purpose of this assignment is to offer most of you the first experience with Perl, a language supporting both
+                dynamic and static scoping. Our main focus is on dynamic scoping.
+            </p>
+            <p>
+                The assignment consists of three parts. You need to implement a new game designed by the TAs, called “The New Tian Ji in
+                Horse-Racing”, step by step.
+                </p><ul>
+                    <li>First, you are required to implement a simple version of this game in Perl, with the Python
+                        implementation provided to you for reference. </li>
+                    <li>Second, you need to implement a more complex version of this game in Perl with dynamic scoping. </li>
+                    <li>Third, you are required to re-implement the same game using Python with static scoping. </li> <br>
+                </ul>
+
+                The detailed Object-Oriented (OO) design for the Perl implementation is given. The OO design for the Python implementation
+                is exactly the same. In the process, you will experience both programming flexibility and readability (good or bad)
+                with dynamic scoping. Besides, you are required to add “use warnings;” and “use strict;” at the start of your Perl
+                programs.
+            <p></p>
+            <p style="color:red">
+                Your implementation should use Perl version after v5.30.0 and Python version after v3.6
+            </p>
+        </div> <!-- end of section -->
+ 
+
+        <div class="section" id="integrity">
+            <h2>About academic integrity</h2>
+            <p>We value academic integrity very highly.</p>
+            <ul>
+                <li>Do NOT try your "luck" - we use sophisticated plagiarism detection software to find cheaters.</li>
+                <li>The penalty (for BOTH the copier and the copiee) may not be just getting a zero in your assignment. There may be additional disciplinary actions from the university, up to and including expulsion.</li>
+                <li>Do NOT copy or look at the assignment code/work of another student/person.</li>
+                <li>Do NOT share your assignment code/work to anyone and do NOT post it anywhere online.</li>
+                <li>While we encourage discussion among students, you should write the code and finish the work on your own. In the discussion, you should NOT go into the details such that everyone will end up with the same code/work.</li>
+                <li>You are responsible to double-check your own submission and do your best to avoid "accidents".</li>
+            </ul>
+            <p>Read <a href="https://www.cuhk.edu.hk/policy/academichonesty/">https://www.cuhk.edu.hk/policy/academichonesty/</a> for details of the CUHK policy on this matter.</p>
+        </div> <!-- end of section -->
+
+
+        <div class="section" id="overview">
+            <h2>Task overview &amp; download</h2>
+            <p>
+                In ancient China, there was a man named Tian Ji, who was a general of Qi State. He had a penchant for racing horses. One he invited Duke Wei of Qi State to have a horse race.
+                They categorized their horses into three classes: top, middle and low. In every race, they only send out one horse to race. In these three races, both of them sent in the top, middle and low classes of horses in order.
+                As the horses of Duke were better than those of Tian in every class, Tian lost all three races. Tian felt pretty disappointed, but his friend Sun Bin was not. 
+                He thought he had a way to make Tian win without replacing any of his horses.
+            </p>
+            <p>
+                Tian asked for the second match with Duke Wei. Sun let Tian use the low-class horse against Duke's top-class one for the
+                first race, and Tian lost it.
+                Then came the second race, Sun had Tian's top-class horse against Duke's middle-class horse and won. In the third race,
+                Tian took his middle-class horse
+                Duke Wei's low-class horse and won again. The result of the match was Tian won two races and lost one, and he beat Duke.
+                The horses were still the same, but by switching the order of the matchups, defeat was turned into victory.
+            </p>
+            <p>
+                In this assignment, you will need to create horses and form teams with the attributes that we formulate, and then replay this story of 2300 years ago with the help of programming.
+            </p>
+            <p>You have two main tasks in this assignment.</p>
+            <ol>
+                <li>
+                    First, download the starting skeleton code <a href="http://course.cse.cuhk.edu.hk/~csci3180/assignments/assignment3/downloads/a3_starting_code.zip">HERE</a>. Please download it now, as we may refer to it in the description below. Some functions have already been completed for you.
+                    Your programming task is to read the description, understand the given code, and complete all the incomplete functions in the given skeleton code files.
+                    We will provide the specifics in the <a href="http://course.cse.cuhk.edu.hk/~csci3180/assignments/assignment3/#submission">Submission &amp; deadline</a> section.
+                </li>
+                <li>Write a report on dynamic scoping and Perl programming language, and save it as a PDF file. We will talk about it in detail after the programming task description.</li>
+            </ol>
+            <p>Read the pinned Assignment 3 FAQ post on <a href="https://piazza.com/class/lb640zoes506ma">Piazza</a> for some common clarifications. You should check that a day before the deadline to make sure you don't miss any clarifications, even if you have already submitted your work then.</p>
+            <p>If you need further clarification of the requirements, please feel free to post on the Piazza with the <u>assignment3</u> tag. However, to avoid cluttering the forum with repeated/trivial questions, please do read all the given code, webpage description, sample output, and latest FAQ carefully before posting your questions. Also, please be reminded that we won't debug for any student's assignment for the sake of fairness and that you should not share/post your solution code anywhere.</p>
+        </div> <!-- end of section -->
+
+
+        <!-- Description Start Here -->
+
+
+        <div class="section" id="Task 1: Basic Horse Racing">
+            <h2>Task 1: Basic Horse Racing</h2>
+
+            <h3>1.1 Description</h3>
+            <p>
+                You are required to implement the Tian Ji in Horse-Racing game that involves two teams: Team 1 (representing Tian) and Team 2 (representing Duke).
+                Each team consists of four horses. We number the horses from Horse 1 to Horse 4 for Team 1, and Horse 5 to Horse 8 for Team 2 for simplicity.
+                In particular, each horse has four properties, which are morale, speed, experience, and rank.
+            </p>
+
+            <ul>
+                <li>
+                    <i>morale</i>: the most basic state of a racing horse. If morale is less than or equal to 0, the horse can no longer be sent to race, it is <b>defeated</b>;
+                    otherwise, it is <b>undefeated</b>.
+                </li>
+                <li>
+                    <i>speed</i>: the speed of a racing horse.
+                </li>
+                <li>
+                    <i>experience</i>: the experience of a racing horse.
+                </li>
+                <li>
+                    <i>rank</i>: the rank of a horse.
+                </li>
+            </ul>
+            <p>
+                morale, speed, experience, and rank are related to the racing results. The properties are all in <i>integers</i>.
+                The initial values of morale, speed, experience, and rank are specified through user inputs that must
+                satisfy the following constraint:
+            </p>
+
+            <span class="MathJax_Preview" style="display: none;"></span><div class="MathJax_Display" style="text-align: center;"><span class="MathJax" id="MathJax-Element-1-Frame" tabindex="0" style="text-align: center;"><nobr><span class="math" id="MathJax-Span-1" style="width: 27.1em; display: inline-block;"><span style="display: inline-block; position: relative; width: 21.488em; height: 0px; font-size: 126%;"><span style="position: absolute; clip: rect(1.42em, 1021.43em, 2.724em, -999.997em); top: -2.321em; left: 0em;"><span class="mrow" id="MathJax-Span-2"><span class="mi" id="MathJax-Span-3" style="font-family: MathJax_Math-italic;">m</span><span class="mi" id="MathJax-Span-4" style="font-family: MathJax_Math-italic;">o</span><span class="mi" id="MathJax-Span-5" style="font-family: MathJax_Math-italic;">r</span><span class="mi" id="MathJax-Span-6" style="font-family: MathJax_Math-italic;">a</span><span class="mi" id="MathJax-Span-7" style="font-family: MathJax_Math-italic;">l</span><span class="mi" id="MathJax-Span-8" style="font-family: MathJax_Math-italic;">e</span><span class="mo" id="MathJax-Span-9" style="font-family: MathJax_Main; padding-left: 0.23em;">+</span><span class="mn" id="MathJax-Span-10" style="font-family: MathJax_Main; padding-left: 0.23em;">5</span><span class="mo" id="MathJax-Span-11" style="font-family: MathJax_Main; padding-left: 0.23em;">×</span><span class="mo" id="MathJax-Span-12" style="font-family: MathJax_Main; padding-left: 0.23em;">(</span><span class="mi" id="MathJax-Span-13" style="font-family: MathJax_Math-italic;">s</span><span class="mi" id="MathJax-Span-14" style="font-family: MathJax_Math-italic;">p</span><span class="mi" id="MathJax-Span-15" style="font-family: MathJax_Math-italic;">e</span><span class="mi" id="MathJax-Span-16" style="font-family: MathJax_Math-italic;">e</span><span class="mi" id="MathJax-Span-17" style="font-family: MathJax_Math-italic;">d<span style="display: inline-block; overflow: hidden; height: 1px; width: 0.003em;"></span></span><span class="mo" id="MathJax-Span-18" style="font-family: MathJax_Main; padding-left: 0.23em;">+</span><span class="mi" id="MathJax-Span-19" style="font-family: MathJax_Math-italic; padding-left: 0.23em;">e</span><span class="mi" id="MathJax-Span-20" style="font-family: MathJax_Math-italic;">x</span><span class="mi" id="MathJax-Span-21" style="font-family: MathJax_Math-italic;">p</span><span class="mi" id="MathJax-Span-22" style="font-family: MathJax_Math-italic;">e</span><span class="mi" id="MathJax-Span-23" style="font-family: MathJax_Math-italic;">r</span><span class="mi" id="MathJax-Span-24" style="font-family: MathJax_Math-italic;">i</span><span class="mi" id="MathJax-Span-25" style="font-family: MathJax_Math-italic;">e</span><span class="mi" id="MathJax-Span-26" style="font-family: MathJax_Math-italic;">n</span><span class="mi" id="MathJax-Span-27" style="font-family: MathJax_Math-italic;">c</span><span class="mi" id="MathJax-Span-28" style="font-family: MathJax_Math-italic;">e</span><span class="mo" id="MathJax-Span-29" style="font-family: MathJax_Main; padding-left: 0.23em;">+</span><span class="mi" id="MathJax-Span-30" style="font-family: MathJax_Math-italic; padding-left: 0.23em;">r</span><span class="mi" id="MathJax-Span-31" style="font-family: MathJax_Math-italic;">a</span><span class="mi" id="MathJax-Span-32" style="font-family: MathJax_Math-italic;">n</span><span class="mi" id="MathJax-Span-33" style="font-family: MathJax_Math-italic;">k</span><span class="mo" id="MathJax-Span-34" style="font-family: MathJax_Main;">)</span><span class="mo" id="MathJax-Span-35" style="font-family: MathJax_Main; padding-left: 0.286em;">≤</span><span class="mn" id="MathJax-Span-36" style="font-family: MathJax_Main; padding-left: 0.286em;">300</span></span><span style="display: inline-block; width: 0px; height: 2.327em;"></span></span></span><span style="display: inline-block; overflow: hidden; vertical-align: -0.354em; border-left: 0px solid; width: 0px; height: 1.432em;"></span></span></nobr></span></div><script type="math/tex; mode=display" id="MathJax-Element-1"> morale + 5 × (speed + experience + rank) ≤ 300 </script>
+    
+            <p>
+                After the initialization, each team leader will decide the racing order of all the undefeated horses in their team in each round.
+                In each round, horses are picked from the team's order list one by one and race against the horse in the same order from
+                the opponent team.
+                If one team has more undefeated horses than the other team, the excess horses will take a rest in the round.
+                In each round, the races are launched one by one according to the order specified in the order lists.
+            </p>
+            <p>
+                <b>Example 1</b>
+                <br>
+                <i>
+                    The undefeated horses in Team 1 are Horse 1 and Horse 2, while the undefeated horses in Team 2 are Horse 5,
+                    Horse 6, and Horse 8. The proposed order of Team 1 is [2, 1] and the proposed order of Team 2 is [8, 5, 6]. Thus,
+                    Horse 2
+                    races against Horse 8 and Horse 1 against Horse 5. However, Horse 6 takes a rest in this round.
+                </i>
+            </p>
+            <p>
+                In each race, the morale of both horses will sink by a certain value because they get tired.
+                We will examine the horses' morale and update its value by substracting <code>morale_sink</code>.
+                Once the morale of a horse is updated to be non-positive, this horse becomes <i>defeated</i> and cannot run another round.
+                We denote the other horse <b>defeated</b> this horse.
+                The sinking value is defined as:
+            </p>
+            <span class="MathJax_Preview" style="display: none;"></span><div class="MathJax_Display" style="text-align: center;"><span class="MathJax" id="MathJax-Element-2-Frame" tabindex="0" style="text-align: center;"><nobr><span class="math" id="MathJax-Span-37" style="width: 30.388em; display: inline-block;"><span style="display: inline-block; position: relative; width: 24.096em; height: 0px; font-size: 126%;"><span style="position: absolute; clip: rect(1.477em, 1024.1em, 2.781em, -999.997em); top: -2.321em; left: 0em;"><span class="mrow" id="MathJax-Span-38"><span class="mi" id="MathJax-Span-39" style="font-family: MathJax_Math-italic;">a</span><span class="mi" id="MathJax-Span-40" style="font-family: MathJax_Math-italic;">c</span><span class="mi" id="MathJax-Span-41" style="font-family: MathJax_Math-italic;">t</span><span class="mi" id="MathJax-Span-42" style="font-family: MathJax_Math-italic;">u</span><span class="mi" id="MathJax-Span-43" style="font-family: MathJax_Math-italic;">a</span><span class="mi" id="MathJax-Span-44" style="font-family: MathJax_Math-italic;">l</span><span class="mi" id="MathJax-Span-45" style="font-family: MathJax_Main;">_</span><span class="mi" id="MathJax-Span-46" style="font-family: MathJax_Math-italic;">s</span><span class="mi" id="MathJax-Span-47" style="font-family: MathJax_Math-italic;">p</span><span class="mi" id="MathJax-Span-48" style="font-family: MathJax_Math-italic;">e</span><span class="mi" id="MathJax-Span-49" style="font-family: MathJax_Math-italic;">e</span><span class="msubsup" id="MathJax-Span-50"><span style="display: inline-block; position: relative; width: 3.404em; height: 0px;"><span style="position: absolute; clip: rect(3.177em, 1000.51em, 4.198em, -999.997em); top: -4.022em; left: 0em;"><span class="mi" id="MathJax-Span-51" style="font-family: MathJax_Math-italic;">d<span style="display: inline-block; overflow: hidden; height: 1px; width: 0.003em;"></span></span><span style="display: inline-block; width: 0px; height: 4.028em;"></span></span><span style="position: absolute; top: -3.852em; left: 0.513em;"><span class="texatom" id="MathJax-Span-52"><span class="mrow" id="MathJax-Span-53"><span class="mi" id="MathJax-Span-54" style="font-size: 70.7%; font-family: MathJax_Math-italic;">o</span><span class="mi" id="MathJax-Span-55" style="font-size: 70.7%; font-family: MathJax_Math-italic;">p</span><span class="mi" id="MathJax-Span-56" style="font-size: 70.7%; font-family: MathJax_Math-italic;">p</span><span class="mi" id="MathJax-Span-57" style="font-size: 70.7%; font-family: MathJax_Math-italic;">o</span><span class="mi" id="MathJax-Span-58" style="font-size: 70.7%; font-family: MathJax_Math-italic;">n</span><span class="mi" id="MathJax-Span-59" style="font-size: 70.7%; font-family: MathJax_Math-italic;">e</span><span class="mi" id="MathJax-Span-60" style="font-size: 70.7%; font-family: MathJax_Math-italic;">n</span><span class="mi" id="MathJax-Span-61" style="font-size: 70.7%; font-family: MathJax_Math-italic;">t</span></span></span><span style="display: inline-block; width: 0px; height: 4.028em;"></span></span></span></span><span class="mo" id="MathJax-Span-62" style="font-family: MathJax_Main; padding-left: 0.286em;">=</span><span class="mi" id="MathJax-Span-63" style="font-family: MathJax_Math-italic; padding-left: 0.286em;">s</span><span class="mi" id="MathJax-Span-64" style="font-family: MathJax_Math-italic;">p</span><span class="mi" id="MathJax-Span-65" style="font-family: MathJax_Math-italic;">e</span><span class="mi" id="MathJax-Span-66" style="font-family: MathJax_Math-italic;">e</span><span class="msubsup" id="MathJax-Span-67"><span style="display: inline-block; position: relative; width: 3.404em; height: 0px;"><span style="position: absolute; clip: rect(3.177em, 1000.51em, 4.198em, -999.997em); top: -4.022em; left: 0em;"><span class="mi" id="MathJax-Span-68" style="font-family: MathJax_Math-italic;">d<span style="display: inline-block; overflow: hidden; height: 1px; width: 0.003em;"></span></span><span style="display: inline-block; width: 0px; height: 4.028em;"></span></span><span style="position: absolute; top: -3.852em; left: 0.513em;"><span class="texatom" id="MathJax-Span-69"><span class="mrow" id="MathJax-Span-70"><span class="mi" id="MathJax-Span-71" style="font-size: 70.7%; font-family: MathJax_Math-italic;">o</span><span class="mi" id="MathJax-Span-72" style="font-size: 70.7%; font-family: MathJax_Math-italic;">p</span><span class="mi" id="MathJax-Span-73" style="font-size: 70.7%; font-family: MathJax_Math-italic;">p</span><span class="mi" id="MathJax-Span-74" style="font-size: 70.7%; font-family: MathJax_Math-italic;">o</span><span class="mi" id="MathJax-Span-75" style="font-size: 70.7%; font-family: MathJax_Math-italic;">n</span><span class="mi" id="MathJax-Span-76" style="font-size: 70.7%; font-family: MathJax_Math-italic;">e</span><span class="mi" id="MathJax-Span-77" style="font-size: 70.7%; font-family: MathJax_Math-italic;">n</span><span class="mi" id="MathJax-Span-78" style="font-size: 70.7%; font-family: MathJax_Math-italic;">t</span></span></span><span style="display: inline-block; width: 0px; height: 4.028em;"></span></span></span></span><span class="mo" id="MathJax-Span-79" style="font-family: MathJax_Main; padding-left: 0.23em;">×</span><span class="mi" id="MathJax-Span-80" style="font-family: MathJax_Math-italic; padding-left: 0.23em;">e</span><span class="mi" id="MathJax-Span-81" style="font-family: MathJax_Math-italic;">x</span><span class="mi" id="MathJax-Span-82" style="font-family: MathJax_Math-italic;">p</span><span class="mi" id="MathJax-Span-83" style="font-family: MathJax_Math-italic;">e</span><span class="mi" id="MathJax-Span-84" style="font-family: MathJax_Math-italic;">r</span><span class="mi" id="MathJax-Span-85" style="font-family: MathJax_Math-italic;">i</span><span class="mi" id="MathJax-Span-86" style="font-family: MathJax_Math-italic;">e</span><span class="mi" id="MathJax-Span-87" style="font-family: MathJax_Math-italic;">n</span><span class="mi" id="MathJax-Span-88" style="font-family: MathJax_Math-italic;">c</span><span class="msubsup" id="MathJax-Span-89"><span style="display: inline-block; position: relative; width: 3.348em; height: 0px;"><span style="position: absolute; clip: rect(3.404em, 1000.46em, 4.198em, -999.997em); top: -4.022em; left: 0em;"><span class="mi" id="MathJax-Span-90" style="font-family: MathJax_Math-italic;">e</span><span style="display: inline-block; width: 0px; height: 4.028em;"></span></span><span style="position: absolute; top: -3.852em; left: 0.456em;"><span class="texatom" id="MathJax-Span-91"><span class="mrow" id="MathJax-Span-92"><span class="mi" id="MathJax-Span-93" style="font-size: 70.7%; font-family: MathJax_Math-italic;">o</span><span class="mi" id="MathJax-Span-94" style="font-size: 70.7%; font-family: MathJax_Math-italic;">p</span><span class="mi" id="MathJax-Span-95" style="font-size: 70.7%; font-family: MathJax_Math-italic;">p</span><span class="mi" id="MathJax-Span-96" style="font-size: 70.7%; font-family: MathJax_Math-italic;">o</span><span class="mi" id="MathJax-Span-97" style="font-size: 70.7%; font-family: MathJax_Math-italic;">n</span><span class="mi" id="MathJax-Span-98" style="font-size: 70.7%; font-family: MathJax_Math-italic;">e</span><span class="mi" id="MathJax-Span-99" style="font-size: 70.7%; font-family: MathJax_Math-italic;">n</span><span class="mi" id="MathJax-Span-100" style="font-size: 70.7%; font-family: MathJax_Math-italic;">t</span></span></span><span style="display: inline-block; width: 0px; height: 4.028em;"></span></span></span></span></span><span style="display: inline-block; width: 0px; height: 2.327em;"></span></span></span><span style="display: inline-block; overflow: hidden; vertical-align: -0.425em; border-left: 0px solid; width: 0px; height: 1.361em;"></span></span></nobr></span></div><script type="math/tex; mode=display" id="MathJax-Element-2"> actual\_speed_{opponent} = speed_{opponent} × experience_{opponent} </script>
+            <span class="MathJax_Preview" style="display: none;"></span><div class="MathJax_Display" style="text-align: center;"><span class="MathJax" id="MathJax-Element-3-Frame" tabindex="0" style="text-align: center;"><nobr><span class="math" id="MathJax-Span-101" style="width: 42.01em; display: inline-block;"><span style="display: inline-block; position: relative; width: 33.336em; height: 0px; font-size: 126%;"><span style="position: absolute; clip: rect(1.42em, 1033.28em, 2.781em, -999.997em); top: -2.321em; left: 0em;"><span class="mrow" id="MathJax-Span-102"><span class="mi" id="MathJax-Span-103" style="font-family: MathJax_Math-italic;">m</span><span class="mi" id="MathJax-Span-104" style="font-family: MathJax_Math-italic;">o</span><span class="mi" id="MathJax-Span-105" style="font-family: MathJax_Math-italic;">r</span><span class="mi" id="MathJax-Span-106" style="font-family: MathJax_Math-italic;">a</span><span class="mi" id="MathJax-Span-107" style="font-family: MathJax_Math-italic;">l</span><span class="mi" id="MathJax-Span-108" style="font-family: MathJax_Math-italic;">e</span><span class="mi" id="MathJax-Span-109" style="font-family: MathJax_Main;">_</span><span class="mi" id="MathJax-Span-110" style="font-family: MathJax_Math-italic;">s</span><span class="mi" id="MathJax-Span-111" style="font-family: MathJax_Math-italic;">i</span><span class="mi" id="MathJax-Span-112" style="font-family: MathJax_Math-italic;">n</span><span class="msubsup" id="MathJax-Span-113"><span style="display: inline-block; position: relative; width: 2.384em; height: 0px;"><span style="position: absolute; clip: rect(3.177em, 1000.51em, 4.198em, -999.997em); top: -4.022em; left: 0em;"><span class="mi" id="MathJax-Span-114" style="font-family: MathJax_Math-italic;">k</span><span style="display: inline-block; width: 0px; height: 4.028em;"></span></span><span style="position: absolute; top: -3.852em; left: 0.513em;"><span class="texatom" id="MathJax-Span-115"><span class="mrow" id="MathJax-Span-116"><span class="mi" id="MathJax-Span-117" style="font-size: 70.7%; font-family: MathJax_Math-italic;">i</span><span class="mi" id="MathJax-Span-118" style="font-size: 70.7%; font-family: MathJax_Math-italic;">t</span><span class="mi" id="MathJax-Span-119" style="font-size: 70.7%; font-family: MathJax_Math-italic;">s</span><span class="mi" id="MathJax-Span-120" style="font-size: 70.7%; font-family: MathJax_Math-italic;">e</span><span class="mi" id="MathJax-Span-121" style="font-size: 70.7%; font-family: MathJax_Math-italic;">l</span><span class="mi" id="MathJax-Span-122" style="font-size: 70.7%; font-family: MathJax_Math-italic;">f<span style="display: inline-block; overflow: hidden; height: 1px; width: 0.06em;"></span></span></span></span><span style="display: inline-block; width: 0px; height: 4.028em;"></span></span></span></span><span class="mo" id="MathJax-Span-123" style="font-family: MathJax_Main; padding-left: 0.286em;">=</span><span class="mi" id="MathJax-Span-124" style="font-family: MathJax_Math-italic; padding-left: 0.286em;">m</span><span class="mi" id="MathJax-Span-125" style="font-family: MathJax_Math-italic;">a</span><span class="mi" id="MathJax-Span-126" style="font-family: MathJax_Math-italic;">x</span><span class="mo" id="MathJax-Span-127" style="font-family: MathJax_Main;">{</span><span class="mi" id="MathJax-Span-128" style="font-family: MathJax_Math-italic;">i</span><span class="mi" id="MathJax-Span-129" style="font-family: MathJax_Math-italic;">n</span><span class="mi" id="MathJax-Span-130" style="font-family: MathJax_Math-italic;">t</span><span class="mo" id="MathJax-Span-131" style="font-family: MathJax_Main;">(</span><span class="mo" id="MathJax-Span-132" style="font-family: MathJax_Main;">(</span><span class="mi" id="MathJax-Span-133" style="font-family: MathJax_Math-italic;">a</span><span class="mi" id="MathJax-Span-134" style="font-family: MathJax_Math-italic;">c</span><span class="mi" id="MathJax-Span-135" style="font-family: MathJax_Math-italic;">t</span><span class="mi" id="MathJax-Span-136" style="font-family: MathJax_Math-italic;">u</span><span class="mi" id="MathJax-Span-137" style="font-family: MathJax_Math-italic;">a</span><span class="mi" id="MathJax-Span-138" style="font-family: MathJax_Math-italic;">l</span><span class="mi" id="MathJax-Span-139" style="font-family: MathJax_Main;">_</span><span class="mi" id="MathJax-Span-140" style="font-family: MathJax_Math-italic;">s</span><span class="mi" id="MathJax-Span-141" style="font-family: MathJax_Math-italic;">p</span><span class="mi" id="MathJax-Span-142" style="font-family: MathJax_Math-italic;">e</span><span class="mi" id="MathJax-Span-143" style="font-family: MathJax_Math-italic;">e</span><span class="msubsup" id="MathJax-Span-144"><span style="display: inline-block; position: relative; width: 3.404em; height: 0px;"><span style="position: absolute; clip: rect(3.177em, 1000.51em, 4.198em, -999.997em); top: -4.022em; left: 0em;"><span class="mi" id="MathJax-Span-145" style="font-family: MathJax_Math-italic;">d<span style="display: inline-block; overflow: hidden; height: 1px; width: 0.003em;"></span></span><span style="display: inline-block; width: 0px; height: 4.028em;"></span></span><span style="position: absolute; top: -3.852em; left: 0.513em;"><span class="texatom" id="MathJax-Span-146"><span class="mrow" id="MathJax-Span-147"><span class="mi" id="MathJax-Span-148" style="font-size: 70.7%; font-family: MathJax_Math-italic;">o</span><span class="mi" id="MathJax-Span-149" style="font-size: 70.7%; font-family: MathJax_Math-italic;">p</span><span class="mi" id="MathJax-Span-150" style="font-size: 70.7%; font-family: MathJax_Math-italic;">p</span><span class="mi" id="MathJax-Span-151" style="font-size: 70.7%; font-family: MathJax_Math-italic;">o</span><span class="mi" id="MathJax-Span-152" style="font-size: 70.7%; font-family: MathJax_Math-italic;">n</span><span class="mi" id="MathJax-Span-153" style="font-size: 70.7%; font-family: MathJax_Math-italic;">e</span><span class="mi" id="MathJax-Span-154" style="font-size: 70.7%; font-family: MathJax_Math-italic;">n</span><span class="mi" id="MathJax-Span-155" style="font-size: 70.7%; font-family: MathJax_Math-italic;">t</span></span></span><span style="display: inline-block; width: 0px; height: 4.028em;"></span></span></span></span><span class="mo" id="MathJax-Span-156" style="font-family: MathJax_Main; padding-left: 0.23em;">−</span><span class="mn" id="MathJax-Span-157" style="font-family: MathJax_Main; padding-left: 0.23em;">10</span><span class="mo" id="MathJax-Span-158" style="font-family: MathJax_Main; padding-left: 0.23em;">×</span><span class="mi" id="MathJax-Span-159" style="font-family: MathJax_Math-italic; padding-left: 0.23em;">s</span><span class="mi" id="MathJax-Span-160" style="font-family: MathJax_Math-italic;">p</span><span class="mi" id="MathJax-Span-161" style="font-family: MathJax_Math-italic;">e</span><span class="mi" id="MathJax-Span-162" style="font-family: MathJax_Math-italic;">e</span><span class="msubsup" id="MathJax-Span-163"><span style="display: inline-block; position: relative; width: 2.384em; height: 0px;"><span style="position: absolute; clip: rect(3.177em, 1000.51em, 4.198em, -999.997em); top: -4.022em; left: 0em;"><span class="mi" id="MathJax-Span-164" style="font-family: MathJax_Math-italic;">d<span style="display: inline-block; overflow: hidden; height: 1px; width: 0.003em;"></span></span><span style="display: inline-block; width: 0px; height: 4.028em;"></span></span><span style="position: absolute; top: -3.852em; left: 0.513em;"><span class="texatom" id="MathJax-Span-165"><span class="mrow" id="MathJax-Span-166"><span class="mi" id="MathJax-Span-167" style="font-size: 70.7%; font-family: MathJax_Math-italic;">i</span><span class="mi" id="MathJax-Span-168" style="font-size: 70.7%; font-family: MathJax_Math-italic;">t</span><span class="mi" id="MathJax-Span-169" style="font-size: 70.7%; font-family: MathJax_Math-italic;">s</span><span class="mi" id="MathJax-Span-170" style="font-size: 70.7%; font-family: MathJax_Math-italic;">e</span><span class="mi" id="MathJax-Span-171" style="font-size: 70.7%; font-family: MathJax_Math-italic;">l</span><span class="mi" id="MathJax-Span-172" style="font-size: 70.7%; font-family: MathJax_Math-italic;">f<span style="display: inline-block; overflow: hidden; height: 1px; width: 0.06em;"></span></span></span></span><span style="display: inline-block; width: 0px; height: 4.028em;"></span></span></span></span><span class="mo" id="MathJax-Span-173" style="font-family: MathJax_Main;">)</span><span class="texatom" id="MathJax-Span-174"><span class="mrow" id="MathJax-Span-175"><span class="mo" id="MathJax-Span-176" style="font-family: MathJax_Main;">/</span></span></span><span class="mn" id="MathJax-Span-177" style="font-family: MathJax_Main;">10</span><span class="mo" id="MathJax-Span-178" style="font-family: MathJax_Main;">)</span><span class="mo" id="MathJax-Span-179" style="font-family: MathJax_Main;">,</span><span class="mn" id="MathJax-Span-180" style="font-family: MathJax_Main; padding-left: 0.173em;">1</span><span class="mo" id="MathJax-Span-181" style="font-family: MathJax_Main;">}</span></span><span style="display: inline-block; width: 0px; height: 2.327em;"></span></span></span><span style="display: inline-block; overflow: hidden; vertical-align: -0.425em; border-left: 0px solid; width: 0px; height: 1.504em;"></span></span></nobr></span></div><script type="math/tex; mode=display" id="MathJax-Element-3"> morale\_sink_{itself} = max\{int((actual\_speed_{opponent} − 10 × speed_{itself})/10), 1\} </script>
+            <p>
+                In each race, we will first examine and update the horse with a lower <i>rank</i>, then the other one.
+                If the two horses have the same <i>rank</i>, the horse from Team 2 will be examined first.
+                <a style="color:red">
+                    However, if the horse examined first in this round is sentenced to be <i>defeated</i>, the race comes to an end in
+                    advance,
+                    we won't examine the other horse for its morale update.
+                </a>
+            </p>
+            <p>
+                The horse with faster <i>actual_speed</i> will win this race.
+                If two horses have the same <i>actual_speed</i>, the race is a tie.
+            </p>
+            <p>
+                We will repeat the above process for all races in a round. When all races are completed, we check the states of all the horses in each team.
+                If there is a team with all its horses defeated, this team loses the racing game. We should announce that the winner is the other team then.
+            </p>
+
+            <h3>1.2 Workflow</h3>
+            <p>
+                In this section, we specify the workflow of the basic racing game. In the beginning, we initialize the court, teams, and
+                horses.
+                The program asks the user to input the initial properties of each horse satisfying the constraint in inequality 1.
+                The program first output <i style="color: blue">"Please input properties for horses in Team 1”</i>. Then the user enters
+                the properties of the first horse by four integers.
+
+                <a style="color:red">We assume the input format and type are valid.</a>
+                The program only checks the semantic validity of the input that violates
+                the constraint and recursively asks the user to enter the properties of the remaining horses. If the
+                input properties violate the constraint, the program should output
+                <i style="color: blue">“Properties violate the constraint, please input again”</i>
+                    and the user would input the properties again until the constraint is satisfied.
+                After the user inputs four horses' properties, the program outputs
+                <i style="color: blue">“Please input properties for horses in Team 2”</i>
+                    and follows the same process as that for Team 1.
+                An example screenshot of the initialization is shown in Figure 1.
+            </p>
+            
+            <figure style="text-align:center">
+                <img src="./CSCI3180 Assignment 3_files/figure1.png" width="350" alt="Figure 1: Before Game Begins">
+                <figcaption>Figure 1: Before Game Begins</figcaption>
+            </figure>
+
+            <p>
+                After the initialization, the game starts with the program outputting <i style="color: blue">"Game Begins"</i> (as shown in Figure 2).
+                Afterward, the program asks the user to input the order of the first team, outputting <i style="color: blue">“Team1: please input order”</i>.
+                Then the user enters the horse order of the first team by the horses' numbers. We assume the input format and type are valid.
+                The program only checks the semantic validity of the input that violates four simple constraints. The violations to be checked include:
+            </p>
+            <ul>
+                <li>The number of ordered horses is inconsistent with the number of undefeated horses.</li>
+                <li>There are duplicated horses in the order.</li>
+                <li>There are horses that do not belong to this team.</li>
+                <li>There are horses that are defeated.</li>
+            </ul>
+            <p>
+                If the input order is invalid, the program outputs <i style="color: blue">“Invalid input order”</i>.
+                An example screenshot is shown in Figure 2.
+            </p>
+
+            <figure style="text-align:center">
+                <img src="./CSCI3180 Assignment 3_files/figure2.png" width="350" alt="Figure 2: Input Racing Order">
+                <figcaption>Figure 2: Input Racing Order</figcaption>
+            </figure>
+
+            <p>
+                After the user inputs the horse's orders, the court engine will pair two horses of the same order on each team to start a race.
+                The excess horses will take a rest in this round.
+                The detailed racing rules are given in Section 2.1. 
+                After each race, we call the <code>print_info()</code> function to output the summaries of the race and the properties of the horses.
+                An example screenshot of the output in this round is shown in Figure 3.
+            </p>
+            
+            <figure style="text-align:center">
+                <img src="./CSCI3180 Assignment 3_files/figure3.png" width="500" alt="Figure 3: Racing Result of a Round">
+                <figcaption>Figure 3: Racing Result of a Round</figcaption>
+            </figure>
+
+            <p>
+                At the end of each round, we should check if there is a winner of the horse racing game. 
+                If not, we will continue the next round of races until we find the winning team.
+                If Team <code>N</code> is the winning team, where <code>N</code> is either 1 or 2, the program should output <i style="color: blue">”Team `N` wins”</i>.
+                An example screenshot of the winner output is shown in Figure 4.
+            </p>
+            
+            <figure style="text-align:center">
+                <img src="./CSCI3180 Assignment 3_files/figure4.png" width="500" alt="Figure 4: Team 1 Wins the Racing Game">
+                <figcaption>Figure 4: Team 1 Wins the Racing Game</figcaption>
+            </figure>
+
+            <h3>1.3 Perl Classes</h3>
+            <p>
+                Please follow the classes <b>Court</b>, <b>Team</b>, <b>Horse</b> defined below in your Perl implementation.
+                <a style="color:red">You cannot add new variables, methods or classes.</a>
+            </p>
+            
+            <!-- Class Structures Begin -->
+            <ol>
+                <li>Class <b>Court</b></li>
+                <p>This class represents the game engine.</p>
+                <ul>
+                    <li><b>Instance Variables</b></li>
+                    
+                    <p><code>team1</code>: A <b>Team</b> object for team 1. </p>
+                    <p><code>team2</code>: A <b>Team</b> object for team 2. </p>
+                    <p><code>rount_cnt</code>: An integer to record the current round number of the game. The initial value is 1. </p>
+
+                    <li><b>Instance Methods</b></li>
+                    <p><code>new()</code>: Initialize a <b>Court</b> object. </p>
+                    <p><code>play_game()</code>: Start a new game and administer the whole process of the game. In each
+                    round, the user is asked for the horses' order for both teams and then the races are simulated accordingly. Finally, the
+                    winner of the game will be announced. </p>
+                    <p><code>set_teams(Team1, Team2)</code>: Initialize the two <b>Team</b> object variables. </p>
+                    <p><code>play_one_round()</code>: Simulate the races in one round.</p>
+                    <p><code>check_winner()</code>: Check the horse status in each team and return the winning team index if there is a
+                    winner. Otherwise, return 0.</p>
+                    <p><code>input_horses(team_index)</code>: Get user input for the attributes of the 4 horses in the Team specified by the team index.</p>
+                </ul>
+    
+                <li>Class <b>Team</b></li>
+                <p>This class represents a team in the game.</p>
+                <ul>
+                    <li><b>Instance Variables</b></li>
+                    
+                    <p><code>team_index</code>: The team index representing one of the two teams. It should be 1 or 2. </p>
+                    <p><code>horse_list</code>: An array holding all the horses in the team. The order of all the elements is determined in the horse initialization stage.</p>
+                    <p><code>order</code>: An array holding the horses' order in the current round. This race order is given by the user at the beginning of each round. </p>
+                    <p><code>race_cnt</code>: An integer representing the current race number in one round. The initial value is 0. </p>
+
+                    <li><b>Instance Methods</b></li>
+                    <p><code>new(team_index)</code>: Initialize a <b>Team</b> object with the input team index. </p>
+                    <p><code>set_horse_list(horse_list)</code>: Set the horse list of the team. </p>
+                    <p><code>get_horse_list()</code>: Return the horse list of the team. </p>
+                    <p><code>set_order(order)</code>: Set the order of horses' races and reset the race_cnt. </p>
+                    <p><code>get_next_horse()</code>: Return the Horse object for the next race. </p>
+                </ul>
+
+                <li>Class <b>Horse</b></li>
+                <p>This class represents a horse in the game.</p>
+                <ul>
+                    <li><b>Instance Variables</b></li>
+                    
+                    <p><code>horse_index</code>: The horse index. We number the horses in the game from "Horse 1" up to "Horse 8". </p>
+                    <p><code>morale</code>: The current morale value of the horse. If this value becomes non-positive, the horse is defeated. <a style="color: red">Note that morale is an integer.</a></p>
+                    <p><code>speed</code>: The current speed value of the horse. <a style="color: red">Note that speed is an integer.</a> </p>
+                    <p><code>experience</code>: The current experience value of the horse. <a style="color: red">Note that experience is an integer.</a> </p>
+                    <p><code>rank</code>: The current rank value of the horse. <a style="color: red">Note that rank is an integer.</a> </p>
+                    <p><code>defeated</code>: The state of the horse whether it is defeated. <a style="color: red">Note that you need to decide on this variable type.</a> </p>
+
+                    <li><b>Instance Methods</b></li>
+                    <p><code>new(team_index, morale, speed, experience, rank)</code>: Initialize a <b>Horse</b> object with input parameters. </p>
+                    <p><code>get_properties()</code>: Return a hash including all the properties of the horse, which contains all the variables above in the same sequence. </p>
+                    <p><code>reduce_morale(morale_sink)</code>: Return the updated morale value of the horse. </p>
+                    <p><code>check_defeated()</code>: Check the state of the horse is defeated or not. </p>
+                    <p><code>print_info()</code>: Output the state of the horse. <a style="color: red">The code is provided. Do not change.</a> </p>
+                </ul>
+            </ol>
+
+            <p>
+                The complete Python code is provided, and the OO design is the same as Perl.
+                Note that property decorators are used for the setter and getter methods in the Python code.
+            </p>
+
+            <h3>1.4 Grading Criteria</h3>
+            <p>
+                Your program should run by calling <code>perl main.pl</code> and will be tested this way. 
+                <a style="color: red">Do not change the directory structure. Otherwise, marks for the part will be deducted.</a>
+                We will give one test case as an example.
+                To obtain full marks in this part, the outputs of the program should be exactly the same as those output by the given Python code.
+                Moreover, proper error handling and good programming style are important.
+            </p>
+
+        
+        </div>
+        
+        <div class="section" id="Task 2: Advanced Horse Racing">
+            <h2>Task 2: Advanced Horse Racing</h2>
+            <p>
+                A tribe elder thought that the basic horse racing game was too easy and suggested making it more complicated
+                and harder. In this task, you are required to implement the advanced horse racing game, which is an extension
+                of the basic version. Dynamic scoping will be useful. A Python template and a Perl template are provided. You should
+                strictly follow the specified OO design and game rules for this task. You have to follow the prototypes of the given
+                classes exactly, and cannot add new member variables and methods.
+            </p>
+
+            <h3>2.1 Task Description</h3>
+            <p>
+                The advanced horse-racing game is an extension of the basic version with more horse
+                properties and several new racing rules. The additional properties of a horse are <code>coins</code> and the <code>history_record</code>.
+                The racing rules can change horses' properties. Each horse possesses some coins, which can be utilized to upgrade the
+                properties permanently. The upgradable properties are speed, experience and rank. 50 coins can be used to upgrade one of
+                the upgradable properties once, which increases the property by one point permanently.
+                Initially, each horse has 0 coins, and has to earn their coins after each round.
+                There are two new variables related to coins in Horse objects:
+            </p>
+
+            <ul>
+                <li>
+                    <i>coins</i>: The number of coins possessed by the horse. Each horse obtains some coins after each
+                    round and the leaders can spend coins to upgrade their properties (speed, experience and rank);
+                </li>
+                <li>
+                    <i>history_record</i>: An array holding the history of the recent three races of the horse. This is used to implement the new
+                    racing rules.
+                </li>
+            </ul>
+            
+            <p>
+                There is one new package variable related to coins:
+            </p>
+            <ul>
+                <li>
+                    <i>coins_to_obtain</i>: the number of coins each horse will obtain after one round.
+                    It is a package variable holding the default number of coins to be earned by a horse after each round.
+                </li>
+            </ul>
+
+            <p>
+                Besides, since horses will get tired after each race, their speed and rank will decrease by a certain value until the values become 1.
+                We use three package variables <code>delta_speed</code>, <code>delta_experience</code> and <code>delta_rank</code> to maintain the changes of their properties correspondingly for each round.
+                To be more specific, after each round,
+                    <code>speed ⇐ max(delta_speed + speed, 1)</code>, 
+                    <code>experience ⇐ max(delta_experience + experience, 1)</code>, 
+                    <code>rank ⇐ max(delta_rank + rank, 1)</code>.
+                <code>delta_speed</code> and <code>delta_rank</code> variables are -1 by default, <code>delta_experience</code> is 0 by default.
+                However, under some situations, their values may vary temporarily and the related rules will be described in the following.
+            </p>
+
+            <p>
+                The team leaders also need to determine the strategy for the horses involved to upgrade properties
+                before a race starts in each round. If a horse has 50 coins or more, the game will ask the user
+                to input the upgrade strategies repeatedly until the user has less than 50 coins or wants no more upgrades.
+                
+                The possible upgrade strategies are
+                    <a style="color: red">[S: speed, E: experience, R: rank, N: nothing]</a>,
+                    where S, E, or R represents upgrading the corresponding property, while N means no upgrade in this round.
+                After the team leader chooses an upgrade strategy for a horse, the horse gets one point up on speed, experience or rank permanently and has 50 coins deducted.
+                If the number of possessed coins is still no less than 50, the interface will continue to ask the user to upgrade until the leader inputs “N” or the number of possessed coins is less than 50.
+                Then, the race can begin.
+                Each horse obtains 20 coins by default after a race in one round.
+                Some horses may obtain extra coins by satisfying advanced rules.
+                The advanced rules which may also change <code>delta_speed</code>, <code>delta_experience</code>, <code>delta_rank</code> and <code>coins_to_obtain</code> for one round
+                temporarily are listed as follows:
+            </p>
+
+            <ul>
+                <li>
+                    <b>Horse at rest</b> earns only half of the coins in that round. In addition, their <code>delta_speed</code>, <code>delta_experience</code>
+                    and <code>delta_rank</code> will be +1 for that round temporarily since they have built up their strength during the rest.
+                </li>
+                <li>
+                    <b>A consecutive winner</b> is a horse winning three consecutive races including the one in the latest round.
+                    This consecutive winner will gain experience and rank for the next round, so its <code>delta_experience</code> and <code>delta_rank</code> will be +3.
+                    Besides, a consecutive winner will obtain more coins in rewards and the <code>coins_to_obtain</code> will be increased by 10% in this round.
+                    Note that the history records for the consecutive winner will be cleared after this round for the balance of the game in
+                    prevention of dominating players. <br>
+
+                    To be more specific, assume that a horse wins the <code>(i-2)</code>th, the <code>(i-1)</code>th, and the <code>i</code>th round.
+                    The horse's coins to obtain will increase by 10% at the end of the <code>i</code>th round temporarily.
+                    Meanwhile, the horse's <code>delta_experience</code> and <code>delta_rank</code> will be +3 temporarily.
+                </li>
+                <li>
+                    <b>A consecutive loser</b> is a horse losing three consecutive races including the one in the latest round.
+                    This consecutive loser will suffer a from temporary experience downgrade in the next round. Therefore, a consecutive loser's <code>delta_experience</code> will be -2.
+                    Secondly, a consecutive loser will obtain more coins in rewards and the <code>coins_to_obtain</code> will be increased by 10% in this
+                    round temporarily for compensation. 
+                    Besides, if this consecutive loser wins the very next round, it will gain back some confidence, its morale sink in that round can be ignored.
+                    Note that the history records for the consecutive loser will be cleared after this round too. <br>
+
+                    To be more specific, assume that a horse loses the <code>(i-2)</code>th, the <code>(i-1)</code>th, and the <code>i</code>th round.
+                    The horse's <code>coins_to_obtain</code> will increase by 10% at the end of the <code>i</code>th round temporarily.
+                    Meanwhile, the horse's <code>delta_experience</code> will be -2.
+                    If this horse wins the <code>(i+1)</code>th round and stay <code>undefeated</code>, we will skip the morale sink process for this horse.
+                </li>
+                <li>
+                    <b>A horse defeats another horse in a race</b> will have confidence boosted and thus the horse's <code>delta_speed</code> will be increased by 5 for the next round temporarily.
+                    Besides, the <code>coins_to_obtain</code> becomes doubled for the current round temporarily.
+                </li>
+            </ul>
+
+            <h3>2.2 Workflow</h3>
+            <p>
+                In this section, we specify the workflow of the advanced horse-racing game.
+                The workflow is essentially the same as the basic version, except that the horses will obtain coins and have their properties updated.
+            </p>
+
+            <p>
+                The game starts with asking the two teams to input their horses' orders.
+                After that, it checks whether each horse has enough coins to upgrade their properties permanently before each race.
+                If a horse has enough coins, the program outputs:
+                    <i style="color: blue">Horse property upgrade option: S for speed. E for experience. R for rank. N for nothing</i>
+                    to ask the user to input the upgrade strategy for the horse, and upgrade the horse's properties accordingly.
+                <a style="color:red">We assume inputs are valid so you do not need to check the inputs.</a>
+            </p>
+
+            <p>
+                The game engine also checks the advanced rules in Section 3.1.
+                If the horse satisfies some advanced rules, the game engine changes
+                    <code>delta_speed</code>, <code>delta_experience</code>, <code>delta_rank</code> and <code>coins_to_obtain</code>
+                    for one round for this horse temporarily.
+            </p>
+            <p>
+                After a race is finished, horses obtain their coins in this round.
+                The horse obtains 20 coins by default, but the value may be changed if some advanced rules are satisfied.
+            </p>
+            <p>
+                After each race, you should output the race results and call <code>print_info()</code> to generate a summary string containing
+                horses' states after the race, which is the same as the basic version. At the end of each round, we should check if
+                there is a winner of the horse-racing game. If all horses in one team are defeated, this team loses, and we announce the other team as the winner.
+                If not, we will continue with the next round of races until we find the winning team.
+                If Team <code>N</code> is the winning team, where <code>N</code> is either 1 or 2, the program should output <i style="color:blue">Team `N` wins.</i>.
+                This part is the same as the basic version.
+            </p>
+
+            <h3>2.3 Perl Class</h3>
+            <p>
+                Please follow the classes Court, Team, and Horse defined below in your Perl implementation.
+                We would start the program by running: <code>perl main.pl</code>.
+            </p>
+
+            <!-- Class Structures Begin -->
+            <ol>
+                <li>Class <b>AdvancedCourt</b></li>
+                <p>
+                    This class represents the game engine in the advanced versoin.
+                    This class inherits the variables and methods in the class <b>Court</b>.
+                </p>
+                <ul>
+                    <li><b>Instance Variables</b></li>
+                    <p><code>defeat_record</code>: An array holding the defeated horses' number in the last record.</p>
+                
+                    <li><b>Instance Methods</b></li>
+                    <p><code>new()</code>: Initialize an AdvancedCourt object. </p>
+                    <p><code>input_horses(team_index)</code>: Input attributes for the 4 advanced horses in team_index. </p>
+                    <p><code>play_one_round()</code>: Simulate all the races in one round. </p>
+                    <p>
+                        <code>update_horse_properties_and_award_coins(horse, flag_defeat, flag_rest)</code>:
+                        Update horse's properties and award coins to the horse.
+                        Please follow the detailed rules we described above.
+                    </p>
+                </ul>
+            
+                <li>Class <b>AdvancedHorse</b></li>
+                <p>
+                    The class represents an advanced horse in the advanced game.
+                    This class inherits the variables and methods in the class <b>Horse</b>.
+                </p>
+                <p>
+                    <a style="color:red">You may add other variables and methods if needed.</a>
+                </p>
+                <ul>
+                    <li><b>Instance Variables</b></li>
+                    <p><code>coins</code>: The coins possessed by the horse. </p>
+                    <p><code>history_record</code>: An array holding the latest three race results of this horse, with empty initial value. </p>
+                    
+                    <li><b>Instance Methods</b></li>
+                    <p>
+                        <code>new(team_index, morale, speed, experience, rank)</code>: Initialize an AdvancedHorse object with input variables.
+                    </p>
+                    <p>
+                        <code>record_race(race_result)</code>: Record the latest race result in the history_record.
+                    </p>
+                    <p>
+                        <code>obtain_coins()</code>: Horse is rewarded coins according to rules.
+                    </p>
+                    <p>
+                        <code>buy_prop_upgrade()</code>:
+                        Check whether the possessed coins are enough to upgrade the properties of the horse recursively.
+                        If the coins are enough, ask the user to input the strategy repeatedly until the horse has less than 50 coins or refuses to upgrade.
+                        The strategies are <code>[S: speed, E: experience, R: rank, N: nothing]</code>.
+                        Upgrade the properties of the horse based on the upgrade strategy for the horse and change the possessed coins of the horse,
+                        and repeat until the user wants no more upgrades or there are fewer than 50 coins.
+                    </p>
+                    <p>
+                        <code>update_properties()</code>: Update the horse's speed, experience and rank properties with <code>delta_speed</code>, <code>delta_experience</code> and <code>delta_rank</code>.
+                    </p>
+                </ul>
+            </ol>
+
+
+
+            <h3>2.4 Grading Criteria</h3>
+            <p>
+                Your program should run by calling <code>perl main.pl</code> and we will test your basic or advanced version by changing the main file.
+                The variable <code>coins_to_obtain</code> is a default value for all the horses and we will change the value of this variable
+                to test your code under different settings.
+                Do not change the locations of the file before submission. Otherwise, marks for the part will be deducted.
+                We will give one test case as an example. To obtain full marks in this part, the outputs of the program should be exactly the same as the given.
+            </p>
+
+            <h3>2.5 Implementation in Python</h3>
+            <p>
+                In this task, you are asked to implement the advanced horse-racing Game using <b>Python</b> with exactly the same
+                class design.
+                <a style="color:red">The skeleton code is provided. Do not change!</a>
+                Also, the input/output specifications and grading criteria are the same as those in the previous task.
+                We will run <code>python3 main.py</code> during the evaluation.
+                <a style="color:red">Note that Python does not support dynamic scoping.</a>
+            </p>
+        </div>
+
+        <!-- Description Stop Here -->
+
+
+
+        <div class="section" id="report">
+            <h2>Written report</h2>
+            <p>You should also write a simple report to answer the following questions:</p>
+            <ol>
+                <li>
+                    Provide example code and necessary elaborations for demonstrating the advantages of Dynamic Scoping
+                    in using Perl to implement the advanced horse-racing game as compared to the corresponding codes in Python.
+                </li>
+                <li>
+                    Explain how the keyword <code>local</code> has been used in your assignment code. In particular, its role and effect.
+                </li>
+            </ol>
+            Organize your answer in one PDF file named exactly <b>a3.pdf</b>, with at most 2 A4 pages.
+        </div>
+        
+        <!-- end of section -->
+
+
+        <div class="section" id="submission">
+            <h2>Submission &amp; deadline</h2>
+            <p>Submission deadline: <u>23:59:00, April 4 (Tuesday)</u></p>
+            <p>
+                </p><ul>
+                    <li>
+                        For two coding parts, please work with the directory downloaded. 
+                        When you submit, please compress the whole directory as <b>asgn3.zip</b> file.
+                        The submitted directory should maintain a structure as follows:
+                        <figure style="text-align:center">
+                            <img src="./CSCI3180 Assignment 3_files/directory.png" width="500" alt="Figure 5: Working Directory Structure">
+                            <figcaption>Figure 5: Working Directory Structure</figcaption>
+                        </figure>
+                    </li>
+                    <li>Make sure you have completed the declaration at the top of the <b>Court.py</b> file.</li>
+                    <li>Please submit one compressed file and one PDF file only: <b>asgn3.zip</b> and <b>a3.pdf</b>.</li>
+                    <li>When you submit, please follow these steps:<br><br>
+                        <ol>
+                            <li>Go to the CSCI3180 page on <a href="https://blackboard.cuhk.edu.hk/">Blackboard</a>.</li>
+                            <li>Go to "Assignment Submission" on the left-hand side menu.</li>
+                            <li>Pick "Assignment 3".</li>
+                            <li>For each of the files that you need to submit, click "Browse Local Files", and then browse for it.</li>
+                            <li>The files will be added to the "Attached files" list. Please <b>check carefully their filename</b>. They must be exactly the same as the ones specified. Wrongly named files won't be graded as most grading are automatic.<br></li>
+                            <li>Click the blue "Submit" button at the bottom of the page.</li>
+                            <li>Now you <b>must verify</b> all of your submitted files by downloading them back and make sure they are your own and the latest version. You can download each of the files with the download button <img style="margin:0px;padding:0px;vertical-align:middle;" src="./CSCI3180 Assignment 3_files/download.png">. Click "Start New" to submit again if you need to modify your submission.<br></li>
+                        </ol>
+                    </li> 
+                    <li>You can submit as many times as you want, but <b>only the latest submission attempt will be graded</b>. You do NOT get to choose which version we grade.</li>
+                    <li>If you submit after the deadline, a late penalty will be applied according to the submission time of your last submission attempt.</li>
+                    <li><b>Submit early to avoid any last-minute problems.</b> Only Blackboard submissions will be accepted. Again, you can submit as many times as you want, so you may make an early submission first well before the deadline, and update it later.</li>
+                    <li>Late submission penalty is 1 point per 5-minutes late. Less than 5-minutes late is considered as a full 5-minutes late. However, your score will be lower-bound by 0 after any mark deduction.</li>
+                </ul>
+            <p></p>
+
+                
+        </div> <!-- end of section -->
+
+
+        <!-- add new sections if needed; be reminded to set a unique section ID for menu navigation; e.g.: -->
+        <!-- <div class="section" id="section-id-used-for-navigation">
+            <h2>Section title</h2>
+            <p>Content</p>
+        </div> --> <!-- end of section -->
+
+    </div> <!-- end of main-content -->
+
+
+<div style="position: absolute; width: 0px; height: 0px; overflow: hidden; padding: 0px; border: 0px; margin: 0px;"><div id="MathJax_Font_Test" style="position: absolute; visibility: hidden; top: 0px; left: 0px; width: auto; min-width: 0px; max-width: none; padding: 0px; border: 0px; margin: 0px; white-space: nowrap; text-align: left; text-indent: 0px; text-transform: none; line-height: normal; letter-spacing: normal; word-spacing: normal; font-size: 40px; font-weight: normal; font-style: normal; font-family: MathJax_Main, sans-serif;"></div></div></body><grammarly-desktop-integration data-grammarly-shadow-root="true"></grammarly-desktop-integration></html>
