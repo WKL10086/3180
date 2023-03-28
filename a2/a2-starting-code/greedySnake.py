@@ -213,6 +213,9 @@ class Snake:
                 self.position[1][self.head] = y
                 self.score += food.actual_score
 
+                if self.length >= self.max_len:
+                    game_over = True
+
             else:
                 # game over when the length is no less than the maximum
                 game_over = True
