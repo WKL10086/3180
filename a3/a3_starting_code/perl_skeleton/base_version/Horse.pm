@@ -12,7 +12,7 @@ sub new {
 		"_speed" => shift,
 		"_experience" => shift,
 		"_rank" => shift,
-		"_defeated" => shift,
+		"_defeated" => 0,
 	};
 	bless $classInfo, $className;
 	return $classInfo;
