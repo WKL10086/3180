@@ -21,6 +21,7 @@ sub new {
 sub get_properties {
   # [x] Your Implementation Here
 	my $self = shift;
+	
 	my $properties = {
 		"horse_index" => $self->{_horse_index},
 		"morale" => $self->{_morale},
@@ -35,6 +36,7 @@ sub get_properties {
 sub reduce_morale {
   # [x] Your Implementation Here
 	my ($self, $damage) = @_;
+
 	$self->{_morale} -= $damage;
 	if ($self->{_morale} <= 0) {
 		$self->{_morale} = 0;
@@ -45,6 +47,7 @@ sub reduce_morale {
 sub check_defeated {
   # [x] Your Implementation Here
 	my $self = shift;
+
 	return $self->{_defeated};
 }
 

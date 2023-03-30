@@ -1,4 +1,3 @@
-
 """
 * CSCI3180 Principles of Programming Languages
 *
@@ -13,9 +12,9 @@
 * and regulations, as contained in the website
 * http://www.cuhk.edu.hk/policy/academichonesty/
 *
-* Name: <FILL YOUR NAME HERE>
-* Student ID: <FILL YOUR STUDENT ID HERE>
-* Email Address: <FILL YOUR EMAIL ADDRESS HERE>
+* Name: Wong Kai Lok
+* Student ID: 1155125720
+* Email Address: 1155125720@link.cuhk.edu.hk
 *
 * Source material acknowledgements (if any):
 *
@@ -72,37 +71,54 @@ class Court:
             properties_upper = upper_horse.properties
             properties_lower = lower_horse.properties
 
-
             # calcualte the lower horse sink and activate
-            actual_speed_upper = properties_upper["speed"] * properties_upper["experience"]
-            moral_sink_lower = int((actual_speed_upper - 10 * properties_lower["speed"])/10)
+            actual_speed_upper = (
+                properties_upper["speed"] * properties_upper["experience"]
+            )
+            moral_sink_lower = int(
+                (actual_speed_upper - 10 * properties_lower["speed"]) / 10
+            )
             if moral_sink_lower < 1:
                 moral_sink_lower = 1
             lower_horse.reduce_morale(moral_sink_lower)
 
-
             # Calculate the upper horse sink only if the lower horse remains undefeated
             actual_speed_lower = None
             if not lower_horse.check_defeated():
-                actual_speed_lower = properties_lower["speed"] * properties_lower["experience"]
-                moral_sink_upper = int((actual_speed_lower - 10 * properties_upper["speed"])/10)
+                actual_speed_lower = (
+                    properties_lower["speed"] * properties_lower["experience"]
+                )
+                moral_sink_upper = int(
+                    (actual_speed_lower - 10 * properties_upper["speed"]) / 10
+                )
                 if moral_sink_upper < 1:
                     moral_sink_upper = 1
                 upper_horse.reduce_morale(moral_sink_upper)
 
-
             # Label the winning information: higher actual_speed
             winner_info = "tie"
             if actual_speed_lower is None:
-                winner_info = "horse {} wins".format(upper_horse.properties["horse_index"])
+                winner_info = "horse {} wins".format(
+                    upper_horse.properties["horse_index"]
+                )
             else:
                 if actual_speed_upper > actual_speed_lower:
-                    winner_info = "horse {} wins".format(upper_horse.properties["horse_index"])
+                    winner_info = "horse {} wins".format(
+                        upper_horse.properties["horse_index"]
+                    )
                 elif actual_speed_lower > actual_speed_upper:
-                    winner_info = "horse {} wins".format(lower_horse.properties["horse_index"])
+                    winner_info = "horse {} wins".format(
+                        lower_horse.properties["horse_index"]
+                    )
 
-            print("Race {}: horse {} VS horse {}, {}".format(race_cnt, team1_horse.properties["horse_index"],
-                                                             team2_horse.properties["horse_index"], winner_info))
+            print(
+                "Race {}: horse {} VS horse {}, {}".format(
+                    race_cnt,
+                    team1_horse.properties["horse_index"],
+                    team2_horse.properties["horse_index"],
+                    winner_info,
+                )
+            )
             team1_horse.print_info()
             team2_horse.print_info()
             race_cnt += 1
@@ -214,6 +230,7 @@ class Court:
                     break
                 else:
                     print("Invalid input order")
+            # TODO: remember pass order_ref instead of order in perl
             self.team1.set_order(order1)
             self.team2.set_order(order2)
 
