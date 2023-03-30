@@ -51,7 +51,7 @@ sub get_next_horse {
 	my $prev_horse_idx = $self->{_order}[$self->{_race_cnt}];
 	my $horse = undef;
 	for my $_horse (@{$self->{_horse_list}}) {
-		if ($_horse->properties()->{"horse_index"} == $prev_horse_idx) {
+		if ($_horse->properties()->{horse_index} == $prev_horse_idx) {
 			$horse = $_horse;
 			last;
 		}

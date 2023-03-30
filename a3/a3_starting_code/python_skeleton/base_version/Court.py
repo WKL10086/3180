@@ -71,7 +71,7 @@ class Court:
             properties_upper = upper_horse.properties
             properties_lower = lower_horse.properties
 
-            # calcualte the lower horse sink and activate
+            # calculate the lower horse sink and activate
             actual_speed_upper = (
                 properties_upper["speed"] * properties_upper["experience"]
             )
