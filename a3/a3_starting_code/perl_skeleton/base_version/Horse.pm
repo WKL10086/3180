@@ -4,19 +4,48 @@ use warnings;
 package Horse;
 
 sub new {
-  # Your Implementation Here
+  # [x] Your Implementation Here
+	my $className = shift;
+	my $classInfo = {
+		"_horse_index" => shift,
+		"_morale" => shift,
+		"_speed" => shift,
+		"_experience" => shift,
+		"_rank" => shift,
+		"_defeated" => shift,
+	};
+	bless $classInfo, $className;
+	return $classInfo;
 }
 
 sub get_properties {
-  # Your Implementation Here
+  # [x] Your Implementation Here
+	my $self = shift;
+	my $properties = {
+		"horse_index" => $self->{_horse_index},
+		"morale" => $self->{_morale},
+		"speed" => $self->{_speed},
+		"experience" => $self->{_experience},
+		"rank" => $self->{_rank},
+		"defeated" => $self->{_defeated},
+	};
+	return $properties;
 }
 
 sub reduce_morale {
-  # Your Implementation Here
+  # [x] Your Implementation Here
+	my ($self, $damage) = @_;
+	$self->{_morale} -= $damage;
+	if ($self->{_morale} <= 0) {
+		$self->{_morale} = 0;
+		$self->{_defeated} = 1;
+	}
 }
 
 sub check_defeated {
-  # Your Implementation Here
+  # [x] Your Implementation Here
+	my $self = shift;
+	return $self->{_defeated};
 }
 
 sub print_info {
@@ -30,6 +59,5 @@ sub print_info {
 	}
 	print "Horse ", $self->{_horse_index}, ": morale: ", $self->{_morale}, " speed: ", $self->{_speed}, " experience: ", $self->{_experience}, " rank: ", $self->{_rank}, " ", $defeated_info, "\n";
 }
-
 
 1;
