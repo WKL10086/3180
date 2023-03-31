@@ -12,7 +12,7 @@ use Horse;
 use List::Util qw( min max ); 
 
 sub new {
-  # [ ] Your Implementation Here
+  # [x] Your Implementation Here
   my $className = shift;
 	my $classInfo = {
     "_team_1" => undef,
