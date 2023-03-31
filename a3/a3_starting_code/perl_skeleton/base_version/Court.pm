@@ -176,7 +176,7 @@ sub input_horses {
 }
 
 sub play_game {
-  # [ ] Your Implementation Here
+  # [x] Your Implementation Here
   my $self = shift;
 
   my $horse_list_team1 = $self->input_horses(1);
