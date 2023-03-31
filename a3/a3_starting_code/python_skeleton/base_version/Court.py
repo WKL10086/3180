@@ -158,7 +158,6 @@ class Court:
         stop = False
         winner = 0
         if team1_defeated:
-            stop = True
             winner = 2
             stop = True
 
@@ -230,7 +229,7 @@ class Court:
                     break
                 else:
                     print("Invalid input order")
-            # TODO: remember pass order_ref instead of order in perl
+            # NOTE: remember pass order_ref instead of order in perl
             self.team1.set_order(order1)
             self.team2.set_order(order2)
 
