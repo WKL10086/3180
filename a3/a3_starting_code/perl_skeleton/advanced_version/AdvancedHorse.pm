@@ -17,23 +17,24 @@ our $delta_rank = -1;
 
 
 sub new {
-  # Your Implementation Here
+  # [ ] Your Implementation Here
 }
 
 sub obtain_coins {
-  # Your Implementation Here
+  # [ ] Your Implementation Here
 }
 
 sub buy_prop_upgrade {
-  # Your Implementation Here
+  # [ ] Your Implementation Here
 }
 
 sub record_race {
-  # Your Implementation Here
+  # [ ] Your Implementation Here
 }
 
 
 sub update_properties {
-  # Your Implementation Here
+  # [ ] Your Implementation Here
 }
+
 1;
