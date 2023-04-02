@@ -51,13 +51,13 @@ sub play_one_round {
 
     my $upper_horse = $team1_horse;
     my $lower_horse = $team2_horse;
-    if ($team1_horse->properties()->{rank} < $team2_horse->properties()->{rank}) {
+    if ($team1_horse->get_properties()->{rank} < $team2_horse->get_properties()->{rank}) {
       $upper_horse = $team2_horse;
       $lower_horse = $team1_horse;
     }
 
-    my $properties_upper = $upper_horse->properties();
-    my $properties_lower = $lower_horse->properties();
+    my $properties_upper = $upper_horse->get_properties();
+    my $properties_lower = $lower_horse->get_properties();
 
     # calculate the lower horse sink and activate
     my $actual_speed_upper = $properties_upper->{speed} * $properties_upper->{experience};
@@ -81,16 +81,16 @@ sub play_one_round {
     # Label the winning information: higher actual_speed
     my $winner_info = "tie";
     if (! defined $actual_speed_lower) {
-      $winner_info = "horse ", $upper_horse->properties()->{horse_index}, " wins";
+      $winner_info = "horse ", $upper_horse->get_properties()->{horse_index}, " wins";
     } else {
       if ($actual_speed_upper > $actual_speed_lower) {
-        $winner_info = "horse ", $upper_horse->properties()->{horse_index}, " wins";
+        $winner_info = "horse ", $upper_horse->get_properties()->{horse_index}, " wins";
       } elsif ($actual_speed_lower > $actual_speed_upper) {
-        $winner_info = "horse ", $lower_horse->properties()->{horse_index}, " wins";
+        $winner_info = "horse ", $lower_horse->get_properties()->{horse_index}, " wins";
       }
     }
 
-    print "Race ", $race_cnt, ": horse ", $team1_horse->properties()->{horse_index}, " VS horse ", $team2_horse->properties()->{horse_index}, ", ", $winner_info, "\n";
+    print "Race ", $race_cnt, ": horse ", $team1_horse->get_properties()->{horse_index}, " VS horse ", $team2_horse->get_properties()->{horse_index}, ", ", $winner_info, "\n";
     $team1_horse->print_info();
     $team2_horse->print_info();
     $race_cnt += 1;
