@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<!-- saved from url=(0064)http://course.cse.cuhk.edu.hk/~csci3180/assignments/assignment3/ -->
+<!-- saved from url=(0073)http://course.cse.cuhk.edu.hk/~csci3180/assignments/assignment3/#overview -->
 <html><script id="allow-copy_script">(function agent() {
     let unlock = false
     document.addEventListener('allow_copy', (event) => {
@@ -112,7 +112,7 @@ img.MathJax_strut {border: 0!important; padding: 0!important; margin: 0!importan
 #MathJax_ZoomEventTrap {position: absolute; left: 0; top: 0; z-index: 302; display: inline-block; border: 0; padding: 0; margin: 0; background-color: white; opacity: 0; filter: alpha(opacity=0)}
 </style></head>
 
-<body class="vsc-initialized" data-new-gr-c-s-check-loaded="14.1101.0" data-gr-ext-installed=""><div style="visibility: hidden; overflow: hidden; position: absolute; top: 0px; height: 1px; width: auto; padding: 0px; border: 0px; margin: 0px; text-align: left; text-indent: 0px; text-transform: none; line-height: normal; letter-spacing: normal; word-spacing: normal;"><div id="MathJax_Hidden"></div></div><div id="MathJax_Message" style="display: none;"></div>
+<body data-new-gr-c-s-check-loaded="14.1102.0" data-gr-ext-installed="" class="vsc-initialized"><div style="visibility: hidden; overflow: hidden; position: absolute; top: 0px; height: 1px; width: auto; padding: 0px; border: 0px; margin: 0px; text-align: left; text-indent: 0px; text-transform: none; line-height: normal; letter-spacing: normal; word-spacing: normal;"><div id="MathJax_Hidden"></div></div><div id="MathJax_Message" style="display: none;"></div>
     <script src="./CSCI3180 Assignment 3_files/prism.js.下載" type="text/javascript"></script>
     <script src="./CSCI3180 Assignment 3_files/MathJax.js.下載"></script>
 
@@ -314,8 +314,8 @@ img.MathJax_strut {border: 0!important; padding: 0!important; margin: 0!importan
                 The program only checks the semantic validity of the input that violates
                 the constraint and recursively asks the user to enter the properties of the remaining horses. If the
                 input properties violate the constraint, the program should output
-                <i style="color: blue">“Properties violate the constraint, please input again”</i>
-                    and the user would input the properties again until the constraint is satisfied.
+                <i style="color: blue">“Properties violate the constraint”</i> (updated at 6:00pm on Mar 23)
+                    and the user should input the properties again until the constraint is satisfied.
                 After the user inputs four horses' properties, the program outputs
                 <i style="color: blue">“Please input properties for horses in Team 2”</i>
                     and follows the same process as that for Team 1.
@@ -323,7 +323,7 @@ img.MathJax_strut {border: 0!important; padding: 0!important; margin: 0!importan
             </p>
             
             <figure style="text-align:center">
-                <img src="./CSCI3180 Assignment 3_files/figure1.png" width="350" alt="Figure 1: Before Game Begins">
+                <img src="./CSCI3180 Assignment 3_files/figure1.png" width="500" alt="Figure 1: Before Game Begins">
                 <figcaption>Figure 1: Before Game Begins</figcaption>
             </figure>
 
@@ -341,12 +341,13 @@ img.MathJax_strut {border: 0!important; padding: 0!important; margin: 0!importan
             </ul>
             <p>
                 If the input order is invalid, the program outputs <i style="color: blue">“Invalid input order”</i>.
+                The user needs to input again until the order satisfies the rules we described above. (updated at 6:00pm on Mar 23)
                 An example screenshot is shown in Figure 2.
             </p>
 
             <figure style="text-align:center">
-                <img src="./CSCI3180 Assignment 3_files/figure2.png" width="350" alt="Figure 2: Input Racing Order">
-                <figcaption>Figure 2: Input Racing Order</figcaption>
+                <img src="./CSCI3180 Assignment 3_files/figure2.png" width="350" alt="Figure 2: Input Racing Order (updated at 6:00pm on Mar 23)">
+                <figcaption>Figure 2: Input Racing Order (updated at 6:00pm on Mar 23)</figcaption>
             </figure>
 
             <p>
@@ -365,7 +366,7 @@ img.MathJax_strut {border: 0!important; padding: 0!important; margin: 0!importan
             <p>
                 At the end of each round, we should check if there is a winner of the horse racing game. 
                 If not, we will continue the next round of races until we find the winning team.
-                If Team <code>N</code> is the winning team, where <code>N</code> is either 1 or 2, the program should output <i style="color: blue">”Team `N` wins”</i>.
+                If Team <code>N</code> is the winning team, where <code>N</code> is either 1 or 2, the program should output <i style="color: blue">”Team <code>N</code> wins”</i>.
                 An example screenshot of the winner output is shown in Figure 4.
             </p>
             
@@ -451,7 +452,7 @@ img.MathJax_strut {border: 0!important; padding: 0!important; margin: 0!importan
             <p>
                 Your program should run by calling <code>perl main.pl</code> and will be tested this way. 
                 <a style="color: red">Do not change the directory structure. Otherwise, marks for the part will be deducted.</a>
-                We will give one test case as an example.
+                We will give one test case as an example, you may download from <a href="http://course.cse.cuhk.edu.hk/~csci3180/assignments/assignment3/downloads/base_version_testcase.zip">here</a> (added at 1:35pm on Mar 21).
                 To obtain full marks in this part, the outputs of the program should be exactly the same as those output by the given Python code.
                 Moreover, proper error handling and good programming style are important.
             </p>
@@ -465,8 +466,7 @@ img.MathJax_strut {border: 0!important; padding: 0!important; margin: 0!importan
                 A tribe elder thought that the basic horse racing game was too easy and suggested making it more complicated
                 and harder. In this task, you are required to implement the advanced horse racing game, which is an extension
                 of the basic version. Dynamic scoping will be useful. A Python template and a Perl template are provided. You should
-                strictly follow the specified OO design and game rules for this task. You have to follow the prototypes of the given
-                classes exactly, and cannot add new member variables and methods.
+                strictly follow the specified OO design and game rules for this task. (updated at 4:52pm on Mar 28)
             </p>
 
             <h3>2.1 Task Description</h3>
@@ -509,7 +509,10 @@ img.MathJax_strut {border: 0!important; padding: 0!important; margin: 0!importan
                     <code>experience ⇐ max(delta_experience + experience, 1)</code>, 
                     <code>rank ⇐ max(delta_rank + rank, 1)</code>.
                 <code>delta_speed</code> and <code>delta_rank</code> variables are -1 by default, <code>delta_experience</code> is 0 by default.
-                However, under some situations, their values may vary temporarily and the related rules will be described in the following.
+            </p>
+
+            <p>
+                However, under some situations, their values may vary temporarily and the related rules will be described in the following:
             </p>
 
             <p>
@@ -542,7 +545,7 @@ img.MathJax_strut {border: 0!important; padding: 0!important; margin: 0!importan
                     prevention of dominating players. <br>
 
                     To be more specific, assume that a horse wins the <code>(i-2)</code>th, the <code>(i-1)</code>th, and the <code>i</code>th round.
-                    The horse's coins to obtain will increase by 10% at the end of the <code>i</code>th round temporarily.
+                    The horse's <code>coins_to_obtain</code> will increase by 10% at the end of the <code>i</code>th round temporarily.
                     Meanwhile, the horse's <code>delta_experience</code> and <code>delta_rank</code> will be +3 temporarily.
                 </li>
                 <li>
@@ -573,8 +576,9 @@ img.MathJax_strut {border: 0!important; padding: 0!important; margin: 0!importan
             <p>
                 The game starts with asking the two teams to input their horses' orders.
                 After that, it checks whether each horse has enough coins to upgrade their properties permanently before each race.
-                If a horse has enough coins, the program outputs:
-                    <i style="color: blue">Horse property upgrade option: S for speed. E for experience. R for rank. N for nothing</i>
+                If a horse with index <code>horse_index</code> has enough coins, the program outputs:
+                    <i style="color: blue">"Do you want to upgrade properties for Horse <code>horse_index</code>? S for speed. E for experience. R for rank. N for nothing."</i>
+                    (updated at 4:52pm on Mar 28)
                     to ask the user to input the upgrade strategy for the horse, and upgrade the horse's properties accordingly.
                 <a style="color:red">We assume inputs are valid so you do not need to check the inputs.</a>
             </p>
@@ -594,7 +598,7 @@ img.MathJax_strut {border: 0!important; padding: 0!important; margin: 0!importan
                 horses' states after the race, which is the same as the basic version. At the end of each round, we should check if
                 there is a winner of the horse-racing game. If all horses in one team are defeated, this team loses, and we announce the other team as the winner.
                 If not, we will continue with the next round of races until we find the winning team.
-                If Team <code>N</code> is the winning team, where <code>N</code> is either 1 or 2, the program should output <i style="color:blue">Team `N` wins.</i>.
+                If Team <code>N</code> is the winning team, where <code>N</code> is either 1 or 2, the program should output <i style="color:blue">"Team <code>N</code> wins".</i>.
                 This part is the same as the basic version.
             </p>
 
@@ -632,7 +636,7 @@ img.MathJax_strut {border: 0!important; padding: 0!important; margin: 0!importan
                     This class inherits the variables and methods in the class <b>Horse</b>.
                 </p>
                 <p>
-                    <a style="color:red">You may add other variables and methods if needed.</a>
+                    <a style="color:red">You may add other variables and methods if needed. A hint is provided in the Python code. (updated at 4:52pm on Mar 28)</a>
                 </p>
                 <ul>
                     <li><b>Instance Variables</b></li>
@@ -671,7 +675,8 @@ img.MathJax_strut {border: 0!important; padding: 0!important; margin: 0!importan
                 The variable <code>coins_to_obtain</code> is a default value for all the horses and we will change the value of this variable
                 to test your code under different settings.
                 Do not change the locations of the file before submission. Otherwise, marks for the part will be deducted.
-                We will give one test case as an example. To obtain full marks in this part, the outputs of the program should be exactly the same as the given.
+                We will give one test case as an example. You may download it from <a href="http://course.cse.cuhk.edu.hk/~csci3180/assignments/assignment3/downloads/advanced_version_testcase.zip">here</a> (added at 1:35pm on Mar 21).
+                To obtain full marks in this part, the outputs of the program should be exactly the same as the given.
             </p>
 
             <h3>2.5 Implementation in Python</h3>
@@ -709,7 +714,11 @@ img.MathJax_strut {border: 0!important; padding: 0!important; margin: 0!importan
 
         <div class="section" id="submission">
             <h2>Submission &amp; deadline</h2>
-            <p>Submission deadline: <u>23:59:00, April 4 (Tuesday)</u></p>
+            <p>
+                <s>23:59:00, April 4 (Tuesday)</s>
+                <u>23:59:00, April 8 (Saturday)</u>
+                <span style="color:red;">(extended)</span>
+            </p>
             <p>
                 </p><ul>
                     <li>
