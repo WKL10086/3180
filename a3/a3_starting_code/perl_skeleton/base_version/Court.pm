@@ -38,10 +38,12 @@ sub play_one_round {
   my $race_cnt = 1;
   print "Round ", $self->{_round_cnt}, ":\n";
 
+  my $team1_horse = undef;
+  my $team2_horse = undef;
   while (1) {
     # Get the horses for the next race
-    my $team1_horse = $self->{_team1}->get_next_horse();
-    my $team2_horse = $self->{_team2}->get_next_horse();
+    $team1_horse = $self->{_team1}->get_next_horse();
+    $team2_horse = $self->{_team2}->get_next_horse();
 
     if (! defined $team1_horse || ! defined $team2_horse) {
       last;
@@ -184,8 +186,8 @@ sub play_game {
 
   my $team1 = Team->new(1);
   my $team2 = Team->new(2);
-  my $team1->set_horse_list($horse_list_team1);
-  my $team2->set_horse_list($horse_list_team2);
+  $team1->set_horse_list($horse_list_team1);
+  $team2->set_horse_list($horse_list_team2);
 
   $self->set_teams($team1, $team2);
 
@@ -198,10 +200,12 @@ sub play_game {
   while (1) {
     print "\n===== Begin New Round =====\n";
     print "Team 1: please input order\n";
+    my @order1 = undef;
+    my @order2 = undef;
     while (1) {
       my $user_input = <>;
       chomp $user_input;
-      my @order1 = split / /, $user_input;
+      @order1 = split / /, $user_input;
       my $flag_valid = 1;
       my $undefeated_number = 0;
       for my $order (@order1) {
@@ -235,7 +239,7 @@ sub play_game {
     while (1) {
       my $user_input = <>;
       chomp $user_input;
-      my @order2 = split / /, $user_input;
+      @order2 = split / /, $user_input;
       my $flag_valid = 1;
       my $undefeated_number = 0;
       for my $order (@order2) {
