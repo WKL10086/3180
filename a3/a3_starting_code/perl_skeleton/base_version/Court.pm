@@ -273,7 +273,7 @@ sub play_game {
     $self->{_team1}->set_order(\@order1);
     $self->{_team2}->set_order(\@order2);
 
-    $self->play_round();
+    $self->play_one_round();
     ($stop, $winner) = $self->check_winner();
     if ($stop) {
       last;
