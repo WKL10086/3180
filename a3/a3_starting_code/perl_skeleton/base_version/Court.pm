@@ -160,7 +160,7 @@ sub input_horses {
 
   print "Please input properties for horses in Team ", $team_index, "\n";
   my $horse_list_team = [];
-  for my $horse_idx (4 * ($team_index - 1) + 1, 4 * ($team_index - 1) + 5 - 1) {
+  for my $horse_idx (4 * ($team_index - 1) + 1 .. 4 * ($team_index - 1) + 5 - 1) {
     while (1) {
       my $user_input = <>;
       chomp $user_input;
