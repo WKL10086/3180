@@ -1,0 +1,141 @@
+Please input properties for horses in Team 1
+100 10 10 5
+100 10 10 100
+Properties violate the constraint
+100 10 15 10
+50 10 20 5
+50 10 15 5
+Please input properties for horses in Team 2
+20 5 5 10
+20 5 5 10
+40 5 10 5
+50 10 15 1
+===========
+Game Begins
+===========
+
+
+===== Begin New Round =====
+Team 1: please input order
+1 2 3 3
+Invalid input order
+1 2 3 6
+Invalid input order
+1 2 3 4
+Team 2: please input order
+5 6 7 8
+Round 1:
+Race 1: horse 1 VS horse 5, horse 1 wins
+Horse 1: morale: 99 speed: 10 experience: 10 rank: 5 undefeated
+Horse 5: morale: 15 speed: 5 experience: 5 rank: 10 undefeated
+Race 2: horse 2 VS horse 6, horse 2 wins
+Horse 2: morale: 99 speed: 10 experience: 15 rank: 10 undefeated
+Horse 6: morale: 10 speed: 5 experience: 5 rank: 10 undefeated
+Race 3: horse 3 VS horse 7, horse 3 wins
+Horse 3: morale: 49 speed: 10 experience: 20 rank: 5 undefeated
+Horse 7: morale: 25 speed: 5 experience: 10 rank: 5 undefeated
+Race 4: horse 4 VS horse 8, tie
+Horse 4: morale: 45 speed: 10 experience: 15 rank: 5 undefeated
+Horse 8: morale: 45 speed: 10 experience: 15 rank: 1 undefeated
+Horses at rest:
+
+===== Begin New Round =====
+Team 1: please input order
+1 3 2 4
+Team 2: please input order
+7 6 5 8
+Round 2:
+Race 1: horse 1 VS horse 7, horse 1 wins
+Horse 1: morale: 98 speed: 10 experience: 10 rank: 5 undefeated
+Horse 7: morale: 20 speed: 5 experience: 10 rank: 5 undefeated
+Race 2: horse 3 VS horse 6, horse 3 wins
+Horse 3: morale: 48 speed: 10 experience: 20 rank: 5 undefeated
+Horse 6: morale: 0 speed: 5 experience: 5 rank: 10 defeated
+Race 3: horse 2 VS horse 5, horse 2 wins
+Horse 2: morale: 98 speed: 10 experience: 15 rank: 10 undefeated
+Horse 5: morale: 5 speed: 5 experience: 5 rank: 10 undefeated
+Race 4: horse 4 VS horse 8, tie
+Horse 4: morale: 40 speed: 10 experience: 15 rank: 5 undefeated
+Horse 8: morale: 40 speed: 10 experience: 15 rank: 1 undefeated
+Horses at rest:
+
+===== Begin New Round =====
+Team 1: please input order
+1 3 2 4
+Team 2: please input order
+6 8 5 7
+Invalid input order
+8 5 7
+Round 3:
+Race 1: horse 1 VS horse 8, horse 8 wins
+Horse 1: morale: 93 speed: 10 experience: 10 rank: 5 undefeated
+Horse 8: morale: 39 speed: 10 experience: 15 rank: 1 undefeated
+Race 2: horse 3 VS horse 5, horse 3 wins
+Horse 3: morale: 47 speed: 10 experience: 20 rank: 5 undefeated
+Horse 5: morale: 0 speed: 5 experience: 5 rank: 10 defeated
+Race 3: horse 2 VS horse 7, horse 2 wins
+Horse 2: morale: 97 speed: 10 experience: 15 rank: 10 undefeated
+Horse 7: morale: 10 speed: 5 experience: 10 rank: 5 undefeated
+Horses at rest:
+Horse 4: morale: 40 speed: 10 experience: 15 rank: 5 undefeated
+
+===== Begin New Round =====
+Team 1: please input order
+1 3 2 4
+Team 2: please input order
+7 8
+Round 4:
+Race 1: horse 1 VS horse 7, horse 1 wins
+Horse 1: morale: 92 speed: 10 experience: 10 rank: 5 undefeated
+Horse 7: morale: 5 speed: 5 experience: 10 rank: 5 undefeated
+Race 2: horse 3 VS horse 8, horse 3 wins
+Horse 3: morale: 42 speed: 10 experience: 20 rank: 5 undefeated
+Horse 8: morale: 29 speed: 10 experience: 15 rank: 1 undefeated
+Horses at rest:
+Horse 2: morale: 97 speed: 10 experience: 15 rank: 10 undefeated
+Horse 4: morale: 40 speed: 10 experience: 15 rank: 5 undefeated
+
+===== Begin New Round =====
+Team 1: please input order
+3 2 4 1
+Team 2: please input order
+8 7
+Round 5:
+Race 1: horse 3 VS horse 8, horse 3 wins
+Horse 3: morale: 37 speed: 10 experience: 20 rank: 5 undefeated
+Horse 8: morale: 19 speed: 10 experience: 15 rank: 1 undefeated
+Race 2: horse 2 VS horse 7, horse 2 wins
+Horse 2: morale: 97 speed: 10 experience: 15 rank: 10 undefeated
+Horse 7: morale: 0 speed: 5 experience: 10 rank: 5 defeated
+Horses at rest:
+Horse 4: morale: 40 speed: 10 experience: 15 rank: 5 undefeated
+Horse 1: morale: 92 speed: 10 experience: 10 rank: 5 undefeated
+
+===== Begin New Round =====
+Team 1: please input order
+3 1 2 4
+Team 2: please input order
+8
+Round 6:
+Race 1: horse 3 VS horse 8, horse 3 wins
+Horse 3: morale: 32 speed: 10 experience: 20 rank: 5 undefeated
+Horse 8: morale: 9 speed: 10 experience: 15 rank: 1 undefeated
+Horses at rest:
+Horse 1: morale: 92 speed: 10 experience: 10 rank: 5 undefeated
+Horse 2: morale: 97 speed: 10 experience: 15 rank: 10 undefeated
+Horse 4: morale: 40 speed: 10 experience: 15 rank: 5 undefeated
+
+===== Begin New Round =====
+Team 1: please input order
+3 1 2 4
+Team 2: please input order
+8
+Round 7:
+Race 1: horse 3 VS horse 8, horse 3 wins
+Horse 3: morale: 32 speed: 10 experience: 20 rank: 5 undefeated
+Horse 8: morale: 0 speed: 10 experience: 15 rank: 1 defeated
+Horses at rest:
+Horse 1: morale: 92 speed: 10 experience: 10 rank: 5 undefeated
+Horse 2: morale: 97 speed: 10 experience: 15 rank: 10 undefeated
+Horse 4: morale: 40 speed: 10 experience: 15 rank: 5 undefeated
+Team 1 wins
