@@ -81,12 +81,12 @@ sub play_one_round {
     # Label the winning information: higher actual_speed
     my $winner_info = "tie";
     if (! defined $actual_speed_lower) {
-      $winner_info = "horse ", $upper_horse->get_properties()->{horse_index}, " wins";
+      $winner_info = "horse ".$upper_horse->get_properties()->{horse_index}." wins";
     } else {
       if ($actual_speed_upper > $actual_speed_lower) {
-        $winner_info = "horse ", $upper_horse->get_properties()->{horse_index}, " wins";
+        $winner_info = "horse ".$upper_horse->get_properties()->{horse_index}." wins";
       } elsif ($actual_speed_lower > $actual_speed_upper) {
-        $winner_info = "horse ", $lower_horse->get_properties()->{horse_index}, " wins";
+        $winner_info = "horse ".$lower_horse->get_properties()->{horse_index}." wins";
       }
     }
 
