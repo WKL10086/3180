@@ -17,11 +17,26 @@ our $delta_rank = -1;
 
 
 sub new {
-  # [ ] Your Implementation Here
+  # [x] Your Implementation Here
+  my $className = shift;
+	my $classInfo = {
+		"_horse_index" => shift,
+		"_morale" => shift,
+		"_speed" => shift,
+		"_experience" => shift,
+		"_rank" => shift,
+		"_defeated" => 0,
+    "_coins" => 0,
+    "_history_record" => [],
+	};
+	bless $classInfo, $className;
+	return $classInfo;
 }
 
 sub obtain_coins {
-  # [ ] Your Implementation Here
+  # [x] Your Implementation Here
+  my $self = shift;
+  $self->{_coins} += $coins_to_obtain;
 }
 
 sub buy_prop_upgrade {

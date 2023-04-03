@@ -8,11 +8,11 @@ use warnings;
 package main;
 
 # To test base version, uncomment the following three lines
-require "./base_version/Court.pm";
-my $Court = new Court();
-$Court -> play_game();
+# require "./base_version/Court.pm";
+# my $Court = new Court();
+# $Court -> play_game();
 
 # To test advanced version, uncomment the following three lines
-# require "./advanced_version/AdvancedCourt.pm";
-# my $AdvCourt = new AdvancedCourt();
-# $AdvCourt -> play_game();
+require "./advanced_version/AdvancedCourt.pm";
+my $AdvCourt = new AdvancedCourt();
+$AdvCourt -> play_game();
