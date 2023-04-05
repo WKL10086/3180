@@ -34,22 +34,30 @@ sub new {
 }
 
 sub obtain_coins {
-  # [x] Your Implementation Here
+  # [ ] Your Implementation Here
   my $self = shift;
   $self->{_coins} += $coins_to_obtain;
 }
 
 sub buy_prop_upgrade {
   # [ ] Your Implementation Here
+  my $self = shift;
 }
 
 sub record_race {
   # [ ] Your Implementation Here
+  my ($self, $race_result) = shift;
 }
 
 
 sub update_properties {
   # [ ] Your Implementation Here
+  my $self = shift;
+}
+
+sub recover_morale {
+  # [ ] Your Implementation Here
+  my ($self, $recover) = shift;
 }
 
 1;
