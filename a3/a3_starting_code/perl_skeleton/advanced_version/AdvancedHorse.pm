@@ -64,7 +64,7 @@ sub buy_prop_upgrade {
 
 sub record_race {
   # [x] Your Implementation Here
-  my ($self, $race_result) = shift;
+  my ($self, $race_result) = @_;
   if (scalar @{$self->{_history_record}} < 3) {
     push @{$self->{_history_record}}, $race_result;
   } else {
@@ -84,7 +84,7 @@ sub update_properties {
 
 sub recover_morale {
   # [x] Your Implementation Here
-  my ($self, $recover) = shift;
+  my ($self, $recover) = @_;
   $self->{_morale} += $recover;
 }
 
