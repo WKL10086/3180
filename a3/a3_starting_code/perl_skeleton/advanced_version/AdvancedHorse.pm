@@ -27,7 +27,6 @@ sub new {
 		"_defeated" => 0,
     "_coins" => 0,
     "_history_record" => [],
-    "_is_consecutive_loser" => 0,
 	};
 	bless $classInfo, $className;
 	return $classInfo;
@@ -83,12 +82,6 @@ sub update_properties {
   $self->{_rank} = $delta_rank + $self->{_rank} > 1 ? $delta_rank + $self->{_rank} : 1;
 }
 
-sub check_need_recover {
-  # [x] Your Implementation Here
-  my $self = shift;
-  return $self->{_is_consecutive_loser};
-}
-
 sub recover_morale {
   # [x] Your Implementation Here
   my ($self, $recover) = @_;
@@ -116,16 +109,9 @@ sub check_consecutive_loser {
     if ($self->{_history_record}[0] eq "lose" && $self->{_history_record}[1] eq "lose" && $self->{_history_record}[2] eq "lose") {
       $consecutive_loser = 1;
       $self->{_history_record} = [];
-      $self->{_is_consecutive_loser} = 1;
     }
   }
   return $consecutive_loser;
-}
-
-sub clear_consecutive_loser {
-  # [x] Your Implementation Here
-  my $self = shift;
-  $self->{_is_consecutive_loser} = 0;
 }
 
 1;

@@ -20,7 +20,7 @@ sub new {
     "_team_1" => undef,
     "_team_2" => undef,
     "_round_cnt" => 1,
-    "_defeat_record" => [],
+    "_recover_horses" => [],
 	};
 	bless $classInfo, $className;
 	return $classInfo;
@@ -123,8 +123,8 @@ sub play_one_round {
     }
     while (1) {
       if (defined $team_horse) {
-        $team_horse->record_race("rest")
-        $self->update_horse_properties_and_award_coins($team_horse, 0, 1)
+        $team_horse->record_race("rest");
+        $self->update_horse_properties_and_award_coins($team_horse, 0, 1);
 
         $team_horse->print_info();
       } else {
@@ -176,6 +176,8 @@ sub update_horse_properties_and_award_coins {
       local $AdvancedHorse::coins_to_obtain = 22;
       $horse->obtain_coins();
     } elsif ($horse->check_consecutive_loser()) {
+      push @{$self->{_recover_horses}}, $horse->get_properties()->{horse_index};
+
       local $AdvancedHorse::delta_experience = -2;
       $horse->update_properties();
 
