@@ -30,7 +30,6 @@ sub play_one_round {
   # [ ] Your Implementation Here
   my $self = shift;
   
-
   my $race_cnt = 1;
   print "Round ", $self->{_round_cnt}, ":\n";
 
@@ -45,7 +44,9 @@ sub play_one_round {
       last;
     }
 
-  # [ ] ask upgrade for horse
+    # [x] ask upgrade for horse
+    $team1_horse->buy_prop_upgrade();
+    $team2_horse->buy_prop_upgrade();
 
     my $upper_horse = $team1_horse;
     my $lower_horse = $team2_horse;
