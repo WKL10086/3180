@@ -68,9 +68,10 @@ sub play_one_round {
 
     # Calculate the upper horse sink only if the lower horse remains undefeated
     my $actual_speed_lower = undef;
+    my $moral_sink_upper = undef;
     if (! $lower_horse->check_defeated()) {
       $actual_speed_lower = $properties_lower->{speed} * $properties_lower->{experience};
-      my $moral_sink_upper = int(($actual_speed_lower - 10 * $properties_upper->{speed}) / 10);
+      $moral_sink_upper = int(($actual_speed_lower - 10 * $properties_upper->{speed}) / 10);
       if ($moral_sink_upper < 1) {
         $moral_sink_upper = 1;
       }
@@ -82,8 +83,14 @@ sub play_one_round {
     if (! defined $actual_speed_lower) {
       $winner_info = "horse ".$upper_horse->get_properties()->{horse_index}." wins";
 
-      $upper_horse->record_race("rest");
+      $upper_horse->record_race("win");
       $self->update_horse_properties_and_award_coins($upper_horse, 1, 0);
+
+      my $target = $upper_horse->get_properties()->{horse_index};
+      if (grep /^$target$/, @{$self->{_recover_horses}}) {
+        $upper_horse->recover_morale($moral_sink_upper);
+        @{$self->{_recover_horses}} = grep {$_ != $target} @{$self->{_recover_horses}};
+      }
 
       $lower_horse->record_race("defeated");
       $self->update_horse_properties_and_award_coins($lower_horse);
@@ -94,6 +101,12 @@ sub play_one_round {
         $upper_horse->record_race("win");
         $self->update_horse_properties_and_award_coins($upper_horse);
 
+        my $target = $upper_horse->get_properties()->{horse_index};
+        if (grep /^$target$/, @{$self->{_recover_horses}}) {
+          $upper_horse->recover_morale($moral_sink_upper);
+          @{$self->{_recover_horses}} = grep {$_ != $target} @{$self->{_recover_horses}};
+        }
+
         $lower_horse->record_race("lose");
         $self->update_horse_properties_and_award_coins($lower_horse);
       } elsif ($actual_speed_lower > $actual_speed_upper) {
@@ -101,6 +114,12 @@ sub play_one_round {
 
         $lower_horse->record_race("win");
         $self->update_horse_properties_and_award_coins($lower_horse);
+
+        my $target = $lower_horse->get_properties()->{horse_index};
+        if (grep /^$target$/, @{$self->{_recover_horses}}) {
+          $lower_horse->recover_morale($moral_sink_lower);
+          @{$self->{_recover_horses}} = grep {$_ != $target} @{$self->{_recover_horses}};
+        }
 
         $upper_horse->record_race("lose");
         $self->update_horse_properties_and_award_coins($upper_horse);
@@ -125,6 +144,11 @@ sub play_one_round {
       if (defined $team_horse) {
         $team_horse->record_race("rest");
         $self->update_horse_properties_and_award_coins($team_horse, 0, 1);
+
+        my $target = $lower_horse->get_properties()->{horse_index};
+        if (grep /^$target$/, @{$self->{_recover_horses}}) {
+          @{$self->{_recover_horses}} = grep {$_ != $target} @{$self->{_recover_horses}};
+        }
 
         $team_horse->print_info();
       } else {
