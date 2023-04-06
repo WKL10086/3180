@@ -81,6 +81,7 @@ sub play_one_round {
     my $winner_info = "tie";
     if (! defined $actual_speed_lower) {
       $winner_info = "horse ".$upper_horse->get_properties()->{horse_index}." wins";
+      $self->update_horse_properties_and_award_coins($upper_horse, 1, 0);
     } else {
       if ($actual_speed_upper > $actual_speed_lower) {
         $winner_info = "horse ".$upper_horse->get_properties()->{horse_index}." wins";
@@ -105,6 +106,7 @@ sub play_one_round {
     }
     while (1) {
       if (defined $team_horse) {
+        $team_horse->record_race("rest")
         $self->update_horse_properties_and_award_coins($team_horse, 0, 1)
         $team_horse->print_info();
       } else {
@@ -118,7 +120,7 @@ sub play_one_round {
 }
 
 sub update_horse_properties_and_award_coins {
-  # [ ] Your Implementation Here
+  # [x] Your Implementation Here
   my ($self, $horse, $flag_defeat, $flag_rest) = @_;
   $flag_defeat //= 0;
   $flag_rest //= 0;
@@ -132,9 +134,39 @@ sub update_horse_properties_and_award_coins {
     local $AdvancedHorse::coins_to_obtain = 10;
     $horse->obtain_coins();
   } elsif ($flag_defeat) {
+    local $AdvancedHorse::delta_speed = 4;
 
+    if ($horse->check_consecutive_winner()) {
+      local $AdvancedHorse::delta_experience = 3;
+      local $AdvancedHorse::delta_rank = 3;
+      $horse->update_properties();
+
+      local $AdvancedHorse::coins_to_obtain = 44;
+      $horse->obtain_coins();
+    } else {
+      $horse->update_properties();
+
+      local $AdvancedHorse::coins_to_obtain = 40;
+      $horse->obtain_coins();
+    }
   } else {
+    if ($horse->check_consecutive_winner()) {
+      local $AdvancedHorse::delta_experience = 3;
+      local $AdvancedHorse::delta_rank = 3;
+      $horse->update_properties();
 
+      local $AdvancedHorse::coins_to_obtain = 22;
+      $horse->obtain_coins();
+    } elsif ($horse->check_consecutive_loser()) {
+      local $AdvancedHorse::delta_experience = -2;
+      $horse->update_properties();
+
+      local $AdvancedHorse::coins_to_obtain = 22;
+      $horse->obtain_coins();
+    } else {
+      $horse->update_properties();
+      $horse->obtain_coins();
+    }
   }
 }
 
