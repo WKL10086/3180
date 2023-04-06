@@ -35,18 +35,43 @@ sub new {
 
 sub obtain_coins {
   # [ ] Your Implementation Here
-  my $self = shift;
-  $self->{_coins} += $coins_to_obtain;
+  my ($self, $coins) = shift;
+  $self->{_coins} += $coins;
 }
 
 sub buy_prop_upgrade {
-  # [ ] Your Implementation Here
+  # [x] Your Implementation Here
   my $self = shift;
+  while ($self->{_coins} >= 50) {
+    print "Do you want to upgrade properties for Horse ", $self->{_horse_index} ,"? S for speed. E for experience. R for rank. N for nothing.\n";
+
+    my $user_input = <>;
+    chomp $user_input;
+
+    if ($user_input eq "N") {
+      last;
+    } 
+
+    $self->{_coins} -= 50;
+    if ($user_input eq "S") {
+      $self->{_speed} += 1;
+    } elsif ($user_input eq "E") {
+      $self->{_experience} += 1;
+    } elsif ($user_input eq "R") {
+      $self->{_rank} += 1;
+    } 
+  }
 }
 
 sub record_race {
-  # [ ] Your Implementation Here
+  # [x] Your Implementation Here
   my ($self, $race_result) = shift;
+  if (scalar @{$self->{_history_record}} < 3) {
+    push @{$self->{_history_record}}, $race_result;
+  } else {
+    shift @{$self->{_history_record}};
+    push @{$self->{_history_record}}, $race_result;
+  }
 }
 
 
