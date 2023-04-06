@@ -15,7 +15,6 @@ our $delta_speed = -1;
 our $delta_experience = 0;
 our $delta_rank = -1;
 
-
 sub new {
   # [x] Your Implementation Here
   my $className = shift;
@@ -34,9 +33,9 @@ sub new {
 }
 
 sub obtain_coins {
-  # [ ] Your Implementation Here
-  my ($self, $coins) = shift;
-  $self->{_coins} += $coins;
+  # [x] Your Implementation Here
+  my $self = shift;
+  $self->{_coins} += $coins_to_obtain;
 }
 
 sub buy_prop_upgrade {
@@ -74,15 +73,43 @@ sub record_race {
   }
 }
 
-
 sub update_properties {
-  # [ ] Your Implementation Here
+  # [x] Your Implementation Here
   my $self = shift;
+  
+  $self->{_speed} = $delta_speed + $self->{_speed} > 1 ? $delta_speed + $self->{_speed} : 1;
+  $self->{_experience} = $delta_experience + $self->{_experience} > 1 ? $delta_experience + $self->{_experience} : 1;
+  $self->{_rank} = $delta_rank + $self->{_rank} > 1 ? $delta_rank + $self->{_rank} : 1;
 }
 
 sub recover_morale {
-  # [ ] Your Implementation Here
+  # [x] Your Implementation Here
   my ($self, $recover) = shift;
+  $self->{_morale} += $recover;
+}
+
+sub check_consecutive_winner {
+  # [x] Your Implementation Here
+  my $self = shift;
+  my $consecutive_winner = 0;
+  if (scalar @{$self->{_history_record}} == 3) {
+    if ($self->{_history_record}[0] == 1 && $self->{_history_record}[1] == 1 && $self->{_history_record}[2] == 1) {
+      $consecutive_winner = 1;
+    }
+  }
+  return $consecutive_winner;
+}
+
+sub check_consecutive_loser {
+    # [x] Your Implementation Here
+  my $self = shift;
+  my $consecutive_loser = 0;
+  if (scalar @{$self->{_history_record}} == 3) {
+    if ($self->{_history_record}[0] == 0 && $self->{_history_record}[1] == 0 && $self->{_history_record}[2] == 0) {
+      $consecutive_loser = 1;
+    }
+  }
+  return $consecutive_loser;
 }
 
 1;
