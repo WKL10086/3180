@@ -81,12 +81,29 @@ sub play_one_round {
     my $winner_info = "tie";
     if (! defined $actual_speed_lower) {
       $winner_info = "horse ".$upper_horse->get_properties()->{horse_index}." wins";
+
+      $upper_horse->record_race("rest");
       $self->update_horse_properties_and_award_coins($upper_horse, 1, 0);
+
+      $lower_horse->record_race("defeated");
+      $self->update_horse_properties_and_award_coins($lower_horse);
     } else {
       if ($actual_speed_upper > $actual_speed_lower) {
         $winner_info = "horse ".$upper_horse->get_properties()->{horse_index}." wins";
+
+        $upper_horse->record_race("win");
+        $self->update_horse_properties_and_award_coins($upper_horse);
+
+        $lower_horse->record_race("lose");
+        $self->update_horse_properties_and_award_coins($lower_horse);
       } elsif ($actual_speed_lower > $actual_speed_upper) {
         $winner_info = "horse ".$lower_horse->get_properties()->{horse_index}." wins";
+
+        $lower_horse->record_race("win");
+        $self->update_horse_properties_and_award_coins($lower_horse);
+
+        $upper_horse->record_race("lose");
+        $self->update_horse_properties_and_award_coins($upper_horse);
       }
     }
 
@@ -108,6 +125,7 @@ sub play_one_round {
       if (defined $team_horse) {
         $team_horse->record_race("rest")
         $self->update_horse_properties_and_award_coins($team_horse, 0, 1)
+
         $team_horse->print_info();
       } else {
         last;
