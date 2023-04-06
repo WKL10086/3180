@@ -105,14 +105,7 @@ sub play_one_round {
     }
     while (1) {
       if (defined $team_horse) {
-        local $AdvancedHorse::delta_speed = 1;
-        local $AdvancedHorse::delta_experience = 1;
-        local $AdvancedHorse::delta_rank = 1;
-        $team_horse->update_properties();
-
-        local $AdvancedHorse::coins_to_obtain = 10;
-        $team_horse->obtain_coins();
-
+        $self->update_horse_properties_and_award_coins($team_horse, 0, 1)
         $team_horse->print_info();
       } else {
         last;
@@ -130,14 +123,18 @@ sub update_horse_properties_and_award_coins {
   $flag_defeat //= 0;
   $flag_rest //= 0;
 
-  # TODO
   if ($flag_rest) {
-    $horse->obtain_coins(10);
+    local $AdvancedHorse::delta_speed = 1;
+    local $AdvancedHorse::delta_experience = 1;
+    local $AdvancedHorse::delta_rank = 1;
+    $horse->update_properties();
+
+    local $AdvancedHorse::coins_to_obtain = 10;
+    $horse->obtain_coins();
   } elsif ($flag_defeat) {
-    $horse->increase_morale(10);
-    $horse->increase_experience(10);
-    $horse->increase_speed(10);
-    $horse->increase_rank(10);
+
+  } else {
+
   }
 }
 
