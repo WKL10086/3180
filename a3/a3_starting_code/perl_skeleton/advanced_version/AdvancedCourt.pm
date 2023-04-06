@@ -105,6 +105,14 @@ sub play_one_round {
     }
     while (1) {
       if (defined $team_horse) {
+        local $AdvancedHorse::delta_speed = 1;
+        local $AdvancedHorse::delta_experience = 1;
+        local $AdvancedHorse::delta_rank = 1;
+        $team_horse->update_properties();
+
+        local $AdvancedHorse::coins_to_obtain = 10;
+        $team_horse->obtain_coins();
+
         $team_horse->print_info();
       } else {
         last;
