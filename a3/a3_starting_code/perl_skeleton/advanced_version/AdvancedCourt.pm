@@ -242,7 +242,7 @@ sub call_recover_morale {
 
   my $target = $horse->get_properties()->{horse_index};
   if (grep /^$target$/, @{$self->{_recover_horses}}) {
-    $$horse->recover_morale($recover);
+    $horse->recover_morale($recover);
     @{$self->{_recover_horses}} = grep {$_ != $target} @{$self->{_recover_horses}};
   }
 }
