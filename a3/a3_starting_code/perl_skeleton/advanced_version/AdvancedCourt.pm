@@ -27,7 +27,7 @@ sub new {
 }
 
 sub play_one_round {
-  # [ ] Your Implementation Here
+  # [x] Your Implementation Here
   my $self = shift;
   
   my $race_cnt = 1;
@@ -44,7 +44,6 @@ sub play_one_round {
       last;
     }
 
-    # [x] ask upgrade for horse
     $team1_horse->buy_prop_upgrade();
     $team2_horse->buy_prop_upgrade();
 
@@ -86,14 +85,12 @@ sub play_one_round {
       $upper_horse->record_race("win");
       $self->update_horse_properties_and_award_coins($upper_horse, 1, 0);
 
-      my $target = $upper_horse->get_properties()->{horse_index};
-      if (grep /^$target$/, @{$self->{_recover_horses}}) {
-        $upper_horse->recover_morale($moral_sink_upper);
-        @{$self->{_recover_horses}} = grep {$_ != $target} @{$self->{_recover_horses}};
-      }
+      $self->call_recover_morale($upper_horse, $moral_sink_upper);
 
       $lower_horse->record_race("defeated");
       $self->update_horse_properties_and_award_coins($lower_horse);
+
+      $self->clear_recover_horses($lower_horse);
     } else {
       if ($actual_speed_upper > $actual_speed_lower) {
         $winner_info = "horse ".$upper_horse->get_properties()->{horse_index}." wins";
@@ -101,28 +98,24 @@ sub play_one_round {
         $upper_horse->record_race("win");
         $self->update_horse_properties_and_award_coins($upper_horse);
 
-        my $target = $upper_horse->get_properties()->{horse_index};
-        if (grep /^$target$/, @{$self->{_recover_horses}}) {
-          $upper_horse->recover_morale($moral_sink_upper);
-          @{$self->{_recover_horses}} = grep {$_ != $target} @{$self->{_recover_horses}};
-        }
+        $self->call_recover_morale($upper_horse, $moral_sink_upper);
 
         $lower_horse->record_race("lose");
         $self->update_horse_properties_and_award_coins($lower_horse);
+
+        $self->clear_recover_horses($lower_horse);
       } elsif ($actual_speed_lower > $actual_speed_upper) {
         $winner_info = "horse ".$lower_horse->get_properties()->{horse_index}." wins";
 
         $lower_horse->record_race("win");
         $self->update_horse_properties_and_award_coins($lower_horse);
 
-        my $target = $lower_horse->get_properties()->{horse_index};
-        if (grep /^$target$/, @{$self->{_recover_horses}}) {
-          $lower_horse->recover_morale($moral_sink_lower);
-          @{$self->{_recover_horses}} = grep {$_ != $target} @{$self->{_recover_horses}};
-        }
+        $self->call_recover_morale($lower_horse, $moral_sink_lower);
 
         $upper_horse->record_race("lose");
         $self->update_horse_properties_and_award_coins($upper_horse);
+        
+        $self->clear_recover_horses($upper_horse);
       }
     }
 
@@ -145,10 +138,7 @@ sub play_one_round {
         $team_horse->record_race("rest");
         $self->update_horse_properties_and_award_coins($team_horse, 0, 1);
 
-        my $target = $lower_horse->get_properties()->{horse_index};
-        if (grep /^$target$/, @{$self->{_recover_horses}}) {
-          @{$self->{_recover_horses}} = grep {$_ != $target} @{$self->{_recover_horses}};
-        }
+        $self->clear_recover_horses($team_horse);
 
         $team_horse->print_info();
       } else {
@@ -235,6 +225,25 @@ sub input_horses {
     }
   }
   return $horse_list_team;
+}
+
+sub call_recover_morale {
+  # [x] Your Implementation Here
+  my ($self, $horse, $recover) = @_;
+
+  my $target = $horse->get_properties()->{horse_index};
+  if (grep /^$target$/, @{$self->{_recover_horses}}) {
+    $$horse->recover_morale($recover);
+    @{$self->{_recover_horses}} = grep {$_ != $target} @{$self->{_recover_horses}};
+  }
+}
+
+sub clear_recover_horses {
+  # [x] Your Implementation Here
+  my ($self, $horse) = @_;
+
+  my $target = $horse->get_properties()->{horse_index};
+  @{$self->{_recover_horses}} = grep {$_ != $target} @{$self->{_recover_horses}};
 }
 
 1;
