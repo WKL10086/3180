@@ -83,12 +83,10 @@ sub play_one_round {
       $winner_info = "horse ".$upper_horse->get_properties()->{horse_index}." wins";
 
       $upper_horse->record_race("win");
-      $self->update_horse_properties_and_award_coins($upper_horse, 1, 0);
 
       $self->call_recover_morale($upper_horse, $moral_sink_upper);
 
-      $lower_horse->record_race("defeated");
-      $self->update_horse_properties_and_award_coins($lower_horse);
+      $lower_horse->record_race("lose");
 
       $self->clear_recover_horses($lower_horse);
     } else {
@@ -96,24 +94,20 @@ sub play_one_round {
         $winner_info = "horse ".$upper_horse->get_properties()->{horse_index}." wins";
 
         $upper_horse->record_race("win");
-        $self->update_horse_properties_and_award_coins($upper_horse);
 
         $self->call_recover_morale($upper_horse, $moral_sink_upper);
 
         $lower_horse->record_race("lose");
-        $self->update_horse_properties_and_award_coins($lower_horse);
 
         $self->clear_recover_horses($lower_horse);
       } elsif ($actual_speed_lower > $actual_speed_upper) {
         $winner_info = "horse ".$lower_horse->get_properties()->{horse_index}." wins";
 
         $lower_horse->record_race("win");
-        $self->update_horse_properties_and_award_coins($lower_horse);
 
         $self->call_recover_morale($lower_horse, $moral_sink_lower);
 
         $upper_horse->record_race("lose");
-        $self->update_horse_properties_and_award_coins($upper_horse);
         
         $self->clear_recover_horses($upper_horse);
       }
@@ -122,6 +116,18 @@ sub play_one_round {
     print "Race ", $race_cnt, ": horse ", $team1_horse->get_properties()->{horse_index}, " VS horse ", $team2_horse->get_properties()->{horse_index}, ", ", $winner_info, "\n";
     $team1_horse->print_info();
     $team2_horse->print_info();
+
+    if ($lower_horse->check_defeated()) {
+      $self->update_horse_properties_and_award_coins($upper_horse, 1, 0);
+      $self->update_horse_properties_and_award_coins($lower_horse);
+    } elsif ($upper_horse->check_defeated()){
+      $self->update_horse_properties_and_award_coins($upper_horse);
+      $self->update_horse_properties_and_award_coins($lower_horse, 1, 0);
+    } else {
+        $self->update_horse_properties_and_award_coins($upper_horse);
+        $self->update_horse_properties_and_award_coins($lower_horse);
+    }
+
     $race_cnt += 1;
   }
 
@@ -136,11 +142,12 @@ sub play_one_round {
     while (1) {
       if (defined $team_horse) {
         $team_horse->record_race("rest");
-        $self->update_horse_properties_and_award_coins($team_horse, 0, 1);
 
         $self->clear_recover_horses($team_horse);
 
         $team_horse->print_info();
+
+        $self->update_horse_properties_and_award_coins($team_horse, 0, 1);
       } else {
         last;
       }
@@ -169,6 +176,7 @@ sub update_horse_properties_and_award_coins {
     local $AdvancedHorse::delta_speed = 4;
 
     if ($horse->check_consecutive_winner()) {
+      local $AdvancedHorse::delta_speed = 4;
       local $AdvancedHorse::delta_experience = 3;
       local $AdvancedHorse::delta_rank = 3;
       $horse->update_properties();
@@ -176,6 +184,7 @@ sub update_horse_properties_and_award_coins {
       local $AdvancedHorse::coins_to_obtain = 44;
       $horse->obtain_coins();
     } else {
+      local $AdvancedHorse::delta_speed = 4;
       $horse->update_properties();
 
       local $AdvancedHorse::coins_to_obtain = 40;
@@ -217,7 +226,7 @@ sub input_horses {
       my @properties = split / /, $user_input;
       my ($morale, $speed, $experience, $rank) = @properties;
       if ($morale + 5 * ($speed + $experience + $rank) <= 300) {
-        my $horse = Horse->new($horse_idx, $morale, $speed, $experience, $rank);
+        my $horse = AdvancedHorse->new($horse_idx, $morale, $speed, $experience, $rank);
         push @$horse_list_team, $horse;
         last;
       }
