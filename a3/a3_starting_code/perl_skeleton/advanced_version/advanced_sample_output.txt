@@ -19,19 +19,19 @@ Team 1: please input order
 Team 2: please input order
 5 6 7 8
 Round 1:
-Race 1: horse 1 VS horse 5, Horse 5 wins
+Race 1: horse 1 VS horse 5, horse 5 wins
 Horse 1: morale: 40 speed: 10 experience: 15 rank: 5 undefeated
 Horse 5: morale: 99 speed: 20 experience: 10 rank: 10 undefeated
 Race 2: horse 2 VS horse 6, tie
 Horse 2: morale: 40 speed: 10 experience: 20 rank: 10 undefeated
 Horse 6: morale: 90 speed: 10 experience: 20 rank: 10 undefeated
-Race 3: horse 3 VS horse 7, Horse 7 wins
+Race 3: horse 3 VS horse 7, horse 7 wins
 Horse 3: morale: 15 speed: 5 experience: 10 rank: 5 undefeated
 Horse 7: morale: 119 speed: 10 experience: 20 rank: 5 undefeated
-Race 4: horse 4 VS horse 8, Horse 4 wins
+Race 4: horse 4 VS horse 8, horse 4 wins
 Horse 4: morale: 39 speed: 15 experience: 20 rank: 10 undefeated
 Horse 8: morale: 60 speed: 10 experience: 15 rank: 5 undefeated
-horses at rest:
+Horses at rest:
 
 ===== Begin New Round =====
 Team 1: please input order
@@ -39,19 +39,19 @@ Team 1: please input order
 Team 2: please input order
 5 6 7 8
 Round 2:
-Race 1: horse 1 VS horse 5, Horse 5 wins
+Race 1: horse 1 VS horse 5, horse 5 wins
 Horse 1: morale: 30 speed: 9 experience: 15 rank: 4 undefeated
 Horse 5: morale: 98 speed: 19 experience: 10 rank: 9 undefeated
 Race 2: horse 2 VS horse 6, tie
 Horse 2: morale: 31 speed: 9 experience: 20 rank: 9 undefeated
 Horse 6: morale: 81 speed: 9 experience: 20 rank: 9 undefeated
-Race 3: horse 3 VS horse 7, Horse 7 wins
+Race 3: horse 3 VS horse 7, horse 7 wins
 Horse 3: morale: 1 speed: 4 experience: 10 rank: 4 undefeated
 Horse 7: morale: 118 speed: 9 experience: 20 rank: 4 undefeated
-Race 4: horse 4 VS horse 8, Horse 4 wins
+Race 4: horse 4 VS horse 8, horse 4 wins
 Horse 4: morale: 38 speed: 14 experience: 20 rank: 9 undefeated
 Horse 8: morale: 41 speed: 9 experience: 15 rank: 4 undefeated
-horses at rest:
+Horses at rest:
 
 ===== Begin New Round =====
 Team 1: please input order
@@ -59,19 +59,19 @@ Team 1: please input order
 Team 2: please input order
 6 5 8 7
 Round 3:
-Race 1: horse 1 VS horse 6, Horse 6 wins
+Race 1: horse 1 VS horse 6, horse 6 wins
 Horse 1: morale: 22 speed: 8 experience: 15 rank: 3 undefeated
 Horse 6: morale: 77 speed: 8 experience: 20 rank: 8 undefeated
-Race 2: horse 2 VS horse 5, Horse 5 wins
+Race 2: horse 2 VS horse 5, horse 5 wins
 Horse 2: morale: 21 speed: 8 experience: 20 rank: 8 undefeated
 Horse 5: morale: 97 speed: 18 experience: 10 rank: 8 undefeated
-Race 3: horse 3 VS horse 8, Horse 8 wins
+Race 3: horse 3 VS horse 8, horse 8 wins
 Horse 3: morale: 0 speed: 3 experience: 10 rank: 3 defeated
 Horse 8: morale: 40 speed: 8 experience: 15 rank: 3 undefeated
-Race 4: horse 4 VS horse 7, Horse 4 wins
+Race 4: horse 4 VS horse 7, horse 4 wins
 Horse 4: morale: 35 speed: 13 experience: 20 rank: 8 undefeated
 Horse 7: morale: 100 speed: 8 experience: 20 rank: 3 undefeated
-horses at rest:
+Horses at rest:
 
 ===== Begin New Round =====
 Team 1: please input order
@@ -83,24 +83,24 @@ Do you want to upgrade properties for Horse 4? S for speed. E for experience. R 
 N
 Do you want to upgrade properties for Horse 7? S for speed. E for experience. R for rank. N for nothing.
 S
-Race 1: horse 4 VS horse 7, Horse 4 wins
+Race 1: horse 4 VS horse 7, horse 4 wins
 Horse 4: morale: 31 speed: 12 experience: 23 rank: 11 undefeated
 Horse 7: morale: 81 speed: 8 experience: 20 rank: 2 undefeated
 Do you want to upgrade properties for Horse 1? S for speed. E for experience. R for rank. N for nothing.
 S
 Do you want to upgrade properties for Horse 8? S for speed. E for experience. R for rank. N for nothing.
 E
-Race 2: horse 1 VS horse 8, Horse 8 wins
+Race 2: horse 1 VS horse 8, horse 8 wins
 Horse 1: morale: 11 speed: 8 experience: 13 rank: 2 undefeated
 Horse 8: morale: 39 speed: 12 experience: 16 rank: 2 undefeated
 Do you want to upgrade properties for Horse 2? S for speed. E for experience. R for rank. N for nothing.
 R
 Do you want to upgrade properties for Horse 6? S for speed. E for experience. R for rank. N for nothing.
 E
-Race 3: horse 2 VS horse 6, Horse 6 wins
+Race 3: horse 2 VS horse 6, horse 6 wins
 Horse 2: morale: 14 speed: 7 experience: 20 rank: 8 undefeated
 Horse 6: morale: 70 speed: 7 experience: 21 rank: 7 undefeated
-horses at rest:
+Horses at rest:
 Horse 5: morale: 97 speed: 17 experience: 13 rank: 11 undefeated
 
 ===== Begin New Round =====
@@ -109,22 +109,22 @@ Team 1: please input order
 Team 2: please input order
 6 5 8 7
 Round 5:
-Race 1: horse 1 VS horse 6, Horse 6 wins
+Race 1: horse 1 VS horse 6, horse 6 wins
 Horse 1: morale: 6 speed: 7 experience: 13 rank: 1 undefeated
 Horse 6: morale: 67 speed: 6 experience: 21 rank: 6 undefeated
 Do you want to upgrade properties for Horse 4? S for speed. E for experience. R for rank. N for nothing.
 S
 Do you want to upgrade properties for Horse 5? S for speed. E for experience. R for rank. N for nothing.
 R
-Race 2: horse 4 VS horse 5, Horse 4 wins
+Race 2: horse 4 VS horse 5, horse 4 wins
 Horse 4: morale: 18 speed: 12 experience: 23 rank: 10 undefeated
 Horse 5: morale: 88 speed: 18 experience: 14 rank: 13 undefeated
 Do you want to upgrade properties for Horse 8? S for speed. E for experience. R for rank. N for nothing.
 S
-Race 3: horse 2 VS horse 8, Horse 8 wins
+Race 3: horse 2 VS horse 8, horse 8 wins
 Horse 2: morale: 1 speed: 6 experience: 20 rank: 7 undefeated
 Horse 8: morale: 38 speed: 12 experience: 16 rank: 1 undefeated
-horses at rest:
+Horses at rest:
 Horse 7: morale: 81 speed: 7 experience: 20 rank: 1 undefeated
 
 ===== Begin New Round =====
@@ -139,20 +139,20 @@ Team 2: please input order
 Round 6:
 Do you want to upgrade properties for Horse 1? S for speed. E for experience. R for rank. N for nothing.
 E
-Race 1: horse 1 VS horse 5, Horse 5 wins
+Race 1: horse 1 VS horse 5, horse 5 wins
 Horse 1: morale: 0 speed: 6 experience: 14 rank: 1 defeated
 Horse 5: morale: 88 speed: 17 experience: 14 rank: 12 undefeated
 Do you want to upgrade properties for Horse 4? S for speed. E for experience. R for rank. N for nothing.
 S
-Race 2: horse 4 VS horse 8, Horse 4 wins
+Race 2: horse 4 VS horse 8, horse 4 wins
 Horse 4: morale: 10 speed: 12 experience: 23 rank: 9 undefeated
 Horse 8: morale: 22 speed: 11 experience: 19 rank: 4 undefeated
 Do you want to upgrade properties for Horse 2? S for speed. E for experience. R for rank. N for nothing.
 E
-Race 3: horse 2 VS horse 7, Horse 7 wins
+Race 3: horse 2 VS horse 7, horse 7 wins
 Horse 2: morale: 0 speed: 5 experience: 19 rank: 6 defeated
 Horse 7: morale: 80 speed: 8 experience: 21 rank: 2 undefeated
-horses at rest:
+Horses at rest:
 Horse 6: morale: 67 speed: 5 experience: 24 rank: 9 undefeated
 
 ===== Begin New Round =====
@@ -163,10 +163,10 @@ Team 2: please input order
 Round 7:
 Do you want to upgrade properties for Horse 5? S for speed. E for experience. R for rank. N for nothing.
 S
-Race 1: horse 4 VS horse 5, Horse 5 wins
+Race 1: horse 4 VS horse 5, horse 5 wins
 Horse 4: morale: 0 speed: 11 experience: 26 rank: 12 defeated
 Horse 5: morale: 82 speed: 22 experience: 14 rank: 11 undefeated
-horses at rest:
+Horses at rest:
 Horse 6: morale: 67 speed: 6 experience: 25 rank: 10 undefeated
 Horse 7: morale: 80 speed: 12 experience: 21 rank: 1 undefeated
 Horse 8: morale: 22 speed: 10 experience: 19 rank: 3 undefeated
