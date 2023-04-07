@@ -84,8 +84,6 @@ sub play_one_round {
 
       $upper_horse->record_race("win");
 
-      $self->call_recover_morale($upper_horse, $moral_sink_upper);
-
       $lower_horse->record_race("lose");
 
       $self->clear_recover_horses($lower_horse);
@@ -173,8 +171,6 @@ sub update_horse_properties_and_award_coins {
     local $AdvancedHorse::coins_to_obtain = 10;
     $horse->obtain_coins();
   } elsif ($flag_defeat) {
-    local $AdvancedHorse::delta_speed = 4;
-
     if ($horse->check_consecutive_winner()) {
       local $AdvancedHorse::delta_speed = 4;
       local $AdvancedHorse::delta_experience = 3;
