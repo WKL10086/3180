@@ -1,0 +1,10 @@
+1. Provide example code and necessary elaborations for demonstrating the advantages of Dynamic Scoping in using Perl to implement the advanced horse-racing game as compared to the corresponding codes in Python.
+
+Since dynamic scoping would use the most recent definition of a variable, the code would be more flexible. For example, if the variable $AdvancedHorse::delta_speed is defined in the AdvancedHorse package (which is -1), and then redefined in a subroutine (which is 4 in the above picture), the subroutine would use the most recent definition of $AdvancedHorse::delta_speed. It allow the code to be more flexible, and we don't need to pass the variable as a parameter like in Python which is more tedious.
+
+In Python, we would need to pass the variable as a parameter in order to hover the default value (global variable value) of the variable.. For example, in the above picture, we would need to pass the variable delta_speed as a parameter to the function, which is more tedious.
+
+2. Explain how the keyword local has been used in your assignment code. In particular, its role and effect.
+
+The keyword local in Perl is used to declare a dynamic scoping variable. It can redefined the variable which declare in lexical scope. For example, in the above picture, the variable $AdvancedHorse::delta_speed is originally defined in the AdvancedHorse package (which is -1), and then redefined in a subroutine (which is 4 in the above picture), the subroutine would use the most recent definition of $AdvancedHorse::delta_speed. 
+It allow us to redefined the variable in the other place which is more flexible.

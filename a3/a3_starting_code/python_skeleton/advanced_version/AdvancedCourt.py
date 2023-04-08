@@ -131,7 +131,15 @@ class AdvancedCourt(Court):
                 team_horse = team2_horse
             while True:
                 if team_horse is not None:
+                    team_horse.record_race("rest")
+
+                    self.clear_recover_horses(team_horse)
+
                     team_horse.print_info()
+
+                    self.update_horse_properties_and_award_coins(
+                        team_horse, False, True
+                    )
                 else:
                     break
                 team_horse = team.get_next_horse()
@@ -197,4 +205,5 @@ class AdvancedCourt(Court):
     def clear_recover_horses(self, horse):
         # [x] Your Implementation Starts Here
         target = horse.properties["horse_index"]
-        self.recover_horses.remove(target)
+        if target in self.recover_horses:
+            self.recover_horses.remove(target)
