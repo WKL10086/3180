@@ -1,0 +1,428 @@
+<!DOCTYPE html>
+<!-- saved from url=(0064)http://course.cse.cuhk.edu.hk/~csci3180/assignments/assignment4/ -->
+<html><script id="allow-copy_script">(function agent() {
+    let unlock = false
+    document.addEventListener('allow_copy', (event) => {
+      unlock = event.detail.unlock
+    })
+
+    const copyEvents = [
+      'copy',
+      'cut',
+      'contextmenu',
+      'selectstart',
+      'mousedown',
+      'mouseup',
+      'mousemove',
+      'keydown',
+      'keypress',
+      'keyup',
+    ]
+    const rejectOtherHandlers = (e) => {
+      if (unlock) {
+        e.stopPropagation()
+        if (e.stopImmediatePropagation) e.stopImmediatePropagation()
+      }
+    }
+    copyEvents.forEach((evt) => {
+      document.documentElement.addEventListener(evt, rejectOtherHandlers, {
+        capture: true,
+      })
+    })
+  })()</script><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta name="viewport" content="width=device-width initial-scale=1">
+    
+
+    <!-- TODO: change the assignment number -->
+    <title>CSCI3180 Assignment 4</title>
+
+    <!-- css styles for this page -->
+    <link rel="stylesheet" href="./CSCI3180 Assignment 4_files/main.css">
+
+    <!-- prism.js is used for code highlighting: https://prismjs.com/ -->
+    <link rel="stylesheet" href="./CSCI3180 Assignment 4_files/prism.css">
+  <link rel="stylesheet" href="./CSCI3180 Assignment 4_files/katex.min.css" integrity="sha384-vKruj+a13U8yHIkAyGgK1J3ArTLzrFGBbBc0tDp4ad/EyewESeXE/Iv67Aj8gKZ0" crossorigin="anonymous">
+  
+  <!-- The loading of KaTeX is deferred to speed up page rendering -->
+  <script defer="" src="./CSCI3180 Assignment 4_files/katex.min.js.下載" integrity="sha384-PwRUT/YqbnEjkZO0zZxNqcxACrXe+j766U2amXcgMg5457rve2Y7I6ZJSm2A0mS4" crossorigin="anonymous"></script>
+  
+  <!-- To automatically render math in text elements, include the auto-render extension: -->
+  <script defer="" src="./CSCI3180 Assignment 4_files/auto-render.min.js.下載" integrity="sha384-+VBxd3r6XgURycqtZ117nYw44OOcIax56Z4dCRWbxyPt0Koah1uHoK0o4+/RRE05" crossorigin="anonymous" onload="renderMathInElement(document.body,{delimiters:[{left:&#39;$$&#39;,right:&#39;$$&#39;,display:true},{left:&#39;$&#39;,right:&#39;$&#39;,display: false} ]});"></script>
+<style type="text/css">.MathJax_Preview {color: #888}
+#MathJax_Message {position: fixed; left: 1em; bottom: 1.5em; background-color: #E6E6E6; border: 1px solid #959595; margin: 0px; padding: 2px 8px; z-index: 102; color: black; font-size: 80%; width: auto; white-space: nowrap}
+#MathJax_MSIE_Frame {position: absolute; top: 0; left: 0; width: 0px; z-index: 101; border: 0px; margin: 0px; padding: 0px}
+.MathJax_Error {color: #CC0000; font-style: italic}
+</style><style type="text/css">#MathJax_About {position: fixed; left: 50%; width: auto; text-align: center; border: 3px outset; padding: 1em 2em; background-color: #DDDDDD; color: black; cursor: default; font-family: message-box; font-size: 120%; font-style: normal; text-indent: 0; text-transform: none; line-height: normal; letter-spacing: normal; word-spacing: normal; word-wrap: normal; white-space: nowrap; float: none; z-index: 201; border-radius: 15px; -webkit-border-radius: 15px; -moz-border-radius: 15px; -khtml-border-radius: 15px; box-shadow: 0px 10px 20px #808080; -webkit-box-shadow: 0px 10px 20px #808080; -moz-box-shadow: 0px 10px 20px #808080; -khtml-box-shadow: 0px 10px 20px #808080; filter: progid:DXImageTransform.Microsoft.dropshadow(OffX=2, OffY=2, Color='gray', Positive='true')}
+#MathJax_About.MathJax_MousePost {outline: none}
+.MathJax_Menu {position: absolute; background-color: white; color: black; width: auto; padding: 2px; border: 1px solid #CCCCCC; margin: 0; cursor: default; font: menu; text-align: left; text-indent: 0; text-transform: none; line-height: normal; letter-spacing: normal; word-spacing: normal; word-wrap: normal; white-space: nowrap; float: none; z-index: 201; box-shadow: 0px 10px 20px #808080; -webkit-box-shadow: 0px 10px 20px #808080; -moz-box-shadow: 0px 10px 20px #808080; -khtml-box-shadow: 0px 10px 20px #808080; filter: progid:DXImageTransform.Microsoft.dropshadow(OffX=2, OffY=2, Color='gray', Positive='true')}
+.MathJax_MenuItem {padding: 2px 2em; background: transparent}
+.MathJax_MenuArrow {position: absolute; right: .5em; padding-top: .25em; color: #666666; font-size: .75em}
+.MathJax_MenuActive .MathJax_MenuArrow {color: white}
+.MathJax_MenuArrow.RTL {left: .5em; right: auto}
+.MathJax_MenuCheck {position: absolute; left: .7em}
+.MathJax_MenuCheck.RTL {right: .7em; left: auto}
+.MathJax_MenuRadioCheck {position: absolute; left: 1em}
+.MathJax_MenuRadioCheck.RTL {right: 1em; left: auto}
+.MathJax_MenuLabel {padding: 2px 2em 4px 1.33em; font-style: italic}
+.MathJax_MenuRule {border-top: 1px solid #CCCCCC; margin: 4px 1px 0px}
+.MathJax_MenuDisabled {color: GrayText}
+.MathJax_MenuActive {background-color: Highlight; color: HighlightText}
+.MathJax_MenuDisabled:focus, .MathJax_MenuLabel:focus {background-color: #E8E8E8}
+.MathJax_ContextMenu:focus {outline: none}
+.MathJax_ContextMenu .MathJax_MenuItem:focus {outline: none}
+#MathJax_AboutClose {top: .2em; right: .2em}
+.MathJax_Menu .MathJax_MenuClose {top: -10px; left: -10px}
+.MathJax_MenuClose {position: absolute; cursor: pointer; display: inline-block; border: 2px solid #AAA; border-radius: 18px; -webkit-border-radius: 18px; -moz-border-radius: 18px; -khtml-border-radius: 18px; font-family: 'Courier New',Courier; font-size: 24px; color: #F0F0F0}
+.MathJax_MenuClose span {display: block; background-color: #AAA; border: 1.5px solid; border-radius: 18px; -webkit-border-radius: 18px; -moz-border-radius: 18px; -khtml-border-radius: 18px; line-height: 0; padding: 8px 0 6px}
+.MathJax_MenuClose:hover {color: white!important; border: 2px solid #CCC!important}
+.MathJax_MenuClose:hover span {background-color: #CCC!important}
+.MathJax_MenuClose:hover:focus {outline: none}
+</style><style type="text/css">#MathJax_Zoom {position: absolute; background-color: #F0F0F0; overflow: auto; display: block; z-index: 301; padding: .5em; border: 1px solid black; margin: 0; font-weight: normal; font-style: normal; text-align: left; text-indent: 0; text-transform: none; line-height: normal; letter-spacing: normal; word-spacing: normal; word-wrap: normal; white-space: nowrap; float: none; -webkit-box-sizing: content-box; -moz-box-sizing: content-box; box-sizing: content-box; box-shadow: 5px 5px 15px #AAAAAA; -webkit-box-shadow: 5px 5px 15px #AAAAAA; -moz-box-shadow: 5px 5px 15px #AAAAAA; -khtml-box-shadow: 5px 5px 15px #AAAAAA; filter: progid:DXImageTransform.Microsoft.dropshadow(OffX=2, OffY=2, Color='gray', Positive='true')}
+#MathJax_ZoomOverlay {position: absolute; left: 0; top: 0; z-index: 300; display: inline-block; width: 100%; height: 100%; border: 0; padding: 0; margin: 0; background-color: white; opacity: 0; filter: alpha(opacity=0)}
+#MathJax_ZoomFrame {position: relative; display: inline-block; height: 0; width: 0}
+#MathJax_ZoomEventTrap {position: absolute; left: 0; top: 0; z-index: 302; display: inline-block; border: 0; padding: 0; margin: 0; background-color: white; opacity: 0; filter: alpha(opacity=0)}
+</style></head>
+<body class="vsc-initialized" data-new-gr-c-s-check-loaded="14.1104.0" data-gr-ext-installed=""><div id="MathJax_Message" style="display: none;"></div>
+    <script src="./CSCI3180 Assignment 4_files/prism.js.下載" type="text/javascript"></script>
+    <script src="./CSCI3180 Assignment 4_files/MathJax.js.下載"></script>
+
+    <div class="sticky-side-nav">
+      <!-- TODO: change the assignment number -->
+      <div class="centered"><b>Assignment 4</b></div>
+      <br>
+
+      <!-- TODO: update the navigation menu -->
+      <a href="http://course.cse.cuhk.edu.hk/~csci3180/assignments/assignment4/#introduction">Introduction</a>
+      <a href="http://course.cse.cuhk.edu.hk/~csci3180/assignments/assignment4/#integrity">About academic integrity</a>
+      
+      <a href="http://course.cse.cuhk.edu.hk/~csci3180/assignments/assignment4/#part-one">Part one: Prolog</a>
+      <a href="http://course.cse.cuhk.edu.hk/~csci3180/assignments/assignment4/#part-two">Part two: ML</a>
+
+      <!-- add navigation menu items if needed, e.g.: -->
+      <!-- 
+          <a href="#section-id-used-for-navigation">New section name</a> 
+      -->
+
+      <!-- TODO: credit yourself -->
+      <div class="credit">Prepared by Yaotian Cui (Prolog) and Junliang Hu (ML)<br></div> 
+    </div>
+
+
+    <div class="main-content">
+      <div class="section" id="heading"> 
+          <!-- TODO: change the assignment title -->
+          <h1 id="assignment-4">CSCI3180 Assignment 4</h1>
+      </div> <!-- end of heading -->
+      
+      <!-- TODO: add a cover image representing the assignment here -->
+      <img src="./CSCI3180 Assignment 4_files/logic.jpg" width="600px">
+
+
+       <div class="section" id="introduction">
+          <h2>Introduction</h2>
+          <p>The final assignment for this course consists of two parts:
+              </p><ul>
+                  <li>Logic Programming Practice with Prolog.</li>
+                  <li>Functional Programming Practice with ML.</li>
+              </ul>
+              You will submit one source code file for each part at the end. No written report is needed this time.
+          <p></p>
+          <p>Read the pinned Assignment 4 FAQ posts (there will be two, one for each part) on Piazza for some common clarifications. You should check that a day before the deadline to make sure you don't miss any clarifications, even if you have already submitted your work then.</p>
+
+<p>If you need further clarification of the requirements, please feel free to post on the Piazza with the assignment4 tag. However, to avoid cluttering the forum with repeated/trivial questions, please do read all the given code, webpage description, sample output, and latest FAQ carefully before posting your questions. Also, please be reminded that we won't debug for any student's assignment for the sake of fairness and that you should not share/post your solution code anywhere.</p>
+      </div> <!-- end of section -->
+
+
+      <div class="section" id="integrity">
+          <h2>About academic integrity</h2>
+          <p>We value academic integrity very highly.</p>
+          <ul>
+              <li>Do NOT try your "luck" - we use sophisticated plagiarism detection software to find cheaters.</li>
+              <li>The penalty (for BOTH the copier and the copiee) may not be just getting a zero in your assignment. There may be additional disciplinary actions from the university, upto and including expulsion.</li>
+              <li>Do NOT copy or look at the assignment code/work of another student/person.</li>
+              <li>Do NOT share your assignment code/work to anyone and do NOT post it anywhere online.</li>
+              <li>While we encourage discussion among students, you should write the code and finish the work on your own. In the discussion, you should NOT go into the details such that everyone will end up with the same code/work.</li>
+              <li>You are responsible to double-check your own submission and do your best to avoid "accidents".</li>
+          </ul>
+          <p>Read <a href="https://www.cuhk.edu.hk/policy/academichonesty/">https://www.cuhk.edu.hk/policy/academichonesty/</a> for details of the CUHK policy on this matter.</p>
+      </div> <!-- end of section -->
+
+    
+    <div class="section" id="part-one">
+
+
+
+      <h2 id="part-one-prolog---who-is-most-popular-player">Part one: Prolog - popularity contest</h2>
+      <h3 id="background">Background</h3>
+      <ul>
+      <li>In a certain university, MOBA (multiplayer online battle arena) is a very popular game genre among all the students.</li>
+      <li>The top players are skillful and also charming.</li>
+      <li>5 top MOBA players (the same 5 persons) participate in a popularity contest this year and last year.</li>
+      <li>They are ranked rank 1 to rank 5 by popularity in each of the two contests.</li>
+      <li>Each player also is a member of some club (yes, they manage to have social lives while playing MOBA games) and has their own favorite food, sport and music.</li>
+      <li>You are a new student of this University.</li>
+      <li>You interviewed the senior students to find out the player details and the popularity contest results for both years.</li>
+      <li>The senior students individually did not give you the whole picture in a single answer, however, they only gave you some scattered facts.</li>
+      <li>Therefore, you have decided to write a Prolog program to figure out all the details in a coherent way by writing facts and rules based on the various information pieces gathered from many interviews.</li>
+      <!-- <li>You are going to model those 5 players and their popularity ranking with Prolog rules.</li> -->
+      <!-- <li>After all the facts and rules are set up correctly, you will be able to use Prolog queries to find out who is the most popular, least popular, likes chicken, etc..</li> -->
+
+      </ul>
+      <hr>
+      <h3 id="download">Download</h3>
+      <ul>
+        <li>Download the starting code <a href="http://course.cse.cuhk.edu.hk/~csci3180/assignments/assignment4/downloads/a4.pl">here</a>.</li>
+        <li>It contains some explanation of the facts and rules you need to implement, examples, and also test cases.</li>
+      </ul>
+      <hr>
+      <h3 id="basic-information">Basic settings</h3>
+      <ul>
+      <li><p>5 player names</p>
+      <ul>
+      <li>rookie, jack, ning, viper, scout</li>
+
+      </ul>
+      </li>
+      <li><p>5 popularity ranks</p>
+      <ul>
+      <li>In the Prolog facts and rules, the ranking is represented by a list of 5 players</li>
+      <li>The first player in the list is the most popular one (i.e. rank 1)</li>
+      <li>The second player in the list is the almost most popular one (i.e. rank 2)</li>
+      <li>The third player in the list is the medium popular one (i.e. rank 3)</li>
+      <li>The fourth player in the list is the almost least popular one (i.e. rank 4)</li>
+      <li>The last player in the list is the least popular one (i.e. rank 5)</li>
+      <!-- <li>E.g: Most popular, almost most popular, medium popular, least popular, more popular…</li> -->
+
+      </ul>
+      </li>
+      <li><p>5 clubs - different players are associated with different clubs</p>
+      <ul>
+      <li>royal club, killer club, elf club, knight club, magic club</li>
+
+      </ul>
+      </li>
+      <li><p>5 favorite foods - different players like different foods</p>
+      <ul>
+      <li>chicken, hamburger, hot pot, chips, bread</li>
+
+      </ul>
+      </li>
+      <li><p>5 favorite sports - different players like different sports</p>
+      <ul>
+      <li>basketball, swim, baseball, football, running</li>
+
+      </ul>
+      </li>
+      <li><p>5 favorite music - different players like different genres of music</p>
+      <ul>
+      <li>jazz, blues, pop music, rock music, classical music</li>
+
+      </ul>
+      </li>
+
+      </ul><hr>
+      <h3 id="">Facts useful for queries</h3>
+      <p>You will implement the following facts that will be useful for some queries. Please refer to the starting code for their explanation and examples.
+      </p><ul>
+        <li><code>more_popular</code></li>
+        <li><code>less_popular</code></li>
+        <li><code>most_popular</code></li>
+        <li><code>almost_most_popular</code></li>
+        <li><code>medium_popular</code></li>
+        <li><code>almost_least_popular</code></li>
+        <li><code>least_popular</code></li>
+        <li><code>rivals</code></li>
+      </ul>
+      <hr>
+      <h3 id="the-rules-for-this-year">The facts for this year</h3>
+      <p>You will implement the following as rule body parts for the rule head <code>this_year_ranking</code>. Notice every part by itself doesn't give you the whole picture, but by putting them together as a whole rule body, Prolog can figure out all the details and link them together as a coherent story. It is like solving a big puzzle with scattered clues!</p>
+      <p>Use the highlighted names below exactly for all the constants you use.</p>
+      <ol>
+      <li><code>jack</code> likes <code>chicken</code>, <code>rookie</code> comes from <code>killer_club</code>, <code>jack</code> is more popular than <code>rookie</code></li>
+      <li><code>scout</code> likes playing <code>baseball</code>, <code>viper</code> like <code>jazz_music</code>, <code>scout</code> is more popular than <code>viper</code> <!--small><span style="color:grey">(fixed a typo at 4:35am on Apr 11th)</span></small--></li>
+      <li>The almost most popular player likes <code>pop_music</code> and he is more popular than the one who likes <code>hamburger</code> and playing <code>baseball</code></li>
+      <li><code>ning</code> likes <code>hot_pot</code>, he is less popular than the one who comes from <code>royal_club</code> and likes <code>rock_music</code></li>
+      <li>The player who comes from <code>magic_club</code> is less popular than the one who likes <code>swimming</code> and <code>jazz_music</code></li>
+      <li>The most popular player likes playing <code>football</code></li>
+      <li>The medium popular player likes <code>blues</code></li>
+      <li>The least popular player likes <code>running</code> and <code>classical_music</code></li>
+      <li>The almost least popular player likes <code>chips</code> and he is more popular than the one who comes from <code>magic_club</code> and likes <code>hot_pot</code></li>
+      <li>The player who likes <code>hamburger</code> is less popular than the one who likes <code>bread</code></li>
+      <li>The player who comes from <code>royal_club</code> and likes <code>rock_music</code> is a rival of the one who comes from <code>killer_club</code>, and is also more popular than that rival</li>
+      <li>The player who likes playing <code>baseball</code> and <code>blues</code> is a rival of the one who likes <code>bread</code> and playing <code>basketball</code>, and is also less popular than that rival</li>
+      <li>The player who likes <code>chips</code> and <code>swimming</code> is a rival of the one who comes from <code>elf_club</code>, and is also less popular</li>
+      <li>The player who comes from <code>knight_club</code> and likes <code>chips</code> is a rival of the one who likes <code>running</code> and <code>classical_music</code>, and is also more popular</li>
+
+      </ol>
+
+      <p>Read the given test cases to see how we can make use of the facts and rules you have implemented to ask Prolog questions to learn about the players and ranking.</p>
+
+    
+      <hr>
+      <h3 id="the-rules-for-last-year">The facts for last year</h3>
+      <p>You will also implement the following as rule body parts for the rule head <code>last_year_ranking</code>. Note that you don't need to specify anything about player's club and favourite food/sport/music this time. See the given example parts.</p>
+      <p>Use the highlighted names below exactly for all the constants you use.</p>
+      <ol>
+      <li><code>viper</code> is medium popular</li>
+      <li><code>ning</code> is the least popular</li>
+      <li><code>scout</code> is a rival of <code>jack</code> and <code>scout</code> is more popular than <code>jack</code></li>
+      <li><code>jack</code> is more popular than <code>viper</code> and they are also rivals</li>
+      <li><code>viper</code> is the rival of <code>rookie</code> and <code>rookie</code> is less popular than <code>viper</code></li>
+      <li><code>rookie</code> is rival of <code>ning</code> and <code>rookie</code> is more popular than <code>ning</code></li>
+
+      </ol>
+
+      <p>Note that when we ask questions about the last year's ranking, we only care about the ranking, and NOT the personal information. Read the given example test cases.</p>
+
+      <hr>
+      <h3 id="">Test cases</h3>
+      <p>Some test cases have been provided to you in the starting code. Through them, you can see what kinds of queries can be made with all the facts and rules we built. More will be used when we grade your work.</p>
+
+      <hr>
+      <h3 id="submission">Submission</h3>
+      <p>Submission deadline: <u>23:59:00, Apr 25 (Tuesday)</u></p>
+      <p>Please submit your work as <b>a4.pl</b> to Blackboard "Assignment 4 Part 1 (a4.pl)". Do NOT zip/compress/archive it. Make sure you have completed the declaration at the top of the file. The usual assignment submission policy applies. The official testing environment is SICStus 3.12.7. Refer to the posted <a href="http://course.cse.cuhk.edu.hk/~csci3180/lectures/ssh.pdf">guide</a> for how to use SSH to access a remote Unix server which has that installed. On the server, you can execute <code>sics</code> to launch it. In the program, you can use <code>consult('a4.pl').</code> to load your code.</p>
+      <hr>
+    </div>
+    
+    <div class="section" id="part-two">
+  <h2 id="part-two-ml---symbolic-algebra-of-polynomials">Part two: ML - symbolic algebra of polynomials</h2>
+  <p>Functional programming is a powerful approach when dealing with complex data transformations or mathematical computations. In this part, we are tasked with developing a symbolic algebra library using Standard ML. By doing so, we will gain a deeper understanding of how functional programming can be used to manipulate abstract concepts and perform abstract computations via high-level transformations, compared to other conventional programming paradigms that primarily focus on dealing with concrete data values via low-level step-by-step machine instructions.</p>
+  <p>In this library, we will work with polynomials, which consist of a list of terms that have the form <span><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>c</mi><msup><mi>x</mi><mi>e</mi></msup></mrow><annotation encoding="application/x-tex">cx^e</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height: 0.6644em;"></span><span class="mord mathnormal">c</span><span class="mord"><span class="mord mathnormal">x</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height: 0.6644em;"><span class="" style="top: -3.063em; margin-right: 0.05em;"><span class="pstrut" style="height: 2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight">e</span></span></span></span></span></span></span></span></span></span></span></span>, where <span><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>c</mi></mrow><annotation encoding="application/x-tex">c</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height: 0.4306em;"></span><span class="mord mathnormal">c</span></span></span></span></span> is the coefficient and <span><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>e</mi></mrow><annotation encoding="application/x-tex">e</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height: 0.4306em;"></span><span class="mord mathnormal">e</span></span></span></span></span> is the exponent. We will begin by defining the types for terms, variables, and polynomials, as shown in the provided code.</p>
+  <pre class="language-sml" tabindex="0"><code class="language-sml" lang="sml"><span class="token comment">(* x^2 - 3x + 7 *)</span>
+  <span class="token comment">(* val p = Poly (Variable "x", [Term (0, 7), Term (1, ~3), Term (2, 1)]) *)</span>
+  <span class="token keyword">datatype</span> <span class="token class-name">term_t</span> <span class="token operator">=</span> Term <span class="token keyword">of</span> int <span class="token operator">*</span> int
+  <span class="token keyword">datatype</span> <span class="token class-name">variable_t</span> <span class="token operator">=</span> Variable <span class="token keyword">of</span> string
+  <span class="token keyword">datatype</span> <span class="token class-name">poly_t</span> <span class="token operator">=</span> Poly <span class="token keyword">of</span> variable_t <span class="token operator">*</span> term_t list
+
+  <span class="token keyword">exception</span> <span class="token class-name">VariableMismatch</span>  </code></pre>
+  <p>For example, a polynomial of x, <span><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mi>x</mi><mn>2</mn></msup><mo>−</mo><mn>3</mn><mi>x</mi><mo>+</mo><mn>7</mn></mrow><annotation encoding="application/x-tex">x^2 - 3x + 7</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height: 0.8974em; vertical-align: -0.0833em;"></span><span class="mord"><span class="mord mathnormal">x</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height: 0.8141em;"><span class="" style="top: -3.063em; margin-right: 0.05em;"><span class="pstrut" style="height: 2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span></span></span></span></span><span class="mspace" style="margin-right: 0.2222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right: 0.2222em;"></span></span><span class="base"><span class="strut" style="height: 0.7278em; vertical-align: -0.0833em;"></span><span class="mord">3</span><span class="mord mathnormal">x</span><span class="mspace" style="margin-right: 0.2222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right: 0.2222em;"></span></span><span class="base"><span class="strut" style="height: 0.6444em;"></span><span class="mord">7</span></span></span></span></span> can be represented in SML as: <code>Poly (Variable "x", [Term (0, 7), Term (1, ~3), Term (2, 1)])</code>.
+  Note that:</p>
+  <ol start="">
+  <li>Like terms should be combined, i.e., there should not be any two terms sharing the same exponent;</li>
+  <li>Term list should be in ascending order.</li>
+
+  </ol>
+  <hr>
+  <h3 id="">Download</h3>
+  <p>Please download the skeleton code <a href="http://course.cse.cuhk.edu.hk/~csci3180/assignments/assignment4/downloads/a4.sml">here</a>. Note that in the comments, we used the symbol ^ to denote exponentiation.</p>
+  <hr>
+  <h3 id="task-1-addition">Task 1: addition</h3>
+  <p>Our first task is to implement a function called <code>add_poly</code> with type <code>fn : poly_t * poly_t -&gt; poly_t</code>, which combines like terms in the term lists of two polynomials. Like terms should have the same variable, and otherwise, the function should raise a <code>VariableMismatch</code> exception, signaling an error. Don't worry - as exception handling is not covered in this course, we have already finished those parts for you in the given skeleton code. In other words, you don't have to write any code that involves raising or handling the exceptions. You are also provided with helper functions that help you to identify different components of a polynomial. The skeleton code gives a hint on how to implement the function, but further helper functions may be necessary.
+</p>
+<pre class="language-sml" tabindex="0"><code class="language-sml" lang="sml"><span class="token keyword">fun</span> <span class="token function">variable</span> <span class="token punctuation">(</span>Poly <span class="token punctuation">(</span>v<span class="token punctuation">,</span> _<span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token operator">=</span> v
+<span class="token keyword">fun</span> <span class="token function">term_list</span> <span class="token punctuation">(</span>Poly <span class="token punctuation">(</span>_<span class="token punctuation">,</span> l<span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token operator">=</span> l
+<span class="token keyword">fun</span> <span class="token function">expon</span> <span class="token punctuation">(</span>Term <span class="token punctuation">(</span>e<span class="token punctuation">,</span> _<span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token operator">=</span> e
+<span class="token keyword">fun</span> <span class="token function">coeff</span> <span class="token punctuation">(</span>Term <span class="token punctuation">(</span>_<span class="token punctuation">,</span> c<span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token operator">=</span> c
+
+
+<span class="token keyword">fun</span> <span class="token function">add_terms</span> <span class="token punctuation">(</span>l1<span class="token punctuation">,</span> l2<span class="token punctuation">)</span> <span class="token operator">=</span>
+  <span class="token comment">(* your code here *)</span>
+
+<span class="token keyword">fun</span> <span class="token function">add_poly</span> <span class="token punctuation">(</span>Poly <span class="token punctuation">(</span>x<span class="token punctuation">,</span> l1<span class="token punctuation">)</span><span class="token punctuation">,</span> Poly <span class="token punctuation">(</span>y<span class="token punctuation">,</span> l2<span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token operator">=</span>
+  <span class="token keyword">if</span> x <span class="token operator">=</span> y <span class="token keyword">then</span> 
+    Poly <span class="token punctuation">(</span>x<span class="token punctuation">,</span> add_terms <span class="token punctuation">(</span>l1<span class="token punctuation">,</span> l2<span class="token punctuation">)</span><span class="token punctuation">)</span>
+  <span class="token keyword">else</span>
+    <span class="token keyword">raise</span> VariableMismatch 
+
+
+<span class="token comment">(* x^2 - 3x + 7 *)</span>
+<span class="token keyword">val</span> p <span class="token operator">=</span> Poly <span class="token punctuation">(</span>Variable <span class="token string">"x"</span><span class="token punctuation">,</span> <span class="token punctuation">[</span>Term <span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">,</span> <span class="token number">7</span><span class="token punctuation">)</span><span class="token punctuation">,</span> Term <span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">~3</span><span class="token punctuation">)</span><span class="token punctuation">,</span> Term <span class="token punctuation">(</span><span class="token number">2</span><span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">]</span><span class="token punctuation">)</span>
+<span class="token comment">(* x *)</span>
+<span class="token keyword">val</span> p0 <span class="token operator">=</span> Poly <span class="token punctuation">(</span>Variable <span class="token string">"x"</span><span class="token punctuation">,</span> <span class="token punctuation">[</span>Term <span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">]</span><span class="token punctuation">)</span>
+<span class="token comment">(* x + 1 *)</span>
+<span class="token keyword">val</span> p1 <span class="token operator">=</span> Poly <span class="token punctuation">(</span>Variable <span class="token string">"x"</span><span class="token punctuation">,</span> <span class="token punctuation">[</span>Term <span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">,</span> Term <span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">]</span><span class="token punctuation">)</span>
+<span class="token comment">(* x - 1 *)</span>
+<span class="token keyword">val</span> p2 <span class="token operator">=</span> Poly <span class="token punctuation">(</span>Variable <span class="token string">"x"</span><span class="token punctuation">,</span> <span class="token punctuation">[</span>Term <span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">,</span> <span class="token number">~1</span><span class="token punctuation">)</span><span class="token punctuation">,</span> Term <span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">]</span><span class="token punctuation">)</span>
+<span class="token keyword">val</span> x <span class="token operator">=</span> Variable <span class="token string">"x"</span>
+
+<span class="token keyword">val</span> add_poly_test_1 <span class="token operator">=</span> add_poly <span class="token punctuation">(</span>p1<span class="token punctuation">,</span> p<span class="token punctuation">)</span>
+  <span class="token operator">=</span> Poly <span class="token punctuation">(</span>Variable <span class="token string">"x"</span><span class="token punctuation">,</span> <span class="token punctuation">[</span>Term <span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">,</span> <span class="token number">8</span><span class="token punctuation">)</span><span class="token punctuation">,</span> Term <span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">~2</span><span class="token punctuation">)</span><span class="token punctuation">,</span> Term <span class="token punctuation">(</span><span class="token number">2</span><span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">]</span><span class="token punctuation">)</span>
+<span class="token comment">(* add_poly_test_* should evaluate to true if your implementation is correct *)</span></code></pre>
+  <hr>
+  <h3 id="task-2-muliplication">Task 2: multiplication</h3>
+  <p>Our second task is to implement a function called <code>mul_poly</code> with type <code>fn : poly_t * poly_t -&gt; poly_t</code>, which multiplies each term of the first polynomial with the second polynomial and returns their sum. Again, the implementation skeleton code hints how we should approach this, but we may require more helper functions.</p>
+<pre class="language-sml" tabindex="0"><code class="language-sml" lang="sml"><span class="token keyword">fun</span> <span class="token function">mul_terms</span> <span class="token punctuation">(</span>l1<span class="token punctuation">,</span> l2<span class="token punctuation">)</span> <span class="token operator">=</span>
+  <span class="token comment">(* your code here *)</span>
+
+<span class="token keyword">fun</span> <span class="token function">mul_poly</span> <span class="token punctuation">(</span>Poly <span class="token punctuation">(</span>x<span class="token punctuation">,</span> l1<span class="token punctuation">)</span><span class="token punctuation">,</span> Poly <span class="token punctuation">(</span>y<span class="token punctuation">,</span> l2<span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token operator">=</span>
+  <span class="token keyword">if</span> x <span class="token operator">=</span> y <span class="token keyword">then</span> 
+    Poly <span class="token punctuation">(</span>x<span class="token punctuation">,</span> mul_terms <span class="token punctuation">(</span>l1<span class="token punctuation">,</span> l2<span class="token punctuation">)</span><span class="token punctuation">)</span>
+  <span class="token keyword">else</span>
+    <span class="token keyword">raise</span> VariableMismatch 
+
+
+<span class="token comment">(* x * x = x^2 *)</span>
+<span class="token keyword">val</span> mul_poly_test_1 <span class="token operator">=</span> mul_poly <span class="token punctuation">(</span>p0<span class="token punctuation">,</span> p0<span class="token punctuation">)</span>
+  <span class="token operator">=</span> Poly <span class="token punctuation">(</span>Variable <span class="token string">"x"</span><span class="token punctuation">,</span><span class="token punctuation">[</span>Term <span class="token punctuation">(</span><span class="token number">2</span><span class="token punctuation">,</span><span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">]</span><span class="token punctuation">)</span>
+<span class="token comment">(* x(x + 1) = x^2 + x *)</span>
+<span class="token keyword">val</span> mul_poly_test_2 <span class="token operator">=</span> mul_poly <span class="token punctuation">(</span>p0<span class="token punctuation">,</span> p1<span class="token punctuation">)</span>
+  <span class="token operator">=</span> Poly <span class="token punctuation">(</span>Variable <span class="token string">"x"</span><span class="token punctuation">,</span><span class="token punctuation">[</span>Term <span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">,</span><span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">,</span>Term <span class="token punctuation">(</span><span class="token number">2</span><span class="token punctuation">,</span><span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">]</span><span class="token punctuation">)</span>
+<span class="token comment">(* (x + 1)(x - 1) = x^2 -1 *)</span>
+<span class="token keyword">val</span> mul_poly_test_3 <span class="token operator">=</span> mul_poly <span class="token punctuation">(</span>p1<span class="token punctuation">,</span> p2<span class="token punctuation">)</span>
+  <span class="token operator">=</span> Poly <span class="token punctuation">(</span>Variable <span class="token string">"x"</span><span class="token punctuation">,</span><span class="token punctuation">[</span>Term <span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">,</span><span class="token number">~1</span><span class="token punctuation">)</span><span class="token punctuation">,</span>Term <span class="token punctuation">(</span><span class="token number">2</span><span class="token punctuation">,</span><span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">]</span><span class="token punctuation">)</span>
+<span class="token comment">(* (x - 1)(x^2 - 3x + 7)(x + 1) = x^4 - 3x^3 + 6x^2 + 3x - 7 *)</span>
+<span class="token keyword">val</span> mul_poly_test_4 <span class="token operator">=</span> mul_poly <span class="token punctuation">(</span>p2<span class="token punctuation">,</span> mul_poly <span class="token punctuation">(</span>p<span class="token punctuation">,</span> p1<span class="token punctuation">)</span><span class="token punctuation">)</span> 
+  <span class="token operator">=</span> Poly <span class="token punctuation">(</span>Variable <span class="token string">"x"</span><span class="token punctuation">,</span> <span class="token punctuation">[</span>Term <span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">,</span> <span class="token number">~7</span><span class="token punctuation">)</span><span class="token punctuation">,</span> Term <span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">3</span><span class="token punctuation">)</span><span class="token punctuation">,</span> Term <span class="token punctuation">(</span><span class="token number">2</span><span class="token punctuation">,</span> <span class="token number">6</span><span class="token punctuation">)</span><span class="token punctuation">,</span> Term <span class="token punctuation">(</span><span class="token number">3</span><span class="token punctuation">,</span> <span class="token number">~3</span><span class="token punctuation">)</span><span class="token punctuation">,</span> Term <span class="token punctuation">(</span><span class="token number">4</span><span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">]</span><span class="token punctuation">)</span>
+<span class="token comment">(* mul_poly_test_* should evaluate to true if your implementation is correct *)</span>
+</code></pre>
+  <hr>
+  <h3 id="task-3-derivative">Task 3: differentiation</h3>
+  <p>Our third task is to implement a function called <code>diff_poly</code> with type <code>fn: poly_t * variable_t -&gt; poly_t</code>, which calculates the derivative of the given polynomial using the  <a href="https://www.mathsisfun.com/calculus/derivatives-rules.html">sum rule</a>. The derivative of a term is <span><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>e</mi><mo>∗</mo><mi>c</mi><msup><mi>x</mi><mrow><mi>e</mi><mo>−</mo><mn>1</mn></mrow></msup></mrow><annotation encoding="application/x-tex">e * cx^{e-1}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height: 0.4653em;"></span><span class="mord mathnormal">e</span><span class="mspace" style="margin-right: 0.2222em;"></span><span class="mbin">∗</span><span class="mspace" style="margin-right: 0.2222em;"></span></span><span class="base"><span class="strut" style="height: 0.8141em;"></span><span class="mord mathnormal">c</span><span class="mord"><span class="mord mathnormal">x</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height: 0.8141em;"><span class="" style="top: -3.063em; margin-right: 0.05em;"><span class="pstrut" style="height: 2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight">e</span><span class="mbin mtight">−</span><span class="mord mtight">1</span></span></span></span></span></span></span></span></span></span></span></span></span>, where <span><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>c</mi></mrow><annotation encoding="application/x-tex">c</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height: 0.4306em;"></span><span class="mord mathnormal">c</span></span></span></span></span> is the coefficient and <span><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>e</mi></mrow><annotation encoding="application/x-tex">e</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height: 0.4306em;"></span><span class="mord mathnormal">e</span></span></span></span></span> is the exponent. If the variable in the polynomial does not match the given variable, the function should raise a <code>VariableMismatch</code> exception. As before, the skeleton code suggests a possible implementation, but we may need additional helper functions.</p>
+<pre class="language-sml" tabindex="0"><code class="language-sml" lang="sml"><span class="token keyword">fun</span> <span class="token function">diff_terms</span> l <span class="token operator">=</span>
+  <span class="token comment">(* your code here *)</span>
+
+<span class="token keyword">fun</span> <span class="token function">diff_poly</span> <span class="token punctuation">(</span>Poly <span class="token punctuation">(</span>xx<span class="token punctuation">,</span> l<span class="token punctuation">)</span><span class="token punctuation">,</span> x<span class="token punctuation">)</span> <span class="token operator">=</span>
+  <span class="token keyword">if</span> x <span class="token operator">=</span> xx <span class="token keyword">then</span> 
+    Poly <span class="token punctuation">(</span>x<span class="token punctuation">,</span> diff_terms l<span class="token punctuation">)</span>
+  <span class="token keyword">else</span>
+    <span class="token keyword">raise</span> VariableMismatch 
+
+<span class="token keyword">val</span> diff_poly_test_1 <span class="token operator">=</span> diff_poly <span class="token punctuation">(</span>p0<span class="token punctuation">,</span> x<span class="token punctuation">)</span>
+  <span class="token operator">=</span> Poly <span class="token punctuation">(</span>Variable <span class="token string">"x"</span><span class="token punctuation">,</span> <span class="token punctuation">[</span>Term <span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">]</span><span class="token punctuation">)</span>
+<span class="token keyword">val</span> diff_poly_test_2 <span class="token operator">=</span> diff_poly <span class="token punctuation">(</span>p2<span class="token punctuation">,</span> x<span class="token punctuation">)</span>
+  <span class="token operator">=</span> Poly <span class="token punctuation">(</span>Variable <span class="token string">"x"</span><span class="token punctuation">,</span> <span class="token punctuation">[</span>Term <span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">]</span><span class="token punctuation">)</span>
+<span class="token keyword">val</span> diff_poly_test_3 <span class="token operator">=</span> diff_poly <span class="token punctuation">(</span>mul_poly <span class="token punctuation">(</span>p2<span class="token punctuation">,</span> mul_poly <span class="token punctuation">(</span>p<span class="token punctuation">,</span> p1<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">,</span> x<span class="token punctuation">)</span>
+ <span class="token operator">=</span> Poly <span class="token punctuation">(</span>Variable <span class="token string">"x"</span><span class="token punctuation">,</span> <span class="token punctuation">[</span>Term <span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">,</span> <span class="token number">3</span><span class="token punctuation">)</span><span class="token punctuation">,</span> Term <span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">12</span><span class="token punctuation">)</span><span class="token punctuation">,</span> Term <span class="token punctuation">(</span><span class="token number">2</span><span class="token punctuation">,</span> <span class="token number">~9</span><span class="token punctuation">)</span><span class="token punctuation">,</span> Term <span class="token punctuation">(</span><span class="token number">3</span><span class="token punctuation">,</span> <span class="token number">4</span><span class="token punctuation">)</span><span class="token punctuation">]</span><span class="token punctuation">)</span>
+
+<span class="token comment">(* diff_poly_test_* should evaluate to true if your implementation is correct *)</span></code></pre>
+ 
+  <hr>
+  <h3 id="reference-materials">Reference materials</h3>
+  <p>You may find the following reference materials useful.</p>
+  <ul>
+  <li><a href="https://www.smlnj.org/">Standard ML of New Jersey</a> <a href="https://www.smlnj.org/dist/working/110.99.3/index.html">v110.99.3</a></li>
+  <li><a href="https://cs.lmu.edu/~ray/notes/introml/">SML cheatsheet</a> <a href="https://smlhelp.github.io/book/docs/">another one</a> <a href="https://github.com/yuex/awesome-cheatsheet/blob/master/sml.md">yet another one</a></li>
+  <li><a href="https://github.com/azdavis/millet">SML language server</a> <a href="https://www.smlnj.org/dist/working/110.99.3/index.html">neovim support</a></li>
+
+  </ul>
+  <hr>
+  <h3 id="ml-submission">Submission</h3>
+  <p>Submission deadline: <u>23:59:00, Apr 25 (Tuesday)</u></p>
+  <p>Please submit your work as <b>a4.sml</b> to Blackboard "Assignment 4 Part 2 (a4.sml)". Do NOT zip/compress/archive it. Make sure you have completed the declaration at the top of the file. The usual assignment submission policy applies. The official testing environment is Standard ML of New Jersey, Version 110.0.7. Refer to the posted <a href="http://course.cse.cuhk.edu.hk/~csci3180/lectures/ssh.pdf">guide</a> for how to use SSH to access a remote Unix server which has that installed. On the server, you can execute <code>sml</code> to launch it. In the program, you can use <code>use "a4.sml";</code> to load your code.</p>
+</div>
+
+
+
+
+</div></body><grammarly-desktop-integration data-grammarly-shadow-root="true"><template shadowrootmode="open"><style>
+  div.grammarly-desktop-integration {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
+    -moz-user-select: none;
+    -webkit-user-select: none;
+    -ms-user-select:none;
+    user-select:none;
+  }
+
+  div.grammarly-desktop-integration:before {
+    content: attr(data-content);
+  }
+</style><div aria-label="grammarly-integration" role="group" tabindex="-1" class="grammarly-desktop-integration" data-content="{&quot;mode&quot;:&quot;full&quot;,&quot;isActive&quot;:true,&quot;isUserDisabled&quot;:false}"></div></template></grammarly-desktop-integration></html>
