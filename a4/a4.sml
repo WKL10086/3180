@@ -14,9 +14,9 @@
 * and regulations, as contained in the website
 * http://www.cuhk.edu.hk/policy/academichonesty/
 *
-* Name: <FILL YOUR NAME HERE>
-* Student ID: <FILL YOUR STUDENT ID HERE>
-* Email Address: <FILL YOUR EMAIL ADDRESS HERE>
+* Name: Wong Kai Lok
+* Student ID: 1155125720
+* Email Address: 1155125720@link.cuhk.edu.hk
 *
 * Source material acknowledgements (if any):
 * 
@@ -39,7 +39,7 @@ fun coeff (Term (_, c)) = c
 
 
 fun add_terms (l1, l2) =
-  (* your code here *)
+  (* TODO your code here *)
   (* hint: consider implement a helper function (not required) *)
   (*   adjoin_term = fn : term_t * term_t list -> term_t list *)
 
@@ -51,7 +51,7 @@ fun add_poly (Poly (x, l1), Poly (y, l2)) =
 
 
 fun mul_terms (l1, l2) =
-  (* your code here *)
+  (* TODO your code here *)
   (* hint: consider implement a helper function (not required) *)
   (*   mul_term_by_terms = fn : term_t * term_t list -> term_t list *)
 
@@ -63,7 +63,7 @@ fun mul_poly (Poly (x, l1), Poly (y, l2)) =
 
 
 fun diff_terms l =
-  (* your code here *)
+  (* TODO your code here *)
   (* hint: consider using foldl (not required) *)
 
 fun diff_poly (Poly (xx, l), x) =
@@ -87,6 +87,11 @@ fun eval_poly (Poly (_, l), x) =
     foldl (fn (Term (e, c), sum) => sum + (Real.fromInt c) * (pow x e)) 0.0 l
   end
 
+(* TODO *)
+(* fun adjoin_term () = *)
+
+(* TODO *)
+(* fun mul_term_by_terms () = *)
 
 (* x^2 - 3x + 7 *)
 val p = Poly (Variable "x", [Term (0, 7), Term (1, ~3), Term (2, 1)])

@@ -14,9 +14,9 @@
 * and regulations, as contained in the website
 * http://www.cuhk.edu.hk/policy/academichonesty/
 *
-* Name: <FILL YOUR NAME HERE>
-* Student ID: <FILL YOUR STUDENT ID HERE>
-* Email Address: <FILL YOUR EMAIL ADDRESS HERE>
+* Name: Wong Kai Lok
+* Student ID: 1155125720
+* Email Address: 1155125720@link.cuhk.edu.hk
 *
 * Source material acknowledgements (if any):
 * 
@@ -34,36 +34,36 @@ member(X,[_|L]) :- member(X,L).
 /* it should take 3 arguments in this order: A, B, and the ranking list */
 /* the first one has been given to you as an example */
 more_popular(A,B,[A,B,_,_,_]). 
-/* please implement the other facts for "more_popular" */
+/* [ ] please implement the other facts for "more_popular" */
 /* note that there may be other ways to implement this, please feel free to remove the example fact and re-implement the whole thing in your own way, as long as it works for the example queries */
 
 /* "less_popular" is a fact that A is less popular than B */
 /* it should take 3 arguments in this order: A, B, and the ranking list */
 /* the first one has been given to you as an example */
 less_popular(A,B,[B,A,_,_,_]). 
-/* please implement the other facts for "less_popular" */
+/* [ ] please implement the other facts for "less_popular" */
 /* note that there may be other ways to implement this, please feel free to remove the example fact and re-implement the whole thing in your own way, as long as it works for the example queries */
 
-/* please implement facts for "most_popular", "almost_most_popular" and "medium_popular", "almost_least_popular", and "least_popular" */
+/* [ ] please implement facts for "most_popular", "almost_most_popular" and "medium_popular", "almost_least_popular", and "least_popular" */
 /* it should take two arguments in this order: the student denoted by an unknown such as A, and the ranking list */
 /* the first one has been given to you as an example */
 most_popular(A,[A,_,_,_,_]). 
-/* please implement the other facts */
+/* [ ] please implement the other facts */
 /* note that there may be other ways to implement this, please feel free to remove the example fact and re-implement the whole thing in your own way, as long as it works for the example queries */
 
 /* facts of rivals: the rivals mean a pair of students who have very close popularity - meaning their ranks differ by at most 1 */
 /* it should take 3 arguments in this order: A, B, and the ranking list */
 /* the first one has been given to you as an example */
 rivals(A,B,[A,B,_,_,_]). 
-/* please implement the other facts for "rivals" */
+/* [ ] please implement the other facts for "rivals" */
 /* note that there may be other ways to implement this, please feel free to remove the example fact and re-implement the whole thing in your own way, as long as it works for the example queries */
  
-/* please implement other parts of the body according to the facts given on the webpage  */
+/* [ ] please implement other parts of the body according to the facts given on the webpage  */
 /* the first two are given to you as examples */
 this_year_ranking(Ranking) :-
 more_popular(player(jack,_,chicken,_,_), player(rookie,killer_club,_,_,_), Ranking),
 more_popular(player(scout,_,_,baseball,_), player(viper,_,_,_,jazzy), Ranking),
-/* please implement the other parts of the rule body for "this_year_ranking" */
+/* [ ] please implement the other parts of the rule body for "this_year_ranking" */
 
 
 /* Testcases for self-testing:
@@ -102,7 +102,7 @@ answer:
 last_year_ranking(Ranking) :-
 medium_popupar(player(viper,_,_,_,_), Ranking),
 least_popular(player(ning,_,_,_,_), Ranking),
-/* please implement the other parts of the rule body for "last_year_ranking" */
+/* [ ] please implement the other parts of the rule body for "last_year_ranking" */
 
 
 /* Testcases for self-testing:
