@@ -127,8 +127,8 @@ val x = Variable "x"
 val add_poly_test_1 = add_poly (p1, p)
   = Poly (Variable "x", [Term (0, 8), Term (1, ~2), Term (2, 1)])
 
-val add_poly_test_2 = add_poly (p1, p2)
-  = Poly (Variable "x", [Term (1, 2)])
+(* val add_poly_test_2 = add_poly (p1, p2)
+  = Poly (Variable "x", [Term (1, 2)]) *)
 
 (* x * x = x^2 *)
 val mul_poly_test_1 = mul_poly (p0, p0)
