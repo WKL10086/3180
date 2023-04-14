@@ -91,7 +91,7 @@ fun mul_poly (Poly (x, l1), Poly (y, l2)) =
 
 fun diff_terms l =
   (* TODO: your code here *)
-  (* hint: consider using foldl (not required) *)
+  clear_zero_terms (foldl (fn (Term (e, c), list) => list @ [Term (e - 1, c * e)]) [] l)
 
 fun diff_poly (Poly (xx, l), x) =
   if x = xx then 
