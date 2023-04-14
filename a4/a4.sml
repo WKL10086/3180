@@ -37,24 +37,29 @@ fun term_list (Poly (_, l)) = l
 fun expon (Term (e, _)) = e
 fun coeff (Term (_, c)) = c
 
+fun clear_zero_terms ([]) = []
+  | clear_zero_terms (h::list) =
+  if coeff h = 0 then
+    clear_zero_terms list
+  else
+    h :: clear_zero_terms list
+
+(* TODO: adjoin_term = fn : term_t * term_t list -> term_t list *)
+(* Add the like terms *)
+fun adjoin_term (t, []) = [t]
+  | adjoin_term (t, h::list) =
+    if expon t = expon h then
+      Term (expon t, coeff t + coeff h) :: list
+    else
+      h :: adjoin_term (t, list)
 
 fun add_terms (l1, l2) =
-  (* TODO your code here *)
-  (* hint: consider implement a helper function (not required) *)
-  (*   adjoin_term = fn : term_t * term_t list -> term_t list *)
-  let
-    fun adjoin_term (t, []) = [t]
-      | adjoin_term (t, h::list) =
-        if expon t = expon h then
-          Term (expon t, coeff t + coeff h) :: list
-        else
-          h :: adjoin_term (t, list)
-  in
-    if null l2 then
-      l1
-    else
-      add_terms (adjoin_term(hd l2, l1), tl l2)
-  end
+  (* TODO: your code here *)
+  if null l2 then
+    l1
+  else
+    clear_zero_terms (add_terms (adjoin_term (hd l2, l1), tl l2))
+
 
 fun add_poly (Poly (x, l1), Poly (y, l2)) =
   if x = y then 
@@ -63,16 +68,19 @@ fun add_poly (Poly (x, l1), Poly (y, l2)) =
     raise VariableMismatch 
 
 
+(* hint: consider implement a helper function (not required) *)
+(* TODO: mul_term_by_terms = fn : term_t * term_t list -> term_t list *)
+fun mul_term_by_terms (t, []) = []
+  | mul_term_by_terms (t, h::list) =
+    [Term (expon t + expon h, coeff t * coeff h)] @ mul_term_by_terms (t, list)
+    
+
 fun mul_terms (l1, l2) =
-  (* TODO your code here *)
-  (* hint: consider implement a helper function (not required) *)
-  (*   mul_term_by_terms = fn : term_t * term_t list -> term_t list *)
-  let
-    fun mul_term_by_terms
-
-  in
-
-  end
+  (* TODO: your code here *)
+  if null l2 then
+    []
+  else
+    clear_zero_terms (add_terms (mul_term_by_terms (hd l2, l1), mul_terms (l1, tl l2)));
 
 fun mul_poly (Poly (x, l1), Poly (y, l2)) =
   if x = y then 
@@ -82,7 +90,7 @@ fun mul_poly (Poly (x, l1), Poly (y, l2)) =
 
 
 fun diff_terms l =
-  (* TODO your code here *)
+  (* TODO: your code here *)
   (* hint: consider using foldl (not required) *)
 
 fun diff_poly (Poly (xx, l), x) =
@@ -118,6 +126,9 @@ val x = Variable "x"
 
 val add_poly_test_1 = add_poly (p1, p)
   = Poly (Variable "x", [Term (0, 8), Term (1, ~2), Term (2, 1)])
+
+val add_poly_test_2 = add_poly (p1, p2)
+  = Poly (Variable "x", [Term (1, 2)])
 
 (* x * x = x^2 *)
 val mul_poly_test_1 = mul_poly (p0, p0)
