@@ -43,10 +43,17 @@ fun add_terms (l1, l2) =
   (* hint: consider implement a helper function (not required) *)
   (*   adjoin_term = fn : term_t * term_t list -> term_t list *)
   let
-    fun adjoin_term
-
+    fun adjoin_term (t, []) = [t]
+      | adjoin_term (t, h::list) =
+        if expon t = expon h then
+          Term (expon t, coeff t + coeff h) :: list
+        else
+          h :: adjoin_term (t, list)
   in
-
+    if null l2 then
+      l1
+    else
+      add_terms (adjoin_term(hd l2, l1), tl l2)
   end
 
 fun add_poly (Poly (x, l1), Poly (y, l2)) =
