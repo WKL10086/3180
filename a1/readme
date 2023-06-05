@@ -1,0 +1,12 @@
+For 3180
+
+For this assignment, we will also check if your program has any memory leak. We will be using the following command to compile and run your program under the "Test environment" we mentioned in tutorial 1, assuming your source files are located at "csci3180/a1".
+
+g++ -std=c++20 -fsanitize=address,leak -o main csci3180/a1/\*.cpp && ./main
+
+It will report detected memory leak as runtime errors when you run the program (i.e. extra output indicating that there is a memory leak). If you want to learn about it, you may read this manual. With this said, we will still try to grade your program output
+(without leak checking, that is, with command
+
+g++ -std=c++20 -o main csci3180/a1/\*.cpp && ./main
+
+) after applying some mark penalty even if there is a memory leak detected, so do your best in other tasks anyway if memory leak is too hard to fix for you. Please note that, on the other hand, if your program cannot even be compiled or simply crashes on our grading environment, no mark can be given. Be aware that C++ programs may behave differently in different environments. For grading, we will only consider your program output on our grading machine using the official grading environment. Therefore, while you are free to work out your solution in any environment, do test it in our official grading environment and by all means avoid compilation errors and crashes before you submit your work. Program stability is king.
